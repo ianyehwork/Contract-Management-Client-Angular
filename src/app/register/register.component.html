@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <form class="form-register" #regForm="ngForm" (ngSubmit)="registerUser(regForm)">
+
+    <h2 class="form-register-heading">Register</h2>
+  
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" class="form-control" 
+      required [email]="newUser.email !== ''" [(ngModel)]="newUser.email" #email="ngModel">
+    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+      <div *ngIf="email.errors.required">Email is required.</div>
+      <div *ngIf="email.errors.email">Email is invalid.</div>
+    </div>
+  
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" class="form-control"
+      required minlength="6" [(ngModel)]="newUser.username" #username="ngModel">
+    <div class="alert alert-danger" *ngIf="username.touched && !username.valid">
+      <div *ngIf="username.errors.required">Username is required.</div>
+      <div *ngIf="username.errors.minlength">
+        Username should be minimum {{username.errors.minlength.requiredLength}} characters.
+      </div>
+    </div>
+  
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" class="form-control"
+      required minlength="6" [(ngModel)]="newUser.password" #password="ngModel"
+      (input)="rePass.control.updateValueAndValidity()">
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+      <div *ngIf="password.errors.required">Password is required.</div>
+      <div *ngIf="password.errors.minlength">
+        Password should be minimum {{password.errors.minlength.requiredLength}} characters.
+      </div>
+    </div>
+  
+    <label for="rePass">Confirm Password</label>
+    <input type="password" id="rePass" name="rePass" class="form-control"
+      required appConfirmEqualValidator="password" ngModel #rePass="ngModel">
+    <div class="alert alert-danger" *ngIf="rePass.touched && !rePass.valid">
+      <div *ngIf="rePass.errors.required">Confirm password is required.</div>
+      <div *ngIf="rePass.errors.notEqual && !rePass.errors.required">Password and Confirm password do not match.</div>
+    </div>
+  
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!regForm.valid">Register</button>
+  
+  </form>
+</div>

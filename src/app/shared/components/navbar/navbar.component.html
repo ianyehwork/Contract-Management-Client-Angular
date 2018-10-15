@@ -1,0 +1,23 @@
+<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/home" (click)="setCollapsed()">Poster App</a>
+    <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        (click)="toggleCollapsed()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+        <div *ngIf="!authService.isLoggedIn()" class="ml-auto">
+                <button class="btn btn-success my-2 my-sm-0" type="button" routerLink="/login" (click)="toggleCollapsed()">Login</button>
+        </div>
+        <!-- <form *ngIf="!authService.isLoggedIn()" class="form-inline my-2 my-lg-0">
+            <button class="btn btn-success my-2 my-sm-0" type="button" routerLink="/login" (click)="toggleCollapsed()">Login</button>
+        </form> -->
+        <div *ngIf="authService.isLoggedIn()" ngbDropdown class="d-inline-block ml-auto">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle><i class="fas fa-user-circle"></i>Hi, Username!</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item" routerLink="/account" (click)="toggleCollapsed()"><i class="fas fa-cog"></i>Settings</button>
+                <button *ngIf="authService.currentUser.role === 'default'" class="dropdown-item" routerLink="/posters" (click)="toggleCollapsed()"><i class="fas fa-file-alt"></i>Posters</button>
+                <button class="dropdown-item btn btn-danger" routerLink="/" (click)="authService.logout();toggleCollapsed()"><i class="fas fa-sign-out-alt"></i>Logout</button>
+            </div>
+        </div>
+    </div>
+</nav>

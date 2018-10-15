@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    
+    <div *ngIf="invalidLogin" class="alert alert-danger">
+      Invalid username and/or password.
+    </div>
+    
+    <label for="username" class="text-left">Username</label>
+    <input [(ngModel)]="user.username" name="username" type="username"
+      id="username" class="form-control" required #username="ngModel">
+    <div class="alert alert-danger" *ngIf="username.touched && !username.valid">Username is required.</div>
+  
+    <label for="password" class="text-left">Password <a routerLink="/password-reset">(forgot password)</a></label>
+    <input [(ngModel)]="user.password" name="password" type="password" id="password"
+      class="form-control" required #password="ngModel">
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">Password is required.</div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+  
+    <ul class="list-group">
+      <li class="list-group-item">New to Poster App? <br><a routerLink="/register">Create an account.</a></li>
+    </ul>
+  </form>
+</div>

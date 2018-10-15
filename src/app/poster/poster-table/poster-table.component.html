@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let poster of posterList">
+      <td>{{poster.title}}</td>
+      <td>{{poster.category}}</td>
+      <td>{{poster.description}}</td>
+      <td>
+        <i class="far fa-edit" (click)="openUpdatePosterModal(poster)"></i>
+        <i class="far fa-image"></i>
+        <i class="far fa-trash-alt" (click)="openDeletePosterModal(poster)"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
