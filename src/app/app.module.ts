@@ -169,3 +169,4 @@ export class AppModule { }
  * "postinstall": "ng build --prod"
  * to scripts in package.json
  */
+// 7. git push heroku master

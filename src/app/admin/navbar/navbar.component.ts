@@ -10,7 +10,7 @@ export class NavbarComponent implements OnInit {
 
   collapsed = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }
