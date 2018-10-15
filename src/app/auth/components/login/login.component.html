@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+    <h2 class="form-signin-heading">請登入</h2>
+    
+    <div *ngIf="invalidLogin" class="alert alert-danger">
+      用戶名或密碼不正確
+    </div>
+    
+    <label for="username" class="text-left">用戶名</label>
+    <input [(ngModel)]="user.username" name="username" type="username"
+      id="username" class="form-control" required #username="ngModel">
+    <div class="alert alert-danger" *ngIf="username.touched && !username.valid">請輸入用戶名</div>
+  
+    <label for="password" class="text-left mt-2">密碼 </label> <a routerLink="/password-reset">(忘記密碼?)</a>
+    <input [(ngModel)]="user.password" name="password" type="password" id="password"
+      class="form-control" required #password="ngModel">
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">請輸入密碼</div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> 保持登入
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="loginForm.invalid">確認</button>
+  
+    <ul class="list-group">
+      <li class="list-group-item"><a routerLink="/register">新建帳戶</a></li>
+    </ul>
+  </form>
+</div>

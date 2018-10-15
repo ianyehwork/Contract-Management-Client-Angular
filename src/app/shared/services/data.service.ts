@@ -11,7 +11,7 @@ import { NotFoundError } from '../models/not-found-error';
 import { AppError } from '../models/app-error';
 
 import { HasIdInterface } from '../models/has-id.interface';
-import { AuthService } from './auth.service';
+import { AuthService } from '../../auth/services/auth.service';
 
 /**
  * This class is the based class for http service that has CRUD operation.

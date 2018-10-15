@@ -11,44 +11,39 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 // Services Import Statement
-import { QuestionControlService } from './shared/services/question-control.service';
-import { QuestionService } from './temp/question.service';
-import { PosterService } from './services/poster.service';
-import { DefaultAuthGuard } from './services/default-auth-guard.service';
-import { AuthGuard } from './shared/services/auth-guard.service';
-import { CategoryService } from './services/category.service';
-import { AuthService } from './shared/services/auth.service';
+import { PosterService } from './client/poster/services/poster.service';
+import { DefaultAuthGuard } from './auth/services/default-auth-guard.service';
+import { AuthGuard } from './auth/services/auth-guard.service';
+import { CategoryService } from './client/poster/services/category.service';
+import { AuthService } from './auth/services/auth.service';
 import { ToastService } from './shared/services/toast.service';
 
 // Pipes Import Statement
 import { ReversePipe } from './shared/pipes/reverse.pipe';
 
 // Directives Import Statement
-import { ConfirmPasswordValidatorDirective } from './shared/directives/confirm-password-validator.directive';
+import { ConfirmPasswordValidatorDirective } from './auth/directives/confirm-password-validator.directive';
 
 // Components Import Statement
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './auth/components/login/login.component';
+import { RegisterComponent } from './auth/components/register/register.component';
+import { HomeComponent } from './admin/home/home.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { AccountComponent } from './account/account.component';
-import { NoAccessComponent } from './no-access/no-access.component';
-import { PosterCreateComponent } from './poster/poster-create/poster-create.component';
-import { PosterTableComponent } from './poster/poster-table/poster-table.component';
-import { PosterSearchbarComponent } from './poster/poster-searchbar/poster-searchbar.component';
+import { NoAccessComponent } from './auth/components/no-access/no-access.component';
+import { PosterCreateComponent } from './client/poster/components/poster-create/poster-create.component';
+import { PosterTableComponent } from './client/poster/components/poster-table/poster-table.component';
+import { PosterSearchbarComponent } from './client/poster/components/poster-searchbar/poster-searchbar.component';
 import { TimePickerComponent } from './shared/components/timepicker/timepicker';
-import { PosterHomeComponent } from './poster/poster-home/poster-home.component';
-import { PosterDeleteModalComponent } from './poster/poster-delete-modal/poster-delete-modal.component';
-import { PosterUpdateComponent } from './poster/poster-update/poster-update.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
-import { PasswordChangeComponent } from './password-change/password-change.component';
+import { PosterHomeComponent } from './client/poster/components/poster-home/poster-home.component';
+import { PosterDeleteModalComponent } from './client/poster/components/poster-delete-modal/poster-delete-modal.component';
+import { PosterUpdateComponent } from './client/poster/components/poster-update/poster-update.component';
+import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
+import { PasswordChangeComponent } from './auth/components/password-change/password-change.component';
 import { ErrorHandlerComponent } from './shared/components/error-handler/error-handler.component';
 import { ToastMessagesComponent } from './shared/components/toast-messages/toast-messages.component';
-import { PosterCardComponent } from './poster/poster-card/poster-card.component';
-import { PosterUploadComponent } from './poster/poster-upload/poster-upload.component';
-import { DynamicFormComponent } from './temp/dynamic-form/dynamic-form.component';
-import { DynamicFormQuestionComponent } from './temp/dynamic-form-question/dynamic-form-question.component';
+import { PosterCardComponent } from './client/poster/components/poster-card/poster-card.component';
+import { PosterUploadComponent } from './client/poster/components/poster-upload/poster-upload.component';
 
 const appRouters: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
@@ -60,14 +55,12 @@ const appRouters: Routes = [
       }
     ]
   },
+  { path: 'posters', component: PosterHomeComponent, canActivate: [AuthGuard, DefaultAuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'home/(sidebar:posters)', component: PosterHomeComponent, canActivate: [AuthGuard, DefaultAuthGuard], outlet: 'sidebar'},
-  { path: 'account', component: AccountComponent, canActivate: [AuthGuard, DefaultAuthGuard]},
   { path: 'no-access', component: NoAccessComponent },
   { path: 'password-reset/:username/:token', component: PasswordChangeComponent},
   { path: 'password-reset', component: PasswordResetComponent},
-  { path: 'test/dynamic-form', component: DynamicFormComponent },
   { path: '**', component: LoginComponent }
 ];
 
@@ -79,7 +72,6 @@ const appRouters: Routes = [
     ConfirmPasswordValidatorDirective,
     HomeComponent,
     NavbarComponent,
-    AccountComponent,
     NoAccessComponent,
     PosterCreateComponent,
     PosterTableComponent,
@@ -94,9 +86,7 @@ const appRouters: Routes = [
     ReversePipe,
     ToastMessagesComponent,
     PosterCardComponent,
-    PosterUploadComponent,
-    DynamicFormComponent,
-    DynamicFormQuestionComponent
+    PosterUploadComponent
   ],
   imports: [
     HttpClientModule,
@@ -115,9 +105,7 @@ const appRouters: Routes = [
     { provide: ErrorHandler, useClass: ErrorHandlerComponent},
     CategoryService,
     PosterService,
-    ToastService,
-    QuestionService,
-    QuestionControlService
+    ToastService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
