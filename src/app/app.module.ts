@@ -152,3 +152,20 @@ const appRouters: Routes = [
   ]
 })
 export class AppModule { }
+// https://plmsclient.herokuapp.com/
+
+// 1. heroku --version
+// 2. heroku login
+// 3. heroku create <name>
+// 4. heroku open
+/**
+ * 5. Move:
+ * "@angular/cli": "~1.7.4",
+ * "@angular/compiler-cli": "^5.2.0"
+ * "typescript": "~2.5.3"
+ * From devDependencies to dependencies
+ *
+ * 6. Add:
+ * "postinstall": "ng build --prod"
+ * to scripts in package.json
+ */
