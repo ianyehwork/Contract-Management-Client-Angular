@@ -153,6 +153,7 @@ const appRouters: Routes = [
 })
 export class AppModule { }
 // https://plmsclient.herokuapp.com/
+// https://medium.com/@hellotunmbi/how-to-deploy-angular-application-to-heroku-1d56e09c5147
 
 // 1. heroku --version
 // 2. heroku login
