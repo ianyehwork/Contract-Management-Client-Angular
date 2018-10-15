@@ -1,46 +1,46 @@
 <div class="container-fluid">
   <form class="form-register" #regForm="ngForm" (ngSubmit)="registerUser(regForm)">
 
-    <h2 class="form-register-heading">Register</h2>
-  
-    <label for="email">Email</label>
-    <input type="text" id="email" name="email" class="form-control" 
-      required [email]="newUser.email !== ''" [(ngModel)]="newUser.email" #email="ngModel">
-    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
-      <div *ngIf="email.errors.required">Email is required.</div>
-      <div *ngIf="email.errors.email">Email is invalid.</div>
-    </div>
-  
-    <label for="username">Username</label>
+    <h2 class="form-register-heading">註冊用戶</h2>
+
+    <label for="username">用戶名</label>
     <input type="text" id="username" name="username" class="form-control"
       required minlength="6" [(ngModel)]="newUser.username" #username="ngModel">
     <div class="alert alert-danger" *ngIf="username.touched && !username.valid">
-      <div *ngIf="username.errors.required">Username is required.</div>
+      <div *ngIf="username.errors.required">請輸入用戶名</div>
       <div *ngIf="username.errors.minlength">
-        Username should be minimum {{username.errors.minlength.requiredLength}} characters.
+        用戶名至少要 {{username.errors.minlength.requiredLength}} 個英文字.
       </div>
     </div>
   
-    <label for="password">Password</label>
+    <label class="mt-2" for="password">密碼</label>
     <input type="password" id="password" name="password" class="form-control"
       required minlength="6" [(ngModel)]="newUser.password" #password="ngModel"
       (input)="rePass.control.updateValueAndValidity()">
     <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
-      <div *ngIf="password.errors.required">Password is required.</div>
+      <div *ngIf="password.errors.required">請輸入密碼</div>
       <div *ngIf="password.errors.minlength">
-        Password should be minimum {{password.errors.minlength.requiredLength}} characters.
+        密碼至少要 {{password.errors.minlength.requiredLength}} 個英文字.
       </div>
     </div>
   
-    <label for="rePass">Confirm Password</label>
+    <label for="rePass">確認密碼</label>
     <input type="password" id="rePass" name="rePass" class="form-control"
       required appConfirmEqualValidator="password" ngModel #rePass="ngModel">
     <div class="alert alert-danger" *ngIf="rePass.touched && !rePass.valid">
-      <div *ngIf="rePass.errors.required">Confirm password is required.</div>
-      <div *ngIf="rePass.errors.notEqual && !rePass.errors.required">Password and Confirm password do not match.</div>
+      <div *ngIf="rePass.errors.required">請確認密碼</div>
+      <div *ngIf="rePass.errors.notEqual && !rePass.errors.required">確認密碼與輸入密碼不相符</div>
     </div>
   
-    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!regForm.valid">Register</button>
+    <label for="email">郵箱</label>
+    <input type="text" id="email" name="email" class="form-control" 
+      required [email]="newUser.email !== ''" [(ngModel)]="newUser.email" #email="ngModel">
+    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+      <div *ngIf="email.errors.required">請輸入郵箱</div>
+      <div *ngIf="email.errors.email">郵箱格式不正確</div>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" [disabled]="!regForm.valid">註冊</button>
   
   </form>
 </div>

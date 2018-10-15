@@ -51,16 +51,24 @@ import { DynamicFormComponent } from './temp/dynamic-form/dynamic-form.component
 import { DynamicFormQuestionComponent } from './temp/dynamic-form-question/dynamic-form-question.component';
 
 const appRouters: Routes = [
-  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
+    children: [
+      {
+        path: 'dashboard',
+        component: PosterHomeComponent,
+        outlet: 'detail'
+      }
+    ]
+  },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'posters', component: PosterHomeComponent, canActivate: [AuthGuard, DefaultAuthGuard]},
+  { path: 'home/(sidebar:posters)', component: PosterHomeComponent, canActivate: [AuthGuard, DefaultAuthGuard], outlet: 'sidebar'},
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard, DefaultAuthGuard]},
   { path: 'no-access', component: NoAccessComponent },
   { path: 'password-reset/:username/:token', component: PasswordChangeComponent},
   { path: 'password-reset', component: PasswordResetComponent},
   { path: 'test/dynamic-form', component: DynamicFormComponent },
-  { path: '**', component: HomeComponent }
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({

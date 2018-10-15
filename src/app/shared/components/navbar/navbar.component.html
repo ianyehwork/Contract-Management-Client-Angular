@@ -1,22 +1,27 @@
-<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/home" (click)="setCollapsed()">Poster App</a>
+<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/home" (click)="setCollapsed()">停車場管理系統</a>
     <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
         (click)="toggleCollapsed()">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
         <div *ngIf="!authService.isLoggedIn()" class="ml-auto">
-                <button class="btn btn-success my-2 my-sm-0" type="button" routerLink="/login" (click)="toggleCollapsed()">Login</button>
+                <button class="btn btn-success my-2 my-sm-0" type="button" routerLink="/login" (click)="toggleCollapsed()">登入</button>
         </div>
         <!-- <form *ngIf="!authService.isLoggedIn()" class="form-inline my-2 my-lg-0">
             <button class="btn btn-success my-2 my-sm-0" type="button" routerLink="/login" (click)="toggleCollapsed()">Login</button>
         </form> -->
         <div *ngIf="authService.isLoggedIn()" ngbDropdown class="d-inline-block ml-auto">
-            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle><i class="fas fa-user-circle"></i>Hi, Username!</button>
+            <button class="btn btn-default" id="dropdownBasic1" ngbDropdownToggle><i class="fas fa-user-circle"></i>你好, Username!</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button class="dropdown-item" routerLink="/account" (click)="toggleCollapsed()"><i class="fas fa-cog"></i>Settings</button>
-                <button *ngIf="authService.currentUser.role === 'default'" class="dropdown-item" routerLink="/posters" (click)="toggleCollapsed()"><i class="fas fa-file-alt"></i>Posters</button>
-                <button class="dropdown-item btn btn-danger" routerLink="/" (click)="authService.logout();toggleCollapsed()"><i class="fas fa-sign-out-alt"></i>Logout</button>
+                <button class="dropdown-item" routerLink="/home" (click)="toggleCollapsed()"><i class="fas fa-home"></i> 主頁</button>
+                <button class="dropdown-item" routerLink="/home" (click)="toggleCollapsed()"><i class="fas fa-parking"></i> &nbsp;停車場管理</button>
+                <button class="dropdown-item" routerLink="/home" (click)="toggleCollapsed()"><i class="fas fa-users"></i> 客戶管理</button>
+                <button class="dropdown-item" routerLink="/home" (click)="toggleCollapsed()"><i class="fas fa-file-signature"></i> 合同管理</button>
+                <button class="dropdown-item" routerLink="/home" (click)="toggleCollapsed()"><i class="fas fa-chart-bar"></i> 生成報告</button>
+                <button class="dropdown-item" routerLink="/account" (click)="toggleCollapsed()"><i class="fas fa-cogs"></i> 管理者設置</button>
+                <!-- <button *ngIf="authService.currentUser.role === 'default'" class="dropdown-item" routerLink="/posters" (click)="toggleCollapsed()"><i class="fas fa-file-alt"></i>Posters</button> -->
+                <button class="dropdown-item btn btn-danger" routerLink="/" (click)="authService.logout();toggleCollapsed()"><i class="fas fa-sign-out-alt"></i>&nbsp;登出</button>
             </div>
         </div>
     </div>
