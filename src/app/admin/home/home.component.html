@@ -1,35 +1,36 @@
+<app-navbar></app-navbar>
 <div class="row">
   
   <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['dashboard'] } }]">
             <i class="fas fa-home text-dark"></i> <span class="text-dark">主頁</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="[{ outlets: { detail: ['posters'] } }]">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['parking'] } }]">
             <i class="fas fa-parking text-dark"></i> <span class="text-dark">&nbsp;停車場管理</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['customer'] } }]">
             <i class="fas fa-users text-dark"></i> <span class="text-dark">客戶管理</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['contract'] } }]">
             <i class="fas fa-file-signature text-dark"></i> <span class="text-dark">合同管理</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['report'] } }]">
             <i class="fas fa-chart-bar text-dark"></i> <span class="text-dark">&nbsp;生成報告</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['setting'] } }]">
             <i class="fas fa-cogs text-dark"></i> <span class="text-dark">管理者設置</span>
           </a>
         </li>
@@ -39,6 +40,6 @@
   </nav>
 
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <router-outlet name="detail"></router-outlet>
+    <router-outlet name="admin"></router-outlet>
   </main>
 </div>

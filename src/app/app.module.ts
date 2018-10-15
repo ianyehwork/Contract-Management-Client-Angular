@@ -29,7 +29,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { HomeComponent } from './admin/home/home.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { NavbarComponent } from './admin/navbar/navbar.component';
 import { NoAccessComponent } from './auth/components/no-access/no-access.component';
 import { PosterCreateComponent } from './client/poster/components/poster-create/poster-create.component';
 import { PosterTableComponent } from './client/poster/components/poster-table/poster-table.component';
@@ -44,14 +44,45 @@ import { ErrorHandlerComponent } from './shared/components/error-handler/error-h
 import { ToastMessagesComponent } from './shared/components/toast-messages/toast-messages.component';
 import { PosterCardComponent } from './client/poster/components/poster-card/poster-card.component';
 import { PosterUploadComponent } from './client/poster/components/poster-upload/poster-upload.component';
+import { DashboardHomeComponent } from './admin/dashboard/components/dashboard-home/dashboard-home.component';
+import { ParkingAreaHomeComponent } from './admin/parking/components/parking-area-home/parking-area-home.component';
+import { CustomerHomeComponent } from './admin/customer/components/customer-home/customer-home.component';
+import { ContractHomeComponent } from './admin/contract/components/contract-home/contract-home.component';
+import { ReportHomeComponent } from './admin/report/components/report-home/report-home.component';
+import { SettingHomeComponent } from './admin/setting/components/setting-home/setting-home.component';
 
 const appRouters: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
     children: [
       {
-        path: 'dashboard',
-        component: PosterHomeComponent,
-        outlet: 'detail'
+        path: '',
+        component: DashboardHomeComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'parking',
+        component: ParkingAreaHomeComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'customer',
+        component: CustomerHomeComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'contract',
+        component: ContractHomeComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'report',
+        component: ReportHomeComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'setting',
+        component: SettingHomeComponent,
+        outlet: 'admin'
       }
     ]
   },
@@ -86,7 +117,13 @@ const appRouters: Routes = [
     ReversePipe,
     ToastMessagesComponent,
     PosterCardComponent,
-    PosterUploadComponent
+    PosterUploadComponent,
+    DashboardHomeComponent,
+    ParkingAreaHomeComponent,
+    CustomerHomeComponent,
+    ContractHomeComponent,
+    ReportHomeComponent,
+    SettingHomeComponent
   ],
   imports: [
     HttpClientModule,
