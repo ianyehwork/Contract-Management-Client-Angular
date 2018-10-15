@@ -170,3 +170,4 @@ export class AppModule { }
  * to scripts in package.json
  */
 // 7. git push heroku master
+// heroku logs --tail
