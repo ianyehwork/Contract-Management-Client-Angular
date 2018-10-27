@@ -8,6 +8,8 @@ export class Customer implements HasIdInterface {
     sPhone: string;
     address: string;
     vehicles: string[];
+    dateCreated: string;
+    dateModified: string;
 
     constructor() {
         this._id = 0;

@@ -1,0 +1,70 @@
+<div class="modal-header">
+  <h4 class="modal-title">編輯客戶</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!-- (ngSubmit) is not used to enable update and delete operation at the same time -->
+  <form class="form-customer" #form="ngForm" (ngSubmit)="cancel()">
+    <div class="form-row">
+      <div class="col">
+        <label for="pContact">主要聯絡人</label>
+        <input type="text" id="pContact" name="pContact" class="form-control" required [(ngModel)]="model.pContact"
+          #pContact="ngModel">
+        <div class="alert alert-danger" *ngIf="pContact.touched && pContact.invalid">
+          <div *ngIf="pContact.errors.required">此欄目必填</div>
+        </div>
+      </div>
+      <div class="col">
+        <label for="sContact">備用聯絡人</label>
+        <input type="text" id="sContact" name="sContact" class="form-control" [(ngModel)]="model.sContact" #sContact="ngModel">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col">
+        <label for="pPhone">主要聯絡電話</label>
+        <input type="text" id="pPhone" name="pPhone" class="form-control" required [(ngModel)]="model.pPhone" #pPhone="ngModel">
+        <div class="alert alert-danger" *ngIf="pPhone.touched && pPhone.invalid">
+          <div *ngIf="pPhone.errors.required">此欄目必填</div>
+        </div>
+      </div>
+      <div class="col">
+        <label for="sPhone">備用聯絡電話</label>
+        <input type="text" id="sPhone" name="sPhone" class="form-control" [(ngModel)]="model.sPhone" #sPhone="ngModel">
+      </div>
+    </div>
+
+    <label for="address">住址</label>
+    <input type="text" id="address" name="address" class="form-control" [(ngModel)]="model.address" #address="ngModel">
+
+    <label for="vin">新增車號</label>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" id="vin" class="form-control" #vin>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary" (click)="addVehicle(vin); vin.value =''">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <ul>
+      <li *ngFor="let vehicle of model.vehicles">
+        {{vehicle}}
+        <button type="button" class="close" aria-label="Close" (click)="deleteVehicle(vehicle)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
+      <button type="button" class="btn btn-danger" (click)="deleteModel()">刪除</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
+    </div>
+  </form>
+</div>

@@ -55,6 +55,7 @@ import { ParkingHomeComponent } from './admin/parking/components/parking-home/pa
 import { ParkingAreaCreateComponent } from './admin/parking/components/parking-area-create/parking-area-create.component';
 import { CustomerTableComponent } from './admin/customer/components/customer-table/customer-table.component';
 import { ParkingTableComponent } from './admin/parking/components/parking-table/parking-table.component';
+import { CustomerEditComponent } from './admin/customer/components/customer-edit/customer-edit.component';
 
 const appRouters: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
@@ -132,7 +133,8 @@ const appRouters: Routes = [
     SettingHomeComponent,
     ParkingAreaCreateComponent,
     CustomerTableComponent,
-    ParkingTableComponent
+    ParkingTableComponent,
+    CustomerEditComponent
   ],
   imports: [
     HttpClientModule,
@@ -158,7 +160,8 @@ const appRouters: Routes = [
   entryComponents: [
     PosterDeleteModalComponent,
     PosterUpdateComponent,
-    PosterUploadComponent
+    PosterUploadComponent,
+    CustomerEditComponent
   ]
 })
 export class AppModule { }

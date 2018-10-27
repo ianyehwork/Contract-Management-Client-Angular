@@ -9,12 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>葉子新，葉佳欣</td>
-      <td>0908522181</td>
-      <td>BKM3451</td>
-      <td>2018/10/27</td>
-      <td>2018/10/27</td>
+    <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
+      <td>{{model.pContact}}</td>
+      <td>{{model.pPhone}}</td>
+      <td>{{model.vehicles}}</td>
+      <td>{{model.dateCreated}}</td>
+      <td>{{model.dateModified}}</td>
     </tr>
   </tbody>
 </table>
