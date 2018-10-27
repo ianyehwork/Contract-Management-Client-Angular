@@ -1,3 +1,4 @@
+import { CustomerService } from './admin/customer/services/customer.service';
 // Angular Import Statement
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, Component } from '@angular/core';
@@ -14,7 +15,6 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { PosterService } from './client/poster/services/poster.service';
 import { DefaultAuthGuard } from './auth/services/default-auth-guard.service';
 import { AuthGuard } from './auth/services/auth-guard.service';
-import { CategoryService } from './client/poster/services/category.service';
 import { AuthService } from './auth/services/auth.service';
 import { ToastService } from './shared/services/toast.service';
 
@@ -50,6 +50,7 @@ import { CustomerHomeComponent } from './admin/customer/components/customer-home
 import { ContractHomeComponent } from './admin/contract/components/contract-home/contract-home.component';
 import { ReportHomeComponent } from './admin/report/components/report-home/report-home.component';
 import { SettingHomeComponent } from './admin/setting/components/setting-home/setting-home.component';
+import { CustomerCreateComponent } from './admin/customer/components/customer-create/customer-create.component';
 
 const appRouters: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
@@ -121,6 +122,7 @@ const appRouters: Routes = [
     DashboardHomeComponent,
     ParkingAreaHomeComponent,
     CustomerHomeComponent,
+    CustomerCreateComponent,
     ContractHomeComponent,
     ReportHomeComponent,
     SettingHomeComponent
@@ -140,9 +142,9 @@ const appRouters: Routes = [
     AuthGuard,
     DefaultAuthGuard,
     { provide: ErrorHandler, useClass: ErrorHandlerComponent},
-    CategoryService,
     PosterService,
-    ToastService
+    ToastService,
+    CustomerService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

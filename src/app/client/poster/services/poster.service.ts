@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Poster } from '../models/poster';
 import { DataService } from '../../../shared/services/data.service';
-import { Injectable } from '@angular/core';
-
 import { AuthService } from '../../../auth/services/auth.service';
+import { Injectable } from '@angular/core';
 
 // Environment
 import { environment } from '../../../../environments/environment';

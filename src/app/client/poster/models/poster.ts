@@ -1,4 +1,3 @@
-import { Category } from './category';
 import { HasIdInterface } from '../../../shared/models/has-id.interface';
 
 export class Poster implements HasIdInterface {

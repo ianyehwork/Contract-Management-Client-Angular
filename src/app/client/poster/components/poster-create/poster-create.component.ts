@@ -1,8 +1,6 @@
 import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
 import { PosterCardComponent } from '../poster-card/poster-card.component';
 import { PosterService } from '../../services/poster.service';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../models/category';
 import { Poster } from '../../models/poster';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -23,29 +21,20 @@ export class PosterCreateComponent implements OnInit {
   categories: string[];
   modalRef: NgbModalRef;
 
-  constructor(private categoryService: CategoryService,
-              private posterService: PosterService,
+  constructor(private posterService: PosterService,
               private modalService: NgbModal,
               private toast: ToastService) { }
 
   ngOnInit() {
-    this.setCategories();
-  }
-
-  open(createPoster) {
-    this.modalRef = this.modalService.open(createPoster, { size: 'lg' });
-  }
-
-  setCategories() {
-    // this.categoryService.fetchAll()
-    //                     .subscribe(resp => this.categories = resp);
-
-    // for dev purpose
     this.categories = [
       'Job',
       'Eat',
       'Dating'
     ];
+  }
+
+  open(createPoster) {
+    this.modalRef = this.modalService.open(createPoster, { size: 'lg' });
   }
 
   /**
