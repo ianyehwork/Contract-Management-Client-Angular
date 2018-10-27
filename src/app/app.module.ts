@@ -1,4 +1,3 @@
-import { CustomerService } from './admin/customer/services/customer.service';
 // Angular Import Statement
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, Component } from '@angular/core';
@@ -17,6 +16,8 @@ import { DefaultAuthGuard } from './auth/services/default-auth-guard.service';
 import { AuthGuard } from './auth/services/auth-guard.service';
 import { AuthService } from './auth/services/auth.service';
 import { ToastService } from './shared/services/toast.service';
+import { CustomerService } from './admin/customer/services/customer.service';
+import { ParkingAreaService } from './admin/parking/server/parking-area.service';
 
 // Pipes Import Statement
 import { ReversePipe } from './shared/pipes/reverse.pipe';
@@ -45,12 +46,15 @@ import { ToastMessagesComponent } from './shared/components/toast-messages/toast
 import { PosterCardComponent } from './client/poster/components/poster-card/poster-card.component';
 import { PosterUploadComponent } from './client/poster/components/poster-upload/poster-upload.component';
 import { DashboardHomeComponent } from './admin/dashboard/components/dashboard-home/dashboard-home.component';
-import { ParkingAreaHomeComponent } from './admin/parking/components/parking-area-home/parking-area-home.component';
 import { CustomerHomeComponent } from './admin/customer/components/customer-home/customer-home.component';
 import { ContractHomeComponent } from './admin/contract/components/contract-home/contract-home.component';
 import { ReportHomeComponent } from './admin/report/components/report-home/report-home.component';
 import { SettingHomeComponent } from './admin/setting/components/setting-home/setting-home.component';
 import { CustomerCreateComponent } from './admin/customer/components/customer-create/customer-create.component';
+import { ParkingHomeComponent } from './admin/parking/components/parking-home/parking-home.component';
+import { ParkingAreaCreateComponent } from './admin/parking/components/parking-area-create/parking-area-create.component';
+import { CustomerTableComponent } from './admin/customer/components/customer-table/customer-table.component';
+import { ParkingTableComponent } from './admin/parking/components/parking-table/parking-table.component';
 
 const appRouters: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
@@ -62,7 +66,7 @@ const appRouters: Routes = [
       },
       {
         path: 'parking',
-        component: ParkingAreaHomeComponent,
+        component: ParkingHomeComponent,
         outlet: 'admin'
       },
       {
@@ -120,12 +124,15 @@ const appRouters: Routes = [
     PosterCardComponent,
     PosterUploadComponent,
     DashboardHomeComponent,
-    ParkingAreaHomeComponent,
+    ParkingHomeComponent,
     CustomerHomeComponent,
     CustomerCreateComponent,
     ContractHomeComponent,
     ReportHomeComponent,
-    SettingHomeComponent
+    SettingHomeComponent,
+    ParkingAreaCreateComponent,
+    CustomerTableComponent,
+    ParkingTableComponent
   ],
   imports: [
     HttpClientModule,
@@ -144,7 +151,8 @@ const appRouters: Routes = [
     { provide: ErrorHandler, useClass: ErrorHandlerComponent},
     PosterService,
     ToastService,
-    CustomerService
+    CustomerService,
+    ParkingAreaService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

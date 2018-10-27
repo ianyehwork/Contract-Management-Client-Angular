@@ -5,3 +5,7 @@
 .modal-content {
     vertical-align: middle;
 }
+
+#addButton {
+    margin-bottom: 1em;
+}

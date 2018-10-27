@@ -1,23 +1,21 @@
-import { Component, OnInit} from '@angular/core';
+import { ParkingAreaService } from './../../server/parking-area.service';
+import { Component, OnInit } from '@angular/core';
 import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
 
-import { CustomerService } from '../../services/customer.service';
-import { Customer } from '../../models/customer';
+import { ParkingArea } from '../../models/parking-area';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-customer-create',
-  templateUrl: './customer-create.component.html',
-  styleUrls: ['./customer-create.component.css']
+  selector: 'app-parking-area-create',
+  templateUrl: './parking-area-create.component.html',
+  styleUrls: ['./parking-area-create.component.css']
 })
-export class CustomerCreateComponent implements OnInit {
+export class ParkingAreaCreateComponent implements OnInit {
 
-
-  model = new Customer();
+  model = new ParkingArea();
   modalRef: NgbModalRef;
 
-  constructor(private modelService: CustomerService,
+  constructor(private modelService: ParkingAreaService,
               private ngbService: NgbModal,
               private toast: ToastService) { }
 
@@ -54,23 +52,5 @@ export class CustomerCreateComponent implements OnInit {
     // });
   }
 
-  /**
-   * The function is SPECIFIC to add the vehicle when the + is clicked
-   * @param value the vehicle to be added to the list
-   */
-  addVehicle(vin) {
-    if (!_.isEmpty(vin.value)) {
-      this.model.vehicles.push(vin.value);
-    }
-  }
 
-  /**
-   * The function is SPECIFIC to delete the vehicle when the X is clicked
-   * @param vehicle the vehicle to be removed from the list
-   */
-  deleteVehicle(vehicle) {
-    this.model.vehicles = this.model.vehicles.filter((v) => {
-      return v !== vehicle;
-    });
-  }
 }

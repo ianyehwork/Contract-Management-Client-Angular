@@ -1,10 +1,10 @@
-<button class="btn btn-primary" (click)="open(template)">
-	創建用戶<i class="fas fa-plus" aria-hidden="true"></i>
+<button class="btn btn-primary" (click)="open(template)" id="addButton">
+	創建客戶<i class="fas fa-plus" aria-hidden="true"></i>
 </button>
 
 <ng-template #template let-c="close" let-d="dismiss">
 	<div class="modal-header">
-		<h4 class="modal-title">創建用戶</h4>
+		<h4 class="modal-title">創建客戶</h4>
 		<button type="button" class="close" aria-label="Close" (click)="form.resetForm(); d('Cross click')">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -14,33 +14,33 @@
 			<div class="form-row">
 				<div class="col">
 					<label for="pContact">主要聯絡人</label>
-					<input type="text" id="pContact" name="pContact" class="form-control" required [(ngModel)]="newCustomer.pContact" #pContact="ngModel">
+					<input type="text" id="pContact" name="pContact" class="form-control" required [(ngModel)]="model.pContact" #pContact="ngModel">
 					<div class="alert alert-danger" *ngIf="pContact.touched && pContact.invalid">
 						<div *ngIf="pContact.errors.required">此欄目必填</div>
 					</div>
 				</div>
 				<div class="col">
 					<label for="sContact">備用聯絡人</label>
-					<input type="text" id="sContact" name="sContact" class="form-control" [(ngModel)]="newCustomer.sContact" #sContact="ngModel">
+					<input type="text" id="sContact" name="sContact" class="form-control" [(ngModel)]="model.sContact" #sContact="ngModel">
 				</div>
 			</div>
 
 			<div class="form-row">
 				<div class="col">
 					<label for="pPhone">主要聯絡電話</label>
-					<input type="text" id="pPhone" name="pPhone" class="form-control" required [(ngModel)]="newCustomer.pPhone" #pPhone="ngModel">
+					<input type="text" id="pPhone" name="pPhone" class="form-control" required [(ngModel)]="model.pPhone" #pPhone="ngModel">
 					<div class="alert alert-danger" *ngIf="pPhone.touched && pPhone.invalid">
 						<div *ngIf="pPhone.errors.required">此欄目必填</div>
 					</div>
 				</div>
 				<div class="col">
 					<label for="sPhone">備用聯絡電話</label>
-					<input type="text" id="sPhone" name="sPhone" class="form-control" [(ngModel)]="newCustomer.sPhone" #sPhone="ngModel">
+					<input type="text" id="sPhone" name="sPhone" class="form-control" [(ngModel)]="model.sPhone" #sPhone="ngModel">
 				</div>
 			</div>
 
 			<label for="address">住址</label>
-			<input type="text" id="address" name="address" class="form-control" [(ngModel)]="newCustomer.address" #address="ngModel">
+			<input type="text" id="address" name="address" class="form-control" [(ngModel)]="model.address" #address="ngModel">
 
 			<label for="vin">新增車號</label>
 
@@ -56,7 +56,7 @@
 			</div>
 
 			<ul>
-				<li *ngFor="let vehicle of newCustomer.vehicles">
+				<li *ngFor="let vehicle of model.vehicles">
 					{{vehicle}}
 					<button type="button" class="close" aria-label="Close" (click)="deleteVehicle(vehicle)">
 						<span aria-hidden="true">&times;</span>
@@ -66,7 +66,7 @@
 
 			<div class="modal-footer">
 				<button type="submit" class="btn btn-primary" [disabled]="form.invalid">保存</button>
-				<button type="button" class="btn btn-danger" (click)="form.resetForm(); c('Close click')">取消</button>
+				<button type="button" class="btn btn-secondary" (click)="form.resetForm(); c('Close click')">取消</button>
 			</div>
 		</form>
 	</div>
