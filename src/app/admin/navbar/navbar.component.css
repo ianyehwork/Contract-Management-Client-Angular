@@ -9,3 +9,7 @@ i.fas.fa-file-alt {
 div.ml-auto {
     margin-right: 20px;
 }
+
+button.active{
+    background-color: gray;
+}
