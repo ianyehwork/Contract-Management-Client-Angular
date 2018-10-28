@@ -1,3 +1,4 @@
+import { AdminModule } from './admin/admin.module';
 import { ClientModule } from './client/client.module';
 import { SharedModule } from './shared/shared.module';
 // Angular Import Statement
@@ -15,8 +16,6 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { DefaultAuthGuard } from './auth/services/default-auth-guard.service';
 import { AuthGuard } from './auth/services/auth-guard.service';
 import { AuthService } from './auth/services/auth.service';
-import { CustomerService } from './admin/customer/services/customer.service';
-import { ParkingAreaService } from './admin/parking/server/parking-area.service';
 
 // Directives Import Statement
 import { ConfirmPasswordValidatorDirective } from './auth/directives/confirm-password-validator.directive';
@@ -26,58 +25,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
-import { HomeComponent } from './admin/home/home.component';
-import { NavbarComponent } from './admin/navbar/navbar.component';
 import { NoAccessComponent } from './auth/components/no-access/no-access.component';
 import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
 import { PasswordChangeComponent } from './auth/components/password-change/password-change.component';
-import { DashboardHomeComponent } from './admin/dashboard/components/dashboard-home/dashboard-home.component';
-import { CustomerHomeComponent } from './admin/customer/components/customer-home/customer-home.component';
-import { ContractHomeComponent } from './admin/contract/components/contract-home/contract-home.component';
-import { ReportHomeComponent } from './admin/report/components/report-home/report-home.component';
-import { SettingHomeComponent } from './admin/setting/components/setting-home/setting-home.component';
-import { CustomerCreateComponent } from './admin/customer/components/customer-create/customer-create.component';
-import { ParkingHomeComponent } from './admin/parking/components/parking-home/parking-home.component';
-import { ParkingAreaCreateComponent } from './admin/parking/components/parking-area-create/parking-area-create.component';
-import { CustomerTableComponent } from './admin/customer/components/customer-table/customer-table.component';
-import { ParkingTableComponent } from './admin/parking/components/parking-table/parking-table.component';
-import { CustomerEditComponent } from './admin/customer/components/customer-edit/customer-edit.component';
 
 const appRouters: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardHomeComponent,
-        outlet: 'admin'
-      },
-      {
-        path: 'parking',
-        component: ParkingHomeComponent,
-        outlet: 'admin'
-      },
-      {
-        path: 'customer',
-        component: CustomerHomeComponent,
-        outlet: 'admin'
-      },
-      {
-        path: 'contract',
-        component: ContractHomeComponent,
-        outlet: 'admin'
-      },
-      {
-        path: 'report',
-        component: ReportHomeComponent,
-        outlet: 'admin'
-      },
-      {
-        path: 'setting',
-        component: SettingHomeComponent,
-        outlet: 'admin'
-      }
-    ]
-  },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'no-access', component: NoAccessComponent },
@@ -92,22 +44,9 @@ const appRouters: Routes = [
     LoginComponent,
     RegisterComponent,
     ConfirmPasswordValidatorDirective,
-    HomeComponent,
-    NavbarComponent,
     NoAccessComponent,
     PasswordResetComponent,
     PasswordChangeComponent,
-    DashboardHomeComponent,
-    ParkingHomeComponent,
-    CustomerHomeComponent,
-    CustomerCreateComponent,
-    ContractHomeComponent,
-    ReportHomeComponent,
-    SettingHomeComponent,
-    ParkingAreaCreateComponent,
-    CustomerTableComponent,
-    ParkingTableComponent,
-    CustomerEditComponent
   ],
   imports: [
     HttpClientModule,
@@ -119,19 +58,15 @@ const appRouters: Routes = [
     ReactiveFormsModule,
     SharedModule,
     ClientModule,
+    AdminModule,
     NgbModule
   ],
   providers: [
     AuthService,
     AuthGuard,
-    DefaultAuthGuard,
-    CustomerService,
-    ParkingAreaService
+    DefaultAuthGuard
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    CustomerEditComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 // https://plmsclient.herokuapp.com/
