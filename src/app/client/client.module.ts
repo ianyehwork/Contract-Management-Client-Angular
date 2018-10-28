@@ -2,7 +2,7 @@ import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { PosterCardComponent } from './poster/components/poster-card/poster-card.component';
 import { PosterCreateComponent } from './poster/components/poster-create/poster-create.component';
@@ -14,13 +14,15 @@ import { PosterUpdateComponent } from './poster/components/poster-update/poster-
 import { PosterUploadComponent } from './poster/components/poster-upload/poster-upload.component';
 import { PosterService } from './poster/services/poster.service';
 
+const routes: Routes = [
+  { path: 'posters', component: PosterHomeComponent}
+];
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild([
-      { path: 'posters', component: PosterHomeComponent}
-    ]),
+    RouterModule.forChild(routes),
     SharedModule
   ],
   declarations: [
