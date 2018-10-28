@@ -43,7 +43,7 @@ export class CustomerCreateComponent implements OnInit {
    * when the "save" button is clicked.
    * @param customerForm the form content
    */
-  submitCustomer(customerForm) {
+  submitModel(customerForm) {
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('客戶建立完成', BS4AlertType.SUCCESS);

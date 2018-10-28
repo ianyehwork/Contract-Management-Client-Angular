@@ -2,7 +2,7 @@ import { convertUTCDateTimeToYMD } from './../../../../shared/util/date-time-con
 import { CustomerEditComponent } from './../customer-edit/customer-edit.component';
 import { CustomerService } from './../../services/customer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Customer } from '../../models/customer';
 
 @Component({

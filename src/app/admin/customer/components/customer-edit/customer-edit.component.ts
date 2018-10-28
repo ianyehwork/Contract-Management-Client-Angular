@@ -1,4 +1,3 @@
-import { CustomerTableComponent } from './../customer-table/customer-table.component';
 import { CustomerService } from './../../services/customer.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../../models/customer';

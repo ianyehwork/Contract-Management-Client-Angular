@@ -19,6 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ParkingAreaCreateComponent } from './parking/components/parking-area-create/parking-area-create.component';
 import { ParkingHomeComponent } from './parking/components/parking-home/parking-home.component';
 import { ParkingTableComponent } from './parking/components/parking-table/parking-table.component';
+import { ParkingAreaEditComponent } from './parking/components/parking-area-edit/parking-area-edit.component';
 import { ParkingAreaService } from './parking/server/parking-area.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
@@ -57,14 +58,16 @@ const routes: Routes = [
     ParkingAreaCreateComponent,
     CustomerTableComponent,
     ParkingTableComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    ParkingAreaEditComponent
   ],
   providers: [
     CustomerService,
     ParkingAreaService
   ],
   entryComponents: [
-    CustomerEditComponent
+    CustomerEditComponent,
+    ParkingAreaEditComponent
   ]
 })
 export class AdminModule { }

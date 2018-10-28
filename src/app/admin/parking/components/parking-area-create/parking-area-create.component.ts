@@ -1,9 +1,10 @@
 import { ParkingAreaService } from './../../server/parking-area.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
 
 import { ParkingArea } from '../../models/parking-area';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ParkingTableComponent } from '../parking-table/parking-table.component';
 
 @Component({
   selector: 'app-parking-area-create',
@@ -12,6 +13,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ParkingAreaCreateComponent implements OnInit {
 
+  @Input() table: ParkingTableComponent;
   model = new ParkingArea();
   modalRef: NgbModalRef;
 
@@ -36,20 +38,19 @@ export class ParkingAreaCreateComponent implements OnInit {
    * when the "save" button is clicked.
    * @param customerForm the form content
    */
-  submitCustomer(customerForm) {
-    console.log(this.model);
-    customerForm.resetForm();
-    this.modalRef.close();
-    // this.modelService.create(this.model).subscribe((result) => {
-    //   if (result) {
-    //     this.toast.sendMessage('Customer created successfully', BS4AlertType.SUCCESS);
-    //     customerForm.resetForm();
-    //     this.modalRef.close();
-    //   }
-    // }, (error) => {
-    //   // this.invalidLogin = true;
-    //   console.log('Failed!');
-    // });
+  submitModel(customerForm) {
+    this.modelService.create(this.model).subscribe((result) => {
+      if (result) {
+        this.toast.sendMessage('停車區建立完成', BS4AlertType.SUCCESS);
+        this.table.addNewModel(result);
+        customerForm.resetForm();
+        this.model = new ParkingArea();
+        this.modalRef.close();
+      }
+    }, (error) => {
+      // this.invalidLogin = true;
+      console.log('Failed!');
+    });
   }
 
 

@@ -7,6 +7,8 @@ export class ParkingArea implements HasIdInterface {
     defaultDeposit: number;
     defaultRent: number;
     comment: string;
+    dateCreated: string;
+    dateModified: string;
 
     constructor() {
         this._id = 0;
@@ -14,7 +16,7 @@ export class ParkingArea implements HasIdInterface {
         this.address = '';
         this.defaultDeposit = 0;
         this.defaultRent = 0;
-        this.address = '';
+        this.comment = '';
     }
 
     get id() {
