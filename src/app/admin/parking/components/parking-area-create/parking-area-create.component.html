@@ -11,7 +11,7 @@
   </div>
   <div class="modal-body">
     <form class="form-customer" #form="ngForm" (ngSubmit)="submitCustomer(form)">
-      <label for="identifier">編號</label>
+      <label for="identifier">編號<span class="text_red">*</span>&nbsp;</label>
       <input type="text" id="identifier" name="identifier" class="form-control" required [(ngModel)]="model.identifier"
         #identifier="ngModel">
       <div class="alert alert-danger" *ngIf="identifier.touched && identifier.invalid">
@@ -58,6 +58,8 @@
 
       <label for="comment">備註</label>
       <textarea id="comment" name="comment" class="form-control" row="3" required [(ngModel)]="model.comment" #comment="ngModel"></textarea>
+
+      <label>所有標註星號的（*）皆為必填項。</label>
 
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" [disabled]="form.invalid">保存</button>

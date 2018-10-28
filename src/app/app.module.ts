@@ -61,7 +61,7 @@ const appRouters: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
     children: [
       {
-        path: '',
+        path: 'dashboard',
         component: DashboardHomeComponent,
         outlet: 'admin'
       },
