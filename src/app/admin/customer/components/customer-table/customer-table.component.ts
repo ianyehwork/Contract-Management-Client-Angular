@@ -1,3 +1,4 @@
+import { convertUTCDateTimeToYMD } from './../../../../shared/util/date-time-convertor';
 import { CustomerEditComponent } from './../customer-edit/customer-edit.component';
 import { CustomerService } from './../../services/customer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +20,10 @@ export class CustomerTableComponent implements OnInit {
   ngOnInit() {
     this.posterService.getAll().subscribe((result) => {
       this.modelList = result;
+      this.modelList.forEach((value, index, array) => {
+        array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
+        array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
+      });
     });
   }
 
@@ -28,6 +33,8 @@ export class CustomerTableComponent implements OnInit {
    * @param model new Customer created by the user
    */
   addNewModel(model: Customer) {
+    model.dateCreated = convertUTCDateTimeToYMD(model.dateCreated);
+    model.dateModified = convertUTCDateTimeToYMD(model.dateModified);
     this.modelList.push(model);
   }
 
@@ -51,6 +58,8 @@ export class CustomerTableComponent implements OnInit {
       } else if (result.operation === 'Update') {
         this.modelList.forEach((value, index, array) => {
           if (value._id === result.data._id) {
+            result.data.dateCreated = convertUTCDateTimeToYMD(result.data.dateCreated);
+            result.data.dateModified = convertUTCDateTimeToYMD(result.data.dateModified);
             array[index] = result.data;
           }
         });

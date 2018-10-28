@@ -1,4 +1,4 @@
-<div class="zeroMargin" *ngFor="let message of messages">
+<div *ngFor="let message of messages">
   <ngb-alert [type]="message.style" (close)="close(message)">
     {{ message.content }}
   </ngb-alert>

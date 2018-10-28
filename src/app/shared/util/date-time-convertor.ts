@@ -1,4 +1,4 @@
-
+import * as _ from 'lodash';
 const BASE_10 = 10;
 
 /**
@@ -34,4 +34,8 @@ export const convertNumberToDateTime = (datetime: number): {dateStr: string, tim
         dateStr,
         timeStr
     };
+};
+
+export const convertUTCDateTimeToYMD = (datetime: string): string => {
+    return _.split(datetime, 'T', 1)[0];
 };
