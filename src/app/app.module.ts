@@ -1,3 +1,4 @@
+import { ClientModule } from './client/client.module';
 import { SharedModule } from './shared/shared.module';
 // Angular Import Statement
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,7 +12,6 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 // Services Import Statement
-import { PosterService } from './client/poster/services/poster.service';
 import { DefaultAuthGuard } from './auth/services/default-auth-guard.service';
 import { AuthGuard } from './auth/services/auth-guard.service';
 import { AuthService } from './auth/services/auth.service';
@@ -29,16 +29,8 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { HomeComponent } from './admin/home/home.component';
 import { NavbarComponent } from './admin/navbar/navbar.component';
 import { NoAccessComponent } from './auth/components/no-access/no-access.component';
-import { PosterCreateComponent } from './client/poster/components/poster-create/poster-create.component';
-import { PosterTableComponent } from './client/poster/components/poster-table/poster-table.component';
-import { PosterSearchbarComponent } from './client/poster/components/poster-searchbar/poster-searchbar.component';
-import { PosterHomeComponent } from './client/poster/components/poster-home/poster-home.component';
-import { PosterDeleteModalComponent } from './client/poster/components/poster-delete-modal/poster-delete-modal.component';
-import { PosterUpdateComponent } from './client/poster/components/poster-update/poster-update.component';
 import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
 import { PasswordChangeComponent } from './auth/components/password-change/password-change.component';
-import { PosterCardComponent } from './client/poster/components/poster-card/poster-card.component';
-import { PosterUploadComponent } from './client/poster/components/poster-upload/poster-upload.component';
 import { DashboardHomeComponent } from './admin/dashboard/components/dashboard-home/dashboard-home.component';
 import { CustomerHomeComponent } from './admin/customer/components/customer-home/customer-home.component';
 import { ContractHomeComponent } from './admin/contract/components/contract-home/contract-home.component';
@@ -86,7 +78,6 @@ const appRouters: Routes = [
       }
     ]
   },
-  { path: 'posters', component: PosterHomeComponent, canActivate: [AuthGuard, DefaultAuthGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'no-access', component: NoAccessComponent },
@@ -104,16 +95,8 @@ const appRouters: Routes = [
     HomeComponent,
     NavbarComponent,
     NoAccessComponent,
-    PosterCreateComponent,
-    PosterTableComponent,
-    PosterSearchbarComponent,
-    PosterHomeComponent,
-    PosterDeleteModalComponent,
-    PosterUpdateComponent,
     PasswordResetComponent,
     PasswordChangeComponent,
-    PosterCardComponent,
-    PosterUploadComponent,
     DashboardHomeComponent,
     ParkingHomeComponent,
     CustomerHomeComponent,
@@ -135,21 +118,18 @@ const appRouters: Routes = [
     RecaptchaFormsModule,
     ReactiveFormsModule,
     SharedModule,
+    ClientModule,
     NgbModule
   ],
   providers: [
     AuthService,
     AuthGuard,
     DefaultAuthGuard,
-    PosterService,
     CustomerService,
     ParkingAreaService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    PosterDeleteModalComponent,
-    PosterUpdateComponent,
-    PosterUploadComponent,
     CustomerEditComponent
   ]
 })
