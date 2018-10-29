@@ -17,10 +17,14 @@ import { DashboardHomeComponent } from './dashboard/components/dashboard-home/da
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParkingAreaCreateComponent } from './parking/components/parking-area-create/parking-area-create.component';
-import { ParkingHomeComponent } from './parking/components/parking-home/parking-home.component';
-import { ParkingTableComponent } from './parking/components/parking-table/parking-table.component';
 import { ParkingAreaEditComponent } from './parking/components/parking-area-edit/parking-area-edit.component';
+import { ParkingHomeComponent } from './parking/components/parking-home/parking-home.component';
+import { ParkingLotCreateComponent } from './parking/components/parking-lot-create/parking-lot-create.component';
+import { ParkingLotEditComponent } from './parking/components/parking-lot-edit/parking-lot-edit.component';
+import { ParkingLotTableComponent } from './parking/components/parking-lot-table/parking-lot-table.component';
+import { ParkingTableComponent } from './parking/components/parking-table/parking-table.component';
 import { ParkingAreaService } from './parking/server/parking-area.service';
+import { ParkingLotService } from './parking/server/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 
@@ -59,15 +63,20 @@ const routes: Routes = [
     CustomerTableComponent,
     ParkingTableComponent,
     CustomerEditComponent,
-    ParkingAreaEditComponent
+    ParkingAreaEditComponent,
+    ParkingLotCreateComponent,
+    ParkingLotTableComponent,
+    ParkingLotEditComponent
   ],
   providers: [
     CustomerService,
-    ParkingAreaService
+    ParkingAreaService,
+    ParkingLotService
   ],
   entryComponents: [
     CustomerEditComponent,
-    ParkingAreaEditComponent
+    ParkingAreaEditComponent,
+    ParkingLotEditComponent
   ]
 })
 export class AdminModule { }

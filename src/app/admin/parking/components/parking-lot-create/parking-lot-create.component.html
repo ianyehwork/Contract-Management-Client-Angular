@@ -1,0 +1,67 @@
+<button class="btn btn-primary" (click)="open(template)" id="addButton">
+  創建停車位<i class="fas fa-plus" aria-hidden="true"></i>
+</button>
+
+<ng-template #template let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">創建停車位</h4>
+    <button type="button" class="close" aria-label="Close" (click)="form.resetForm(); d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-customer" #form="ngForm" (ngSubmit)="submitModel(form)">
+      <label for="identifier">編號<span class="text_red">*</span>&nbsp;</label>
+      <input type="text" id="identifier" name="identifier" class="form-control" required [(ngModel)]="model.identifier"
+        #identifier="ngModel">
+      <div class="alert alert-danger" *ngIf="identifier.touched && identifier.invalid">
+        <div *ngIf="identifier.errors.required">此欄目必填</div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label for="deposit">押金</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">NT$</span>
+            </div>
+            <input type="number" id="deposit" name="deposit" class="form-control" required [(ngModel)]="model.deposit"
+              #deposit="ngModel">
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+          <div class="alert alert-danger" *ngIf="deposit.touched && deposit.invalid">
+            <div>請輸入數字</div>
+          </div>
+        </div>
+        <div class="col">
+          <label for="rent">租金</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">NT$</span>
+            </div>
+            <input type="number" id="rent" name="rent" class="form-control" required [(ngModel)]="model.rent"
+              #rent="ngModel">
+            <div class="input-group-append">
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+          <div class="alert alert-danger" *ngIf="rent.touched && rent.invalid">
+            <div>請輸入數字</div>
+          </div>
+        </div>
+      </div>
+
+      <label for="comment">備註</label>
+      <textarea id="comment" name="comment" class="form-control" row="3" [(ngModel)]="model.comment" #comment="ngModel"></textarea>
+
+      <label>所有標註星號的（*）皆為必填項。</label>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">保存</button>
+        <button type="button" class="btn btn-secondary" (click)="form.resetForm(); c('Close click')">取消</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

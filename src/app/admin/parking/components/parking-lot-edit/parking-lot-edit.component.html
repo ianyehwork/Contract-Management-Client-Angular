@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">編輯停車區</h4>
+  <h4 class="modal-title">編輯停車位</h4>
   <button type="button" class="close" aria-label="Close" (click)="cancel()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -13,39 +13,35 @@
       <div *ngIf="identifier.errors.required">此欄目必填</div>
     </div>
 
-    <label for="address">地址</label>
-    <input type="text" id="address" name="address" class="form-control" [(ngModel)]="model.address" #address="ngModel">
-
     <div class="form-row">
       <div class="col">
-        <label for="defaultDeposit">默認押金</label>
+        <label for="deposit">押金</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">NT$</span>
           </div>
-          <input type="number" id="defaultDeposit" name="defaultDeposit" class="form-control" required [(ngModel)]="model.defaultDeposit"
-            #defaultDeposit="ngModel">
+          <input type="number" id="deposit" name="deposit" class="form-control" required [(ngModel)]="model.deposit"
+            #deposit="ngModel">
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
         </div>
-        <div class="alert alert-danger" *ngIf="defaultDeposit.touched && defaultDeposit.invalid">
+        <div class="alert alert-danger" *ngIf="deposit.touched && deposit.invalid">
           <div>請輸入數字</div>
         </div>
       </div>
       <div class="col">
-        <label for="defaultRent">默認租金</label>
+        <label for="rent">租金</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">NT$</span>
           </div>
-          <input type="number" id="defaultRent" name="defaultRent" class="form-control" required [(ngModel)]="model.defaultRent"
-            #defaultRent="ngModel">
+          <input type="number" id="rent" name="rent" class="form-control" required [(ngModel)]="model.rent" #rent="ngModel">
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
         </div>
-        <div class="alert alert-danger" *ngIf="defaultRent.touched && defaultRent.invalid">
+        <div class="alert alert-danger" *ngIf="rent.touched && rent.invalid">
           <div>請輸入數字</div>
         </div>
       </div>
@@ -57,9 +53,9 @@
     <label>所有標註星號的（*）皆為必填項。</label>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
-      <button type="button" class="btn btn-danger" (click)="deleteModel()">刪除</button>
-      <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
-    </div>
+        <button type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
+        <button type="button" class="btn btn-danger" (click)="deleteModel()">刪除</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
+      </div>
   </form>
 </div>
