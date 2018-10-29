@@ -20,7 +20,7 @@ export class ParkingLotTableComponent implements OnInit {
               private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.service.getAll().subscribe((result) => {
+    this.service.getAll(`?_area=${this.area._id}`).subscribe((result) => {
       this.modelList = result;
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
