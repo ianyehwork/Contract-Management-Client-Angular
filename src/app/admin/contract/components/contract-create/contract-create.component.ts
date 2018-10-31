@@ -1,3 +1,4 @@
+import { ParkingLotSearchComponent } from './../../../parking/components/parking-lot-search/parking-lot-search.component';
 import { environment } from './../../../../../environments/environment';
 import { ContractTableComponent } from './../contract-table/contract-table.component';
 import { Contract } from '../../models/contract';
@@ -63,17 +64,30 @@ export class ContractCreateComponent implements OnInit {
   /**
    * This function is triggered when the user clicks the table row
    * to edit the model.
-   * @param model new Customer created by the user
    */
   searchCustomer() {
     this.modalRef.dismiss();
     const modalRef = this.modalService.open(CustomerSearchComponent, AppConstants.MODAL_OPTIONS);
-    // Pass poster as a Input to ModalRef
-    // modalRef.componentInstance.model = model;
 
     modalRef.result.then(result => {
       if (result.operation === 'OK') {
         this.model._customer = result.data;
+      }
+      this.modalRef = this.modalService.open(this.formTemplate, AppConstants.MODAL_OPTIONS);
+    }, refused => {});
+  }
+
+  /**
+   * This function is triggered when the user clicks the table row
+   * to edit the model.
+   */
+  searchLot() {
+    this.modalRef.dismiss();
+    const modalRef = this.modalService.open(ParkingLotSearchComponent, AppConstants.MODAL_OPTIONS);
+
+    modalRef.result.then(result => {
+      if (result.operation === 'OK') {
+        this.model._lot = result.data;
       }
       this.modalRef = this.modalService.open(this.formTemplate, AppConstants.MODAL_OPTIONS);
     }, refused => {});

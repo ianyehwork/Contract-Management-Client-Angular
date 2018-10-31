@@ -27,12 +27,15 @@
 
       <label for="lot">停車位<span class="text_red">*</span>&nbsp;</label>
       <div class="input-group mb-3">
-        <input type="text" id="lot" name="lot" class="form-control" required disabled [(ngModel)]="model.lot" #lot="ngModel">
+        <input type="text" id="lot" name="lot" class="form-control" required disabled [(ngModel)]="model._lot.identifier" #lot="ngModel">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">查詢</button>
+          <button class="btn btn-outline-secondary" type="button" (click)="searchLot()">查詢</button>
         </div>
       </div>
-      
+      <div>
+        <label *ngIf="model._lot.rent !== 0">租金: {{model._lot.rent}}</label>
+        <label *ngIf="model._lot.deposit !== 0">押金: {{model._lot.deposit}}</label>
+      </div>
       
       <label for="">租賃期限</label>
       <div class="form-row">

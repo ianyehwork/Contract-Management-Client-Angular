@@ -32,6 +32,7 @@ import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { CustomerSearchComponent } from './customer/components/customer-search/customer-search.component';
+import { ParkingLotSearchComponent } from './parking/components/parking-lot-search/parking-lot-search.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
@@ -75,7 +76,8 @@ const routes: Routes = [
     ContractCreateComponent,
     ContractEditComponent,
     ContractTableComponent,
-    CustomerSearchComponent
+    CustomerSearchComponent,
+    ParkingLotSearchComponent
   ],
   providers: [
     CustomerService,
@@ -87,7 +89,8 @@ const routes: Routes = [
     CustomerEditComponent,
     ParkingAreaEditComponent,
     ParkingLotEditComponent,
-    CustomerSearchComponent
+    CustomerSearchComponent,
+    ParkingLotSearchComponent
   ]
 })
 export class AdminModule { }

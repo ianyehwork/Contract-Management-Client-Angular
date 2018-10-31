@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">查詢停車位</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="input-group mb-3">
+    <select class="custom-select" id="inputGroupSelect01" #text>
+      <option selected value="">選擇停車場...</option>
+      <option *ngFor="let area of areaList" value="{{area._id}}">{{area.identifier}}</option>
+    </select>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="search(text.value)">搜索</button>
+    </div>
+  </div>
+  <table class="table table-hover table-sm table-striped zeroMargin" >
+    <thead>
+      <tr>
+        <th scope="col">編號</th>
+        <th scope="col">租金</th>
+        <th scope="col">押金</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let model of modelList" (click)="returnModel(model)">
+        <td>{{model.identifier}}</td>
+        <td>{{model.rent}}</td>
+        <td>{{model.deposit}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
