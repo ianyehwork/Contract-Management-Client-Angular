@@ -9,14 +9,10 @@ export class Contract implements HasIdInterface {
     sYear: number;
     sMonth: number;
     sDay: number;
-    eYear: number;
-    eMonth: number;
-    eDay: number;
     pFrequency: number;
-    expectTotal: number;
-    actualTotal: number;
-    active: boolean;
     comment: string;
+    active: boolean;
+    pTotal: number;
     dateCreated: string;
     dateModified: string;
 
@@ -27,13 +23,9 @@ export class Contract implements HasIdInterface {
         this.sYear = 0;
         this.sMonth = 0;
         this.sDay = 0;
-        this.eYear = 0;
-        this.eMonth = 0;
-        this.eDay = 0;
         this.pFrequency = 0;
-        this.expectTotal = 0;
-        this.actualTotal = 0;
         this.comment = '';
+        this.pTotal = 0;
     }
 
     get id() {

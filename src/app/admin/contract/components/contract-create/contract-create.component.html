@@ -37,34 +37,19 @@
         <label *ngIf="model._lot.deposit !== 0">押金: {{model._lot.deposit}}</label>
       </div>
       
-      <label for="">租賃期限</label>
-      <div class="form-row">
-        <div class="col">
-          <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">開始</span>
-            </div>
-            <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="startDate" ngbDatepicker
-              #d1="ngbDatepicker">
-            <div class="input-group-addon">
-              <i class="far fa-calendar-alt" (click)="d1.toggle()"></i>
-            </div>
-          </div>
+      <label for="">租賃期限<span class="text_red">*</span>&nbsp;</label>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">開始</span>
         </div>
-        <div class="col">
-          <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">結束</span>
-            </div>
-            <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" [(ngModel)]="endDate" ngbDatepicker #d2="ngbDatepicker">
-            <div class="input-group-addon">
-              <i class="far fa-calendar-alt" (click)="d2.toggle()"></i>
-            </div>
-          </div>
+        <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="startDate" required ngbDatepicker
+          #d1="ngbDatepicker">
+        <div class="input-group-addon">
+          <i class="far fa-calendar-alt" (click)="d1.toggle()"></i>
         </div>
       </div>
 
-      <label for="pFrequency">繳納週期</label>
+      <label for="pFrequency">繳納週期<span class="text_red">*</span>&nbsp;</label>
       <div class="input-group mb-3">
         <input type="number" id="pFrequency" name="pFrequency" class="form-control" required [(ngModel)]="model.pFrequency"
           #pFrequency="ngModel">

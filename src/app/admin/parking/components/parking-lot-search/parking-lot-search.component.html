@@ -7,7 +7,7 @@
 <div class="modal-body">
   <div class="input-group mb-3">
     <select class="custom-select" id="inputGroupSelect01" #text>
-      <option selected value="">選擇停車場...</option>
+      <option selected value="">全部</option>
       <option *ngFor="let area of areaList" value="{{area._id}}">{{area.identifier}}</option>
     </select>
     <div class="input-group-append">

@@ -1,3 +1,4 @@
+import { BootstrapDate } from './../../../../shared/models/bootstrap-date';
 import { ParkingLotSearchComponent } from './../../../parking/components/parking-lot-search/parking-lot-search.component';
 import { environment } from './../../../../../environments/environment';
 import { ContractTableComponent } from './../contract-table/contract-table.component';
@@ -18,8 +19,7 @@ import { AppConstants } from '../../../../constants';
 export class ContractCreateComponent implements OnInit {
   // @Input() table: ParkingLotTableComponent;
   model: Contract;
-  startDate;
-  endDate;
+  startDate: BootstrapDate;
   formTemplate;
   modalRef: NgbModalRef;
 
@@ -47,6 +47,10 @@ export class ContractCreateComponent implements OnInit {
    * @param customerForm the form content
    */
   submitModel(customerForm) {
+    this.model.sYear = this.startDate.year;
+    this.model.sMonth = this.startDate.month;
+    this.model.sDay = this.startDate.day;
+    console.log(this.model);
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);

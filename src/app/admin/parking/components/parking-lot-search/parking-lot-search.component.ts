@@ -23,6 +23,9 @@ export class ParkingLotSearchComponent implements OnInit {
     this.parkingAreaService.getAll().subscribe((result) => {
       this.areaList = result;
     });
+    this.modelService.getAll().subscribe((result) => {
+      this.modelList = result;
+    });
   }
 
   /**
