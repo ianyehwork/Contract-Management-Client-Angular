@@ -1,3 +1,7 @@
 #rent, #deposit {
     text-align: right;
 }
+
+.text_red {
+    color: red;
+}

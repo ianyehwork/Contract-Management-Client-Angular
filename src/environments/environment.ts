@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  nodeServerURL: 'http://localhost:3000'
+  nodeServerURL: 'http://localhost:3000',
+  modalConfig: {size: 'lg', centered: true, backdrop : 'static'}
 };

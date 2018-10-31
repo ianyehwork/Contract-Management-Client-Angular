@@ -1,13 +1,14 @@
+import { ParkingArea } from './parking-area';
 import { HasIdInterface } from '../../../shared/models/has-id.interface';
 
 export class ParkingLot implements HasIdInterface {
     _id: number;
-    _area: number;
+    _area: ParkingArea;
     identifier: string;
     deposit: number;
     rent: number;
     comment: string;
-    status: string;
+    status: boolean;
     dateCreated: string;
     dateModified: string;
 
@@ -17,7 +18,7 @@ export class ParkingLot implements HasIdInterface {
         this.deposit = 0;
         this.rent = 0;
         this.comment = '';
-        this.status = '';
+        this.status = false;
     }
 
     get id() {

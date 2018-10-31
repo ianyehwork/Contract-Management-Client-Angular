@@ -1,4 +1,4 @@
-import { ParkingAreaService } from './../../server/parking-area.service';
+import { ParkingAreaService } from '../../services/parking-area.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';

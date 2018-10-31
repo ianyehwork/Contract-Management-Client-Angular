@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { convertUTCDateTimeToYMD } from './../../../../shared/util/date-time-convertor';
-import { ParkingAreaService } from './../../server/parking-area.service';
+import { ParkingAreaService } from '../../services/parking-area.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParkingArea } from './../../models/parking-area';
 import { ParkingAreaEditComponent } from '../parking-area-edit/parking-area-edit.component';
+import { AppConstants } from '../../../../constants';
 
 @Component({
   selector: 'app-parking-table',
@@ -44,7 +45,7 @@ export class ParkingTableComponent implements OnInit {
    * @param model new Customer created by the user
    */
   openEditModal(model: ParkingArea) {
-    const modalRef = this.modalService.open(ParkingAreaEditComponent);
+    const modalRef = this.modalService.open(ParkingAreaEditComponent, AppConstants.MODAL_OPTIONS);
     // Pass poster as a Input to ModalRef
     modalRef.componentInstance.model = model;
 

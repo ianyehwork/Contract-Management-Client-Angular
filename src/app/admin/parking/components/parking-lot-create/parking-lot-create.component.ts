@@ -1,4 +1,4 @@
-import { ParkingLotService } from './../../server/parking-lot.service';
+import { ParkingLotService } from '../../services/parking-lot.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
 
@@ -6,6 +6,7 @@ import { ParkingLot } from '../../models/parking-lot';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ParkingLotTableComponent } from '../parking-lot-table/parking-lot-table.component';
 import { ParkingArea } from '../../models/parking-area';
+import { AppConstants } from '../../../../constants';
 
 @Component({
   selector: 'app-parking-lot-create',
@@ -33,7 +34,7 @@ export class ParkingLotCreateComponent implements OnInit {
   open(template) {
     this.model.rent = this.area.defaultRent;
     this.model.deposit = this.area.defaultDeposit;
-    this.modalRef = this.ngbService.open(template, { size: 'lg' });
+    this.modalRef = this.ngbService.open(template, AppConstants.MODAL_OPTIONS);
   }
 
   /**
@@ -42,7 +43,7 @@ export class ParkingLotCreateComponent implements OnInit {
    * @param customerForm the form content
    */
   submitModel(customerForm) {
-    this.model._area = this.area._id;
+    this.model._area = this.area;
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('停車位建立完成', BS4AlertType.SUCCESS);

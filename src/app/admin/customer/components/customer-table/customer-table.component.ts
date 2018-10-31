@@ -4,6 +4,7 @@ import { CustomerService } from './../../services/customer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../../models/customer';
+import { AppConstants } from '../../../../constants';
 
 @Component({
   selector: 'app-customer-table',
@@ -44,7 +45,7 @@ export class CustomerTableComponent implements OnInit {
    * @param model new Customer created by the user
    */
   openEditModal(model: Customer) {
-    const modalRef = this.modalService.open(CustomerEditComponent);
+    const modalRef = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
     // Pass poster as a Input to ModalRef
     modalRef.componentInstance.model = model;
 

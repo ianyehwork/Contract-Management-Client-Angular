@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 import { ParkingLot } from '../../models/parking-lot';
-import { ParkingLotService } from '../../server/parking-lot.service';
+import { ParkingLotService } from '../../services/parking-lot.service';
 
 
 @Component({

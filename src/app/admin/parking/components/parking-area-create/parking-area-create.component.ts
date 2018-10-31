@@ -1,10 +1,11 @@
-import { ParkingAreaService } from './../../server/parking-area.service';
+import { ParkingAreaService } from '../../services/parking-area.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
 
 import { ParkingArea } from '../../models/parking-area';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ParkingTableComponent } from '../parking-table/parking-table.component';
+import { AppConstants } from '../../../../constants';
 
 @Component({
   selector: 'app-parking-area-create',
@@ -30,7 +31,7 @@ export class ParkingAreaCreateComponent implements OnInit {
    * @param template Modal Template
    */
   open(template) {
-    this.modalRef = this.ngbService.open(template, { size: 'lg' });
+    this.modalRef = this.ngbService.open(template, AppConstants.MODAL_OPTIONS);
   }
 
   /**

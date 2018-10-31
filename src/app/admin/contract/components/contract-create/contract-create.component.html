@@ -1,0 +1,87 @@
+<button class="btn btn-primary" (click)="open(template)" id="addButton">
+  創建合同<i class="fas fa-plus" aria-hidden="true"></i>
+</button>
+
+<ng-template #template let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">創建合同</h4>
+    <button type="button" class="close" aria-label="Close" (click)="form.resetForm(); d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-customer" #form="ngForm" (ngSubmit)="submitModel(form)">
+      <label for="customer">承租人<span class="text_red">*</span>&nbsp;</label>
+      <div class="input-group mb-3">
+        <input type="text" id="customer" name="customer" class="form-control" required disabled [(ngModel)]="model.customer"
+          #customer="ngModel">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="searchCustomer()">查詢</button>
+        </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="customer.touched && customer.invalid">
+        <div *ngIf="customer.errors.required">此欄目必填</div>
+      </div>
+
+      <label for="lot">停車位<span class="text_red">*</span>&nbsp;</label>
+      <div class="input-group mb-3">
+        <input type="text" id="lot" name="lot" class="form-control" required disabled [(ngModel)]="model.lot" #lot="ngModel">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">查詢</button>
+        </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="lot.touched && lot.invalid">
+        <div *ngIf="lot.errors.required">此欄目必填</div>
+      </div>
+      
+      <label for="">租賃期限</label>
+      <div class="form-row">
+        <div class="col">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">開始</span>
+            </div>
+            <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="startDate" ngbDatepicker
+              #d1="ngbDatepicker">
+            <div class="input-group-addon">
+              <i class="far fa-calendar-alt" (click)="d1.toggle()"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">結束</span>
+            </div>
+            <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" [(ngModel)]="endDate" ngbDatepicker #d2="ngbDatepicker">
+            <div class="input-group-addon">
+              <i class="far fa-calendar-alt" (click)="d2.toggle()"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <label for="pFrequency">繳納週期</label>
+      <div class="input-group mb-3">
+        <input type="number" id="pFrequency" name="pFrequency" class="form-control" required [(ngModel)]="model.pFrequency"
+          #pFrequency="ngModel">
+        <div class="input-group-append">
+          <span class="input-group-text">個月</span>
+        </div>
+      </div>
+      <div class="alert alert-danger" *ngIf="pFrequency.touched && pFrequency.invalid">
+        <div>請輸入數字</div>
+      </div>
+
+      <label for="comment">備註</label>
+      <textarea id="comment" name="comment" class="form-control" row="3" [(ngModel)]="model.comment" #comment="ngModel"></textarea>
+
+      <label>所有標註星號的（*）皆為必填項。</label>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">保存</button>
+        <button type="button" class="btn btn-secondary" (click)="form.resetForm(); c('Close click')">取消</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

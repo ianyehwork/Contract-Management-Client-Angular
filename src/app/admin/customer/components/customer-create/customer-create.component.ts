@@ -6,6 +6,7 @@ import { Customer } from '../../models/customer';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 import { CustomerTableComponent } from '../customer-table/customer-table.component';
+import { AppConstants } from '../../../../constants';
 
 @Component({
   selector: 'app-customer-create',
@@ -31,7 +32,7 @@ export class CustomerCreateComponent implements OnInit {
    * @param template Modal Template
    */
   open(template) {
-    this.modalRef = this.ngbService.open(template, { size: 'lg' });
+    this.modalRef = this.ngbService.open(template, AppConstants.MODAL_OPTIONS);
   }
 
   close() {

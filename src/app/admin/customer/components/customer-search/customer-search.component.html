@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title">查詢客戶</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="聯絡人姓名" #text>
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="search(text)">搜索</button>
+    </div>
+  </div>
+  <table class="table table-hover table-sm table-striped">
+    <thead>
+      <tr>
+        <th scope="col-3">聯絡人</th>
+        <th scope="col-3">電話</th>
+        <th scope="col-3">車號</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
+        <td>{{model.pContact}}</td>
+        <td>{{model.pPhone}}</td>
+        <td>{{model.vehicles}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
