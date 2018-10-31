@@ -16,7 +16,7 @@ import { AppConstants } from '../../../../constants';
 })
 export class ContractCreateComponent implements OnInit {
   // @Input() table: ParkingLotTableComponent;
-  model = new Contract();
+  model: Contract;
   startDate;
   endDate;
   formTemplate;
@@ -35,6 +35,7 @@ export class ContractCreateComponent implements OnInit {
    * @param template Modal Template
    */
   open(template) {
+    this.model = new Contract();
     this.formTemplate = template;
     this.modalRef = this.modalService.open(template, AppConstants.MODAL_OPTIONS);
   }
@@ -71,23 +72,10 @@ export class ContractCreateComponent implements OnInit {
     // modalRef.componentInstance.model = model;
 
     modalRef.result.then(result => {
-      console.log(result);
+      if (result.operation === 'OK') {
+        this.model._customer = result.data;
+      }
       this.modalRef = this.modalService.open(this.formTemplate, AppConstants.MODAL_OPTIONS);
-      // if (result.operation === 'Delete') {
-      //   this.modelList = this.modelList.filter((item) => {
-      //     if (item._id !== result.data._id) {
-      //       return item;
-      //     }
-      //   });
-      // } else if (result.operation === 'Update') {
-      //   this.modelList.forEach((value, index, array) => {
-      //     if (value._id === result.data._id) {
-      //       result.data.dateCreated = convertUTCDateTimeToYMD(result.data.dateCreated);
-      //       result.data.dateModified = convertUTCDateTimeToYMD(result.data.dateModified);
-      //       array[index] = result.data;
-      //     }
-      //   });
-      // }
     }, refused => {});
   }
 }

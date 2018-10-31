@@ -13,15 +13,17 @@
     <form class="form-customer" #form="ngForm" (ngSubmit)="submitModel(form)">
       <label for="customer">承租人<span class="text_red">*</span>&nbsp;</label>
       <div class="input-group mb-3">
-        <input type="text" id="customer" name="customer" class="form-control" required disabled [(ngModel)]="model.customer"
+        <input type="text" id="customer" name="customer" class="form-control" required disabled [(ngModel)]="model._customer.pContact"
           #customer="ngModel">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" (click)="searchCustomer()">查詢</button>
         </div>
       </div>
-      <div class="alert alert-danger" *ngIf="customer.touched && customer.invalid">
-        <div *ngIf="customer.errors.required">此欄目必填</div>
+      <div>
+        <label *ngIf="model._customer.pPhone !== ''">聯繫電話: {{model._customer.pPhone}}</label>
+        <label *ngIf="model._customer.vehicles.length !== 0">車號: {{model._customer.vehicles}}</label>
       </div>
+      
 
       <label for="lot">停車位<span class="text_red">*</span>&nbsp;</label>
       <div class="input-group mb-3">
@@ -30,9 +32,7 @@
           <button class="btn btn-outline-secondary" type="button">查詢</button>
         </div>
       </div>
-      <div class="alert alert-danger" *ngIf="lot.touched && lot.invalid">
-        <div *ngIf="lot.errors.required">此欄目必填</div>
-      </div>
+      
       
       <label for="">租賃期限</label>
       <div class="form-row">

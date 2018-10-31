@@ -15,11 +15,11 @@ export class CustomerTableComponent implements OnInit {
 
   modelList: Customer[] = [];
 
-  constructor(private posterService: CustomerService,
+  constructor(private modelService: CustomerService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.posterService.getAll().subscribe((result) => {
+    this.modelService.getAll().subscribe((result) => {
       this.modelList = result;
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
