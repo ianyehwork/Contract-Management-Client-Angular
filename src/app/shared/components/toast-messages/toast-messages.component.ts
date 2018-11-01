@@ -17,7 +17,9 @@ export class ToastMessagesComponent implements OnInit {
   ngOnInit() {
     this.toast.getMessages().subscribe(messages => {
       this.messages = messages;
-      this.cd.detectChanges();
+      // IY: 11/01/2018 Commented this line becasue it causes an
+      // unknown error. Do not remove this line.
+      // this.cd.detectChanges();
     });
   }
 

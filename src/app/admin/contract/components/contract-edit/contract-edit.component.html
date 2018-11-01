@@ -1,3 +1,42 @@
-<p>
-  contract-edit works!
-</p>
+<div class="modal-header">
+  <h4 *ngIf="model.active" class="modal-title">編輯合同</h4>
+  <h4 *ngIf="!model.active" class="modal-title">查詢合同</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="form-customer" #form="ngForm" (ngSubmit)="cancel()">
+    <div>
+        <label *ngIf="model">承租人: {{model._customer.pContact}}</label>
+    </div>
+    <div>
+        <label *ngIf="model">聯繫電話: {{model._customer.pPhone}}</label>
+    </div>
+    <div>
+        <label *ngIf="model._customer.vehicles.length !== 0">車號: <span *ngFor="let vehicle of model._customer.vehicles">{{vehicle.vin}} </span></label>
+    </div>
+    <div>
+        <label *ngIf="model._lot">停車位: {{model._lot.identifier}}</label>
+    </div>
+    <div>
+      <label *ngIf="model._lot !== 0">租金: {{model._lot.rent}}</label>
+      <label *ngIf="model._lot !== 0">押金: {{model._lot.deposit}}</label>
+    </div>
+    <div>
+      <label *ngIf="model">起租日期: {{model.sYear}}-{{model.sMonth}}-{{model.sDay}}</label>
+    </div>
+    <div>
+      <label for="model">繳納週期: {{model.pFrequency}}個月</label>
+    </div>
+
+    <label for="comment">備註</label>
+    <textarea id="comment" name="comment" class="form-control" row="3" [(ngModel)]="model.comment" #comment="ngModel"></textarea>
+    
+    <div class="modal-footer">
+      <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
+      <button *ngIf="model.active" type="button" class="btn btn-danger" (click)="deleteModel()">停止</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
+    </div>
+  </form>
+</div>

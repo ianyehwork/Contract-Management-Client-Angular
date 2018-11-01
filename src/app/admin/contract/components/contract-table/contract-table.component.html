@@ -1,3 +1,22 @@
-<p>
-  contract-table works!
-</p>
+<table class="table table-hover table-sm table-striped zeroMargin" >
+  <thead>
+    <tr>
+      <th scope="col">聯絡人</th>
+      <th scope="col">停車位</th>
+      <th scope="col">起租日期</th>
+      <th scope="col">下次繳費</th>
+      <th scope="col">總收款金額</th>
+      <th scope="col">狀態</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
+      <td>{{model._customer.pContact}}</td>
+      <td>{{model._lot.identifier}}</td>
+      <td>{{model.sYear}}-{{model.sMonth}}-{{model.sDay}}</td>
+      <td>TBD</td>
+      <td>{{model.pTotal}}</td>
+      <td>{{(model.active ? '生效' : '終止')}}</td>
+    </tr>
+  </tbody>
+</table>

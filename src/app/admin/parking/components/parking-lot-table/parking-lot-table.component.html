@@ -12,7 +12,7 @@
       <td>{{model.identifier}}</td>
       <td>{{model.rent}}</td>
       <td>{{model.deposit}}</td>
-      <td>{{model.status}}</td>
+      <td>{{(model.status ? '空閒' : '已出租')}}</td>
     </tr>
   </tbody>
 </table>

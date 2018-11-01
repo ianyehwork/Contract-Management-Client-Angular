@@ -23,7 +23,7 @@ export class ParkingLotSearchComponent implements OnInit {
     this.parkingAreaService.getAll().subscribe((result) => {
       this.areaList = result;
     });
-    this.modelService.getAll().subscribe((result) => {
+    this.modelService.getAll(`?status=1`).subscribe((result) => {
       this.modelList = result;
     });
   }
@@ -34,7 +34,7 @@ export class ParkingLotSearchComponent implements OnInit {
    * @param text criteria
    */
   search(text) {
-    this.modelService.getAll(`?_area=${text}`).subscribe((result) => {
+    this.modelService.getAll(`?_area=${text}&status=1`).subscribe((result) => {
       this.modelList = result;
     });
   }

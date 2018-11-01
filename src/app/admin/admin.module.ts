@@ -90,7 +90,8 @@ const routes: Routes = [
     ParkingAreaEditComponent,
     ParkingLotEditComponent,
     CustomerSearchComponent,
-    ParkingLotSearchComponent
+    ParkingLotSearchComponent,
+    ContractEditComponent
   ]
 })
 export class AdminModule { }

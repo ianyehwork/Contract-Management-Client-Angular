@@ -17,7 +17,7 @@ import { AppConstants } from '../../../../constants';
   styleUrls: ['./contract-create.component.css']
 })
 export class ContractCreateComponent implements OnInit {
-  // @Input() table: ParkingLotTableComponent;
+  @Input() table: ContractTableComponent;
   model: Contract;
   startDate: BootstrapDate;
   formTemplate;
@@ -54,7 +54,7 @@ export class ContractCreateComponent implements OnInit {
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);
-        // this.table.addNewModel(result);
+        this.table.addNewModel(result);
         customerForm.resetForm();
         this.model = new Contract();
         this.modalRef.close();
