@@ -1,7 +1,9 @@
 import { Contract } from './../../models/contract';
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContractService } from '../../services/contract.service';
+import { PaymentCreateComponent } from '../payment-create/payment-create.component';
+import { AppConstants } from '../../../../constants';
 
 @Component({
   selector: 'app-contract-edit',
@@ -14,13 +16,13 @@ export class ContractEditComponent implements OnInit {
   originalModel: Contract;
 
   constructor(private activeModal: NgbActiveModal,
-              private modelService: ContractService) { }
+              private modelService: ContractService,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
     this.modelService.getById(this.model._id).subscribe((response) => {
       this.model = response;
       this.originalModel = response;
-      console.log(this.model._customer.vehicles);
     });
   }
 
@@ -46,4 +48,14 @@ export class ContractEditComponent implements OnInit {
     this.activeModal.dismiss();
   }
 
+  addPayment() {
+    const modalRef = this.modalService.open(PaymentCreateComponent, AppConstants.MODAL_OPTIONS);
+    modalRef.componentInstance.contract = this.model;
+    // this.activeModal.dismiss();
+    modalRef.result.then(result => {
+      if (result.operation === 'OK') {
+        // result.data;
+      }
+    }, refused => {});
+  }
 }

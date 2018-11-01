@@ -15,6 +15,18 @@
 
     <div class="form-row">
       <div class="col">
+        <label for="rent">月租金</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">NT$</span>
+          </div>
+          <input type="number" id="rent" name="rent" class="form-control" required [(ngModel)]="model.rent" #rent="ngModel">
+        </div>
+        <div class="alert alert-danger" *ngIf="rent.touched && rent.invalid">
+          <div>請輸入數字</div>
+        </div>
+      </div>
+      <div class="col">
         <label for="deposit">押金</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -22,26 +34,8 @@
           </div>
           <input type="number" id="deposit" name="deposit" class="form-control" required [(ngModel)]="model.deposit"
             #deposit="ngModel">
-          <div class="input-group-append">
-            <span class="input-group-text">.00</span>
-          </div>
         </div>
         <div class="alert alert-danger" *ngIf="deposit.touched && deposit.invalid">
-          <div>請輸入數字</div>
-        </div>
-      </div>
-      <div class="col">
-        <label for="rent">租金</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">NT$</span>
-          </div>
-          <input type="number" id="rent" name="rent" class="form-control" required [(ngModel)]="model.rent" #rent="ngModel">
-          <div class="input-group-append">
-            <span class="input-group-text">.00</span>
-          </div>
-        </div>
-        <div class="alert alert-danger" *ngIf="rent.touched && rent.invalid">
           <div>請輸入數字</div>
         </div>
       </div>
@@ -53,9 +47,9 @@
     <label>所有標註星號的（*）皆為必填項。</label>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
-        <button type="button" class="btn btn-danger" (click)="deleteModel()">刪除</button>
-        <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
-      </div>
+      <button type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
+      <button type="button" class="btn btn-danger" (click)="deleteModel()">刪除</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
+    </div>
   </form>
 </div>

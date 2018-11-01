@@ -20,6 +20,18 @@
 
       <div class="form-row">
         <div class="col">
+          <label for="rent">月租金</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">NT$</span>
+            </div>
+            <input type="number" id="rent" name="rent" class="form-control" required [(ngModel)]="model.rent" #rent="ngModel">
+          </div>
+          <div class="alert alert-danger" *ngIf="rent.touched && rent.invalid">
+            <div>請輸入數字</div>
+          </div>
+        </div>
+        <div class="col">
           <label for="deposit">押金</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -27,26 +39,8 @@
             </div>
             <input type="number" id="deposit" name="deposit" class="form-control" required [(ngModel)]="model.deposit"
               #deposit="ngModel">
-            <div class="input-group-append">
-              <span class="input-group-text">.00</span>
-            </div>
           </div>
           <div class="alert alert-danger" *ngIf="deposit.touched && deposit.invalid">
-            <div>請輸入數字</div>
-          </div>
-        </div>
-        <div class="col">
-          <label for="rent">租金</label>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">NT$</span>
-            </div>
-            <input type="number" id="rent" name="rent" class="form-control" required [(ngModel)]="model.rent" #rent="ngModel">
-            <div class="input-group-append">
-              <span class="input-group-text">.00</span>
-            </div>
-          </div>
-          <div class="alert alert-danger" *ngIf="rent.touched && rent.invalid">
             <div>請輸入數字</div>
           </div>
         </div>

@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h4 class="modal-title">創建付款</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-customer" #form="ngForm" (ngSubmit)="cancel()">
+      <label for="type">種類<span class="text_red">*</span>&nbsp;</label>
+      <select class="custom-select" name="type" id="type" [(ngModel)]="model.type" #type="ngModel">
+        <option selected value="R">租金</option>
+        <option selected value="D">押金</option>
+      </select>
+  
+      <label for="amount">金額<span class="text_red">*</span>&nbsp;</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">NT$</span>
+        </div>
+        <input type="number" id="amount" name="amount" class="form-control" required [(ngModel)]="model.amount" #amount="ngModel">
+      </div>
+      <div class="alert alert-danger" *ngIf="amount.touched && amount.invalid">
+        <div>請輸入數字</div>
+      </div>
+  
+      <label for="comment">備註</label>
+      <textarea id="comment" name="comment" class="form-control" row="2" [(ngModel)]="model.comment" #comment="ngModel"></textarea>
+  
+      <label>所有標註星號的（*）皆為必填項。</label>
+  
+      <div class="modal-footer">
+        <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
+        <button *ngIf="model.active" type="button" class="btn btn-danger" (click)="deleteModel()">刪除</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
+      </div>
+    </form>
+  </div>

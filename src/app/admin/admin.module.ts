@@ -1,3 +1,4 @@
+import { PaymentService } from './contract/services/payment.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -33,6 +34,9 @@ import { ReportHomeComponent } from './report/components/report-home/report-home
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { CustomerSearchComponent } from './customer/components/customer-search/customer-search.component';
 import { ParkingLotSearchComponent } from './parking/components/parking-lot-search/parking-lot-search.component';
+import { PaymentCreateComponent } from './contract/components/payment-create/payment-create.component';
+import { PaymentTableComponent } from './contract/components/payment-table/payment-table.component';
+import { PaymentEditComponent } from './contract/components/payment-edit/payment-edit.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
@@ -77,13 +81,17 @@ const routes: Routes = [
     ContractEditComponent,
     ContractTableComponent,
     CustomerSearchComponent,
-    ParkingLotSearchComponent
+    ParkingLotSearchComponent,
+    PaymentCreateComponent,
+    PaymentTableComponent,
+    PaymentEditComponent
   ],
   providers: [
     CustomerService,
     ParkingAreaService,
     ParkingLotService,
-    ContractService
+    ContractService,
+    PaymentService
   ],
   entryComponents: [
     CustomerEditComponent,
@@ -91,7 +99,8 @@ const routes: Routes = [
     ParkingLotEditComponent,
     CustomerSearchComponent,
     ParkingLotSearchComponent,
-    ContractEditComponent
+    ContractEditComponent,
+    PaymentCreateComponent
   ]
 })
 export class AdminModule { }

@@ -25,9 +25,6 @@
           </div>
           <input type="number" id="defaultDeposit" name="defaultDeposit" class="form-control" required [(ngModel)]="model.defaultDeposit"
             #defaultDeposit="ngModel">
-          <div class="input-group-append">
-            <span class="input-group-text">.00</span>
-          </div>
         </div>
         <div class="alert alert-danger" *ngIf="defaultDeposit.touched && defaultDeposit.invalid">
           <div>請輸入數字</div>
@@ -41,9 +38,6 @@
           </div>
           <input type="number" id="defaultRent" name="defaultRent" class="form-control" required [(ngModel)]="model.defaultRent"
             #defaultRent="ngModel">
-          <div class="input-group-append">
-            <span class="input-group-text">.00</span>
-          </div>
         </div>
         <div class="alert alert-danger" *ngIf="defaultRent.touched && defaultRent.invalid">
           <div>請輸入數字</div>

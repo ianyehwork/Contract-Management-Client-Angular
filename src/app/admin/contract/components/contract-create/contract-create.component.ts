@@ -50,7 +50,6 @@ export class ContractCreateComponent implements OnInit {
     this.model.sYear = this.startDate.year;
     this.model.sMonth = this.startDate.month;
     this.model.sDay = this.startDate.day;
-    console.log(this.model);
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);

@@ -1,0 +1,18 @@
+<table class="table table-hover table-sm table-striped">
+    <thead>
+      <tr>
+        <th scope="col-3">日期</th>
+        <th scope="col-3">種類</th>
+        <th scope="col-3">金額</th>
+        <th scope="col-3">備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
+        <td>{{model.dateCreated}}</td>
+        <td>{{model.type}}</td>
+        <td>{{model.amount}}</td>
+        <td>{{model.comment}}</td>
+      </tr>
+    </tbody>
+  </table>
