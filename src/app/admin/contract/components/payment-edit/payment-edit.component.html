@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">創建付款</h4>
+    <h4 class="modal-title">編輯付款</h4>
     <button type="button" class="close" aria-label="Close" (click)="cancel()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -29,8 +29,7 @@
       <label>所有標註星號的（*）皆為必填項。</label>
   
       <div class="modal-footer">
-        <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
-        <button *ngIf="model.active" type="button" class="btn btn-danger" (click)="deleteModel()">刪除</button>
+        <button type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
         <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
       </div>
     </form>

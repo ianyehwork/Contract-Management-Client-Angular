@@ -100,7 +100,8 @@ const routes: Routes = [
     CustomerSearchComponent,
     ParkingLotSearchComponent,
     ContractEditComponent,
-    PaymentCreateComponent
+    PaymentCreateComponent,
+    PaymentEditComponent
   ]
 })
 export class AdminModule { }

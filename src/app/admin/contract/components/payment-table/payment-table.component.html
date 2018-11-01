@@ -10,7 +10,7 @@
     <tbody>
       <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
         <td>{{model.dateCreated}}</td>
-        <td>{{model.type}}</td>
+        <td>{{(model.type === 'D' ? '押金' : '租金')}}</td>
         <td>{{model.amount}}</td>
         <td>{{model.comment}}</td>
       </tr>

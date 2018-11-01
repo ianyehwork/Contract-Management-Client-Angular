@@ -7,6 +7,7 @@
 </div>
 <div class="modal-body">
   <form class="form-customer" #form="ngForm" (ngSubmit)="cancel()">
+    <button *ngIf="model.active" type="button" class="btn btn-danger" (click)="deleteModel()" id="deleteButton">解約</button>
     <div>
       <label *ngIf="model">承租人: {{model._customer.pContact}} 聯繫電話: {{model._customer.pPhone}}</label>
     </div>
@@ -29,11 +30,10 @@
       創建付款<i class="fas fa-plus" aria-hidden="true"></i>
     </button>
 
-    <app-payment-table></app-payment-table>
+    <app-payment-table [contract]="model" [parentModal]="activeModal"></app-payment-table>
 
     <div class="modal-footer">
       <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
-      <button *ngIf="model.active" type="button" class="btn btn-danger" (click)="deleteModel()">停止</button>
       <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
     </div>
   </form>

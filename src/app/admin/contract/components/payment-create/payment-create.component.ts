@@ -1,5 +1,4 @@
 import { Payment } from './../../models/payment';
-import { PaymentTableComponent } from './../payment-table/payment-table.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentService } from '../../services/payment.service';
@@ -34,6 +33,7 @@ export class PaymentCreateComponent implements OnInit {
    * @param customerForm the form content
    */
   submitModel(customerForm) {
+    this.model._contract = this.contract._id;
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         // this.table.addNewModel(result);

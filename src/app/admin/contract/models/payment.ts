@@ -11,7 +11,7 @@ export class Payment implements HasIdInterface {
     constructor() {
         this._id = 0;
         this._contract = 0;
-        this.type = '';
+        this.type = 'R';
         this.amount = 0;
         this.comment = '';
     }

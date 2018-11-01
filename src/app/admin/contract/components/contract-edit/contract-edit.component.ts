@@ -15,13 +15,15 @@ export class ContractEditComponent implements OnInit {
   @Input() model: Contract;
   originalModel: Contract;
 
-  constructor(private activeModal: NgbActiveModal,
+  constructor(public activeModal: NgbActiveModal,
               private modelService: ContractService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
     this.modelService.getById(this.model._id).subscribe((response) => {
-      this.model = response;
+      if (!this.model) {
+        this.model = response;
+      }
       this.originalModel = response;
     });
   }
@@ -49,13 +51,13 @@ export class ContractEditComponent implements OnInit {
   }
 
   addPayment() {
+    this.activeModal.dismiss();
     const modalRef = this.modalService.open(PaymentCreateComponent, AppConstants.MODAL_OPTIONS);
     modalRef.componentInstance.contract = this.model;
     // this.activeModal.dismiss();
     modalRef.result.then(result => {
-      if (result.operation === 'OK') {
-        // result.data;
-      }
+      const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
+      ref.componentInstance.model = result.contract;
     }, refused => {});
   }
 }
