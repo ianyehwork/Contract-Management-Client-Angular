@@ -5,3 +5,7 @@
 .text_red {
     color: red;
 }
+
+#addButton {
+    margin-bottom: 1em;
+}

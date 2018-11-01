@@ -48,25 +48,27 @@ export class PaymentTableComponent implements OnInit {
    * @param model new Customer created by the user
    */
   openEditModal(model: Payment) {
-    this.parentModal.dismiss();
-    const modalRef = this.modalService.open(PaymentEditComponent, AppConstants.MODAL_OPTIONS);
-    // Pass poster as a Input to ModalRef
-    modalRef.componentInstance.model = model;
-    modalRef.componentInstance.contract = this.contract;
+    if (this.contract.active) {
+      this.parentModal.dismiss();
+      const modalRef = this.modalService.open(PaymentEditComponent, AppConstants.MODAL_OPTIONS);
+      // Pass poster as a Input to ModalRef
+      modalRef.componentInstance.model = model;
+      modalRef.componentInstance.contract = this.contract;
 
-    modalRef.result.then(result => {
-      if (result.operation === 'Update') {
-        this.modelList.forEach((value, index, array) => {
-          if (value._id === result.data._id) {
-            result.data.dateCreated = convertUTCDateTimeToYMD(result.data.dateCreated);
-            result.data.dateModified = convertUTCDateTimeToYMD(result.data.dateModified);
-            array[index] = result.data;
-          }
-        });
-      }
-      const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
-      ref.componentInstance.model = result.contract;
-    }, refused => {});
+      modalRef.result.then(result => {
+        if (result.operation === 'Update') {
+          this.modelList.forEach((value, index, array) => {
+            if (value._id === result.data._id) {
+              result.data.dateCreated = convertUTCDateTimeToYMD(result.data.dateCreated);
+              result.data.dateModified = convertUTCDateTimeToYMD(result.data.dateModified);
+              array[index] = result.data;
+            }
+          });
+        }
+        const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
+        ref.componentInstance.model = result.contract;
+      }, refused => {});
+    }
   }
 
 }
