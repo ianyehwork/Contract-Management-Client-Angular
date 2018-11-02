@@ -1,3 +1,4 @@
+import { ActiveContractService } from './../../services/active-contract.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ActiveContractService) {}
 
   ngOnInit() {
+    this.service.update();
   }
 
 }

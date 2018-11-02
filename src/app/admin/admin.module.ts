@@ -37,6 +37,8 @@ import { ParkingLotSearchComponent } from './parking/components/parking-lot-sear
 import { PaymentCreateComponent } from './contract/components/payment-create/payment-create.component';
 import { PaymentTableComponent } from './contract/components/payment-table/payment-table.component';
 import { PaymentEditComponent } from './contract/components/payment-edit/payment-edit.component';
+import { PaymentCalendarComponent } from './dashboard/components/payment-calendar/payment-calendar.component';
+import { ActiveContractService } from './dashboard/services/active-contract.service';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
@@ -84,14 +86,16 @@ const routes: Routes = [
     ParkingLotSearchComponent,
     PaymentCreateComponent,
     PaymentTableComponent,
-    PaymentEditComponent
+    PaymentEditComponent,
+    PaymentCalendarComponent
   ],
   providers: [
     CustomerService,
     ParkingAreaService,
     ParkingLotService,
     ContractService,
-    PaymentService
+    PaymentService,
+    ActiveContractService
   ],
   entryComponents: [
     CustomerEditComponent,

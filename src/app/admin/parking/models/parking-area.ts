@@ -14,8 +14,6 @@ export class ParkingArea implements HasIdInterface {
         this._id = 0;
         this.identifier = '';
         this.address = '';
-        this.defaultDeposit = 0;
-        this.defaultRent = 0;
         this.comment = '';
     }
 
