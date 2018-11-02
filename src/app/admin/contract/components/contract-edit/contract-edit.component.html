@@ -26,6 +26,15 @@
     <label for="comment">備註</label>
     <textarea id="comment" name="comment" class="form-control" row="3" [(ngModel)]="model.comment" #comment="ngModel"></textarea>
 
+    <div>
+      <label *ngIf="model">總收款金額: {{model.pTotal}}</label>
+    </div>
+    <div>
+      <label *ngIf="model.active">下次繳費日期: {{model.pYear}}-{{model.pMonth}}-{{model.pDay}}</label>
+    </div>
+    <div>
+      <label *ngIf="model.active">下次繳費金額: {{(model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency * model._lot.rent))}}</label>
+    </div>
     <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="addPayment()" id="addButton">
       創建付款<i class="fas fa-plus" aria-hidden="true"></i>
     </button>

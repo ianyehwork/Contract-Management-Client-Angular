@@ -38,6 +38,9 @@ export class PaymentCreateComponent implements OnInit {
       if (result) {
         // this.table.addNewModel(result);
         customerForm.resetForm();
+        if (result.type === 'R') {
+          this.contract.pTotal += result.amount;
+        }
         this.activeModal.close({operation: 'OK', data: result, contract: this.contract});
       }
     }, (error) => {

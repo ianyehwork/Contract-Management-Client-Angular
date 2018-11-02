@@ -1,6 +1,8 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { debounceTime } from 'rxjs/operators';
+import { toInteger } from 'lodash';
 
 import 'rxjs/add/observable/of';
 
@@ -19,6 +21,9 @@ export class ToastService {
   sendMessage(content: string, style: string) {
     const message = new Message(content, style);
     this.messages.push(message);
+    this.messagesChannel.pipe(debounceTime(2000)).subscribe(() => {
+      this.dismissMessage(message.id);
+    });
     this.messagesChannel.next(this.messages);
   }
 
@@ -42,7 +47,7 @@ export class Message {
   constructor(content, style?) {
     this.content = content;
     this.style = style || 'info';
-    this.id = Math.random();
+    this.id = toInteger(Math.random() * 100000);
   }
 }
 

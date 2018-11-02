@@ -13,6 +13,7 @@ export class PaymentEditComponent implements OnInit {
 
   @Input() contract: Contract;
   @Input() model: Payment;
+  originalAmount: number;
 
   constructor(private activeModal: NgbActiveModal,
               private modelService: PaymentService) { }
@@ -20,12 +21,18 @@ export class PaymentEditComponent implements OnInit {
   ngOnInit() {
     this.modelService.getById(this.model._id).subscribe((response) => {
       this.model = response;
+      this.originalAmount = response.amount;
     });
   }
 
   updateModel() {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
+        if (result.type === 'R') {
+          console.log(this.contract.pTotal);
+          this.contract.pTotal = this.contract.pTotal - this.originalAmount + result.amount;
+          console.log(this.contract.pTotal);
+        }
         this.activeModal.close({operation: 'Update', data: result, contract: this.contract});
       }
     });

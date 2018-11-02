@@ -23,7 +23,6 @@ export class PaymentTableComponent implements OnInit {
               private modalService: NgbModal) { }
 
   ngOnInit() {
-    console.log(this.contract._id);
     this.modelService.getAll(`?_contract=${this.contract._id}`).subscribe((result) => {
       this.modelList = result;
       this.modelList.forEach((value, index, array) => {

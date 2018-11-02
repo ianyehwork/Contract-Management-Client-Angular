@@ -1,4 +1,3 @@
-import { BootstrapDate } from './../../../../shared/models/bootstrap-date';
 import { ParkingLotSearchComponent } from './../../../parking/components/parking-lot-search/parking-lot-search.component';
 import { environment } from './../../../../../environments/environment';
 import { ContractTableComponent } from './../contract-table/contract-table.component';
@@ -6,10 +5,11 @@ import { Contract } from '../../models/contract';
 import { Component, OnInit, Input } from '@angular/core';
 import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { ContractService } from '../../services/contract.service';
 import { CustomerSearchComponent } from '../../../customer/components/customer-search/customer-search.component';
 import { AppConstants } from '../../../../constants';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
 @Component({
   selector: 'app-contract-create',
@@ -19,13 +19,14 @@ import { AppConstants } from '../../../../constants';
 export class ContractCreateComponent implements OnInit {
   @Input() table: ContractTableComponent;
   model: Contract;
-  startDate: BootstrapDate;
+  startDate: NgbDate;
   formTemplate;
   modalRef: NgbModalRef;
 
   constructor(private modelService: ContractService,
     private modalService: NgbModal,
-    private toast: ToastService) { }
+    private toast: ToastService,
+    private calendar: NgbCalendar) { }
 
   ngOnInit() {
   }
@@ -36,6 +37,7 @@ export class ContractCreateComponent implements OnInit {
    * @param template Modal Template
    */
   open(template) {
+    this.startDate = this.calendar.getToday();
     this.model = new Contract();
     this.formTemplate = template;
     this.modalRef = this.modalService.open(template, AppConstants.MODAL_OPTIONS);
