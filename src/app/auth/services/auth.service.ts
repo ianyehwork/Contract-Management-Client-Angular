@@ -53,11 +53,14 @@ export class AuthService {
   login(credentials) {
    return this.http.post(`${this.API_URL}/users/login`, credentials, {observe: 'response'})
                    .map((response) => {
-                    if (response.status === 200) {
+                    if (response.status === 200 && response.body['method'] === 'email-auth') {
+                      return '2FA';
+                    } else if (response.status === 200) {
                       localStorage.setItem(this.STORAGE_TOKEN_KEY, response.headers.get(this.HEADER_TOKEN_NAME));
-                      return true;
+                      return 'OK';
+                    } else {
+                      return 'Failed';
                     }
-                    return false;
                   }, (error) => {
                     return false;
                   });

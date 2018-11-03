@@ -6,9 +6,9 @@ import { RouterModule } from '@angular/router';
 import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { AdminAuthGuard } from './auth/services/admin-auth-guard.service';
 import { AuthGuard } from './auth/services/auth-guard.service';
 import { AuthService } from './auth/services/auth.service';
-import { DefaultAuthGuard } from './auth/services/default-auth-guard.service';
 import { ClientModule } from './client/client.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -28,7 +28,7 @@ import { SharedModule } from './shared/shared.module';
   providers: [
     AuthService,
     AuthGuard,
-    DefaultAuthGuard
+    AdminAuthGuard
   ],
   bootstrap: [AppComponent]
 })

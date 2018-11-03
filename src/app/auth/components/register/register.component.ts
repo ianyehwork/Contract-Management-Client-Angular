@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
     this.service.register(this.newUser).subscribe(
       (response) => {
         this.router.navigate(['login']);
-        console.log(response.headers.get('x-auth'));
       }
     );
   }

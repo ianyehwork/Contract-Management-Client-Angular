@@ -5,12 +5,14 @@ export class User implements HasIdInterface {
     username: String;
     email: String;
     password: String;
+    token: String;
 
     constructor() {
        this._id = 0;
        this.username = '';
        this.email = '';
        this.password = '';
+       this.token = '';
     }
 
     get id() {

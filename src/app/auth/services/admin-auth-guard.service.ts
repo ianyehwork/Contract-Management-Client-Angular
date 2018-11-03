@@ -3,12 +3,10 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class DefaultAuthGuard implements CanActivate {
+export class AdminAuthGuard implements CanActivate {
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) { }
+  constructor(private router: Router,
+    private authService: AuthService) { }
 
   /**
    * Check to see if the user.role is default.
@@ -17,7 +15,7 @@ export class DefaultAuthGuard implements CanActivate {
    */
   canActivate() {
     const user = this.authService.currentUser;
-    if (user && user.role === 'default') {
+    if (user && user.role === 'admin') {
       return true;
     }
 

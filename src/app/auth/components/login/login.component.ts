@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   user: User = new User();
 
   invalidLogin: boolean;
+  extraToken: boolean;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -23,9 +24,11 @@ export class LoginComponent implements OnInit {
 
   login(credentials) {
     this.authService.login(credentials).subscribe((result) => {
-      if (result) {
+      if (result === 'OK') {
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
         this.router.navigate([returnUrl || 'home']);
+      } else if (result === '2FA') {
+        this.extraToken = true;
       }
     }, (error) => {
       this.invalidLogin = true;

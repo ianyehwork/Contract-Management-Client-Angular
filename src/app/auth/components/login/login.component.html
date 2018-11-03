@@ -15,6 +15,11 @@
     <input [(ngModel)]="user.password" name="password" type="password" id="password"
       class="form-control" required #password="ngModel">
     <div class="alert alert-danger" *ngIf="password.touched && !password.valid">請輸入密碼</div>
+    
+    <label *ngIf="extraToken" for="token" class="text-left mt-2">登入驗證碼 </label>
+    <input *ngIf="extraToken" [(ngModel)]="user.token" name="token" type="token" id="token"
+      class="form-control" required #token="ngModel">
+
     <div class="checkbox">
       <label>
         <input type="checkbox" value="remember-me"> 保持登入

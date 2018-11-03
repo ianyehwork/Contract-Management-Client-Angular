@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthGuard } from '../auth/services/auth-guard.service';
-import { DefaultAuthGuard } from '../auth/services/default-auth-guard.service';
 import { SharedModule } from './../shared/shared.module';
 import { ContractCreateComponent } from './contract/components/contract-create/contract-create.component';
 import { ContractEditComponent } from './contract/components/contract-edit/contract-edit.component';
@@ -41,7 +40,7 @@ import { PaymentCalendarComponent } from './dashboard/components/payment-calenda
 import { ActiveContractService } from './dashboard/services/active-contract.service';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard, DefaultAuthGuard],
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
     children: [
       { path: 'dashboard', component: DashboardHomeComponent, outlet: 'admin' },
       { path: 'parking', component: ParkingHomeComponent, outlet: 'admin' },
