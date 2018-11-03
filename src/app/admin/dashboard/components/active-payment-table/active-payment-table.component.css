@@ -1,0 +1,11 @@
+.isToday {
+    color: blue;
+}
+
+.isPastDue {
+    color: red;
+}
+
+.isFuture {
+    color: green;
+}
