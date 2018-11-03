@@ -5,7 +5,7 @@ import { ParkingLot } from '../../parking/models/parking-lot';
 import { ParkingLotService } from '../../parking/services/parking-lot.service';
 
 @Injectable()
-export class ActiveParkingLotService {
+export class ParkingLotTableService {
 
   modelList: ParkingLot[] = [];
   modelChannel = new Subject<Array<ParkingLot>>();
@@ -14,12 +14,11 @@ export class ActiveParkingLotService {
     this.update();
   }
 
-  getActiveContracts(): Observable<Array<ParkingLot>> {
+  getActiveParkingLots(): Observable<Array<ParkingLot>> {
     return this.modelChannel.asObservable();
   }
 
   update() {
-    // console.log('ActiveContractService Update');
     this.service.getAll(`?status=1`).subscribe((result) => {
       this.modelChannel.next(result);
     });

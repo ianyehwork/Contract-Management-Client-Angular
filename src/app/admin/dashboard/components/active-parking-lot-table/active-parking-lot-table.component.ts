@@ -1,3 +1,4 @@
+import { ParkingLotTableService } from './../../../parking/services/parking-lot-table.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbCalendar, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
@@ -9,7 +10,6 @@ import { ContractService } from '../../../contract/services/contract.service';
 import { CustomerSearchComponent } from '../../../customer/components/customer-search/customer-search.component';
 import { ParkingLot } from '../../../parking/models/parking-lot';
 import { ContractTableService } from './../../../contract/services/contract-table.service';
-import { ActiveParkingLotService } from './../../services/active-parking-lot.service';
 
 @Component({
   selector: 'app-active-parking-lot-table',
@@ -25,7 +25,7 @@ export class ActiveParkingLotTableComponent implements OnInit {
 
   modelList: ParkingLot[] = [];
 
-  constructor(private service: ActiveParkingLotService,
+  constructor(private service: ParkingLotTableService,
               private modelService: ContractService,
               private modalService: NgbModal,
               private toast: ToastService,
@@ -33,7 +33,7 @@ export class ActiveParkingLotTableComponent implements OnInit {
               private contractService: ContractTableService) { }
 
   ngOnInit() {
-    this.service.getActiveContracts().subscribe(parkinglots => {
+    this.service.getActiveParkingLots().subscribe(parkinglots => {
       this.modelList = parkinglots;
     }
     );

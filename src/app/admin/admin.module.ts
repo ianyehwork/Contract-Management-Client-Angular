@@ -1,4 +1,3 @@
-import { ContractTableService } from './contract/services/contract-table.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +13,7 @@ import { ContractTableComponent } from './contract/components/contract-table/con
 import { PaymentCreateComponent } from './contract/components/payment-create/payment-create.component';
 import { PaymentEditComponent } from './contract/components/payment-edit/payment-edit.component';
 import { PaymentTableComponent } from './contract/components/payment-table/payment-table.component';
+import { ContractTableService } from './contract/services/contract-table.service';
 import { ContractService } from './contract/services/contract.service';
 import { PaymentService } from './contract/services/payment.service';
 import { CustomerCreateComponent } from './customer/components/customer-create/customer-create.component';
@@ -22,11 +22,10 @@ import { CustomerHomeComponent } from './customer/components/customer-home/custo
 import { CustomerSearchComponent } from './customer/components/customer-search/customer-search.component';
 import { CustomerTableComponent } from './customer/components/customer-table/customer-table.component';
 import { CustomerService } from './customer/services/customer.service';
-import { ActiveParkingLotTableComponent } from './dashboard/components/active-parking-lot-table/active-parking-lot-table.component';
+import { ActiveParkingLotTableComponent} from './dashboard/components/active-parking-lot-table/active-parking-lot-table.component';
 import { ActivePaymentTableComponent } from './dashboard/components/active-payment-table/active-payment-table.component';
 import { DashboardHomeComponent } from './dashboard/components/dashboard-home/dashboard-home.component';
 import { PaymentCalendarComponent } from './dashboard/components/payment-calendar/payment-calendar.component';
-import { ActiveParkingLotService } from './dashboard/services/active-parking-lot.service';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParkingAreaCreateComponent } from './parking/components/parking-area-create/parking-area-create.component';
@@ -38,6 +37,7 @@ import { ParkingLotSearchComponent } from './parking/components/parking-lot-sear
 import { ParkingLotTableComponent } from './parking/components/parking-lot-table/parking-lot-table.component';
 import { ParkingTableComponent } from './parking/components/parking-table/parking-table.component';
 import { ParkingAreaService } from './parking/services/parking-area.service';
+import { ParkingLotTableService } from './parking/services/parking-lot-table.service';
 import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
@@ -99,7 +99,7 @@ const routes: Routes = [
     ParkingLotService,
     ContractService,
     PaymentService,
-    ActiveParkingLotService,
+    ParkingLotTableService,
     ContractTableService
   ],
   entryComponents: [

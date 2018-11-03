@@ -5,6 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContractService } from '../../services/contract.service';
 import { PaymentCreateComponent } from '../payment-create/payment-create.component';
 import { AppConstants } from '../../../../constants';
+import { ParkingLotTableService } from '../../../parking/services/parking-lot-table.service';
 
 @Component({
   selector: 'app-contract-edit',
@@ -18,7 +19,8 @@ export class ContractEditComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal,
               private modelService: ContractService,
               private tableModelService: ContractTableService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private parkingLotTableService: ParkingLotTableService) { }
 
   ngOnInit() {
     this.modelService.getById(this.model._id).subscribe((response) => {
@@ -43,6 +45,7 @@ export class ContractEditComponent implements OnInit {
       if (result) {
         this.activeModal.close();
         this.tableModelService.update(result._id);
+        this.parkingLotTableService.update();
       }
     });
   }
