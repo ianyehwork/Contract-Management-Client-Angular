@@ -21,7 +21,9 @@ export class PaymentCalendarComponent implements OnInit {
   ngOnInit() {
     this.today = this.calendar.getToday();
     this.service.getContracts().subscribe(contracts => {
-      this.modelList = contracts;
+      this.modelList = contracts.filter((value) => {
+        return value.active;
+      });
       this.map = new Map();
       for (let i = 0; i < this.modelList.length; i++) {
         const model = this.modelList[i];

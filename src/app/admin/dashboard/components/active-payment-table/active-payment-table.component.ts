@@ -22,11 +22,13 @@ export class ActivePaymentTableComponent implements OnInit {
 
   ngOnInit() {
     this.service.getContracts().subscribe(contracts => {
-        this.modelList = contracts;
+        this.modelList = contracts.filter((value) => {
+          return value.active;
+        });
         this.modelList.sort((a, b) => {
-          const d1 = new Date(a.pYear, a.pMonth, a.pDay);
-          const d2 = new Date(b.pYear, b.pMonth, b.pDay);
-          return d1.getDate() - d2.getDate();
+          return a.pYear - b.pYear !== 0 ? a.pYear - b.pYear :
+                 a.pMonth - b.pMonth !== 0 ? a.pMonth - b.pMonth :
+                 a.pDay - b.pDay;
         });
       }
     );
