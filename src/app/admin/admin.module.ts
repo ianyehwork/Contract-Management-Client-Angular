@@ -26,7 +26,6 @@ import { ActiveParkingLotTableComponent } from './dashboard/components/active-pa
 import { ActivePaymentTableComponent } from './dashboard/components/active-payment-table/active-payment-table.component';
 import { DashboardHomeComponent } from './dashboard/components/dashboard-home/dashboard-home.component';
 import { PaymentCalendarComponent } from './dashboard/components/payment-calendar/payment-calendar.component';
-import { ActiveContractService } from './dashboard/services/active-contract.service';
 import { ActiveParkingLotService } from './dashboard/services/active-parking-lot.service';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -100,7 +99,6 @@ const routes: Routes = [
     ParkingLotService,
     ContractService,
     PaymentService,
-    ActiveContractService,
     ActiveParkingLotService,
     ContractTableService
   ],

@@ -10,15 +10,17 @@ export class ContractTableService {
   modelList: Contract[] = [];
   modelChannel = new Subject<Array<Contract>>();
 
-  constructor(private service: ContractService) {
+  constructor(private service: ContractService) { }
+
+  getContracts(): Observable<Array<Contract>> {
+    return this.modelChannel.asObservable();
+  }
+
+  updateAll() {
     this.service.getAll().subscribe((result) => {
       this.modelList = result;
       this.modelChannel.next(result);
     });
-  }
-
-  getActiveContracts(): Observable<Array<Contract>> {
-    return this.modelChannel.asObservable();
   }
 
   // This can be optimized

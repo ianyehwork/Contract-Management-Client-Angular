@@ -1,5 +1,5 @@
+import { ContractTableService } from './../../../contract/services/contract-table.service';
 import { ActiveParkingLotService } from './../../services/active-parking-lot.service';
-import { ActiveContractService } from './../../services/active-contract.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,11 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardHomeComponent implements OnInit {
 
-  constructor(private contractService: ActiveContractService,
+  constructor(private contractService: ContractTableService,
               private parkingLotService: ActiveParkingLotService) {}
 
   ngOnInit() {
-    this.contractService.update();
+    this.contractService.updateAll();
     this.parkingLotService.update();
   }
 

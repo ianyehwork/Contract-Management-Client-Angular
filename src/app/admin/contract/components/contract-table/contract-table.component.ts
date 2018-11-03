@@ -19,7 +19,7 @@ export class ContractTableComponent implements OnInit {
               private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.service.getActiveContracts().subscribe(contracts => {
+    this.service.getContracts().subscribe(contracts => {
       this.modelList = contracts;
     }
   );
