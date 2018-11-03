@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { Contract } from '../../../contract/models/contract';
 import { ActiveContractService } from '../../services/active-contract.service';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
 @Component({
   selector: 'app-payment-calendar',
@@ -13,10 +14,12 @@ export class PaymentCalendarComponent implements OnInit {
   model: NgbDateStruct;
   modelList: Contract[] = [];
   map: Map<string, Array<string>>;
-
-  constructor(private service: ActiveContractService) { }
+  today: NgbDate;
+  constructor(private service: ActiveContractService,
+              private calendar: NgbCalendar) { }
 
   ngOnInit() {
+    this.today = this.calendar.getToday();
     this.service.getActiveContracts().subscribe(contracts => {
       this.modelList = contracts;
       this.map = new Map();
@@ -32,14 +35,29 @@ export class PaymentCalendarComponent implements OnInit {
     });
   }
 
-  hasPayment(date: NgbDateStruct) {
-    if (this.map) {
-      const index = this.map.get(date.year + '.' + date.month + '.' + date.day);
-      return index !== undefined;
+  hasPayment(date: NgbDate) {
+    if (this.today.before(date)) {
+      if (this.map) {
+        const index = this.map.get(date.year + '.' + date.month + '.' + date.day);
+        return index !== undefined;
+      }
     }
   }
 
-  getContactName(date) {
+  hasDuePayment(date: NgbDate) {
+    if (this.today.after(date)) {
+      if (this.map) {
+        const index = this.map.get(date.year + '.' + date.month + '.' + date.day);
+        return index !== undefined;
+      }
+    }
+  }
+
+  isToday(date: NgbDate) {
+    return this.today.year === date.year && this.today.month === date.month && this.today.day === date.day;
+  }
+
+  getTipContent(date) {
     if (this.map) {
       const array = this.map.get(date.year + '.' + date.month + '.' + date.day);
       if (array !== undefined) {

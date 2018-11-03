@@ -29,9 +29,7 @@ export class PaymentEditComponent implements OnInit {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
         if (result.type === 'R') {
-          console.log(this.contract.pTotal);
           this.contract.pTotal = this.contract.pTotal - this.originalAmount + result.amount;
-          console.log(this.contract.pTotal);
         }
         this.activeModal.close({operation: 'Update', data: result, contract: this.contract});
       }

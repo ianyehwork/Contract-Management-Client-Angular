@@ -13,6 +13,22 @@
     border-radius: 1rem;
     color: white;
 }
+.hasDuePayment {
+    background-color: red;
+    border-radius: 1rem;
+    color: white;
+}
+.isToday {
+    background-color: blue;
+    border-radius: 1rem;
+    color: white;
+}
 .hidden {
     display: none;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    display: inline-block;
 }
