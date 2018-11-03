@@ -1,0 +1,16 @@
+<table id="pTable" class="table table-hover table-sm table-striped zeroMargin" >
+  <thead>
+    <tr>
+      <th scope="col">編號</th>
+      <th scope="col">月租金</th>
+      <th scope="col">押金</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let model of modelList">
+      <td>{{model.identifier}}</td>
+      <td>{{model.rent}}</td>
+      <td>{{model.deposit}}</td>
+    </tr>
+  </tbody>
+</table>

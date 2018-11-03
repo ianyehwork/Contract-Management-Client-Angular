@@ -1,3 +1,4 @@
+import { ActiveParkingLotService } from './../../services/active-parking-lot.service';
 import { ActiveContractService } from './../../services/active-contract.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardHomeComponent implements OnInit {
 
-  constructor(private service: ActiveContractService) {}
+  constructor(private contractService: ActiveContractService,
+              private parkingLotService: ActiveParkingLotService) {}
 
   ngOnInit() {
-    this.service.update();
+    this.contractService.update();
+    this.parkingLotService.update();
   }
 
 }

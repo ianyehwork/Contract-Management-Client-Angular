@@ -11,6 +11,7 @@ import { AuthGuard } from './auth/services/auth-guard.service';
 import { AuthService } from './auth/services/auth.service';
 import { ClientModule } from './client/client.module';
 import { SharedModule } from './shared/shared.module';
+import { LoginGuard } from './auth/services/login-guard.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SharedModule } from './shared/shared.module';
   providers: [
     AuthService,
     AuthGuard,
-    AdminAuthGuard
+    AdminAuthGuard,
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })

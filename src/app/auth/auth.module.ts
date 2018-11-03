@@ -11,9 +11,10 @@ import { PasswordChangeComponent } from './components/password-change/password-c
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ConfirmPasswordValidatorDirective } from './directives/confirm-password-validator.directive';
+import { LoginGuard } from './services/login-guard.service';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
   { path: 'register', component: RegisterComponent},
   { path: 'no-access', component: NoAccessComponent },
   { path: 'password-reset/:username/:token', component: PasswordChangeComponent},

@@ -1,4 +1,13 @@
-<p>
-  dashboard-home works!
-</p>
-<app-payment-calendar></app-payment-calendar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-lg-auto">
+      <label class="h4">繳費清單</label>
+      <app-payment-calendar></app-payment-calendar>
+      <app-active-payment-table></app-active-payment-table>
+    </div>
+    <div class="col-sm-12 col-lg">
+      <label class="h4">空閒停車位</label>
+      <app-active-parking-lot-table></app-active-parking-lot-table>
+    </div>
+  </div>
+</div>

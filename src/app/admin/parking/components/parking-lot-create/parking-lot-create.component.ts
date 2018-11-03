@@ -34,6 +34,7 @@ export class ParkingLotCreateComponent implements OnInit {
   open(template) {
     this.model.rent = this.area.defaultRent;
     this.model.deposit = this.area.defaultDeposit;
+    this.model.identifier = this.area.identifier;
     this.modalRef = this.ngbService.open(template, AppConstants.MODAL_OPTIONS);
   }
 
