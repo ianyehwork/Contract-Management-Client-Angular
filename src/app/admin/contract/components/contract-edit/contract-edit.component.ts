@@ -1,3 +1,4 @@
+import { ContractTableService } from './../../services/contract-table.service';
 import { Contract } from './../../models/contract';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,10 +14,10 @@ import { AppConstants } from '../../../../constants';
 export class ContractEditComponent implements OnInit {
 
   @Input() model: Contract;
-  originalModel: Contract;
 
   constructor(public activeModal: NgbActiveModal,
               private modelService: ContractService,
+              private tableModelService: ContractTableService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -24,30 +25,31 @@ export class ContractEditComponent implements OnInit {
       if (!this.model) {
         this.model = response;
       }
-      this.originalModel = response;
     });
   }
 
   updateModel() {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
-        this.activeModal.close({operation: 'Update', data: result});
+        this.activeModal.close();
+        this.tableModelService.update(result._id);
       }
     });
   }
 
   deleteModel() {
     this.model.active = false;
-    this.modelService.update(this.model).subscribe((response) => {
-      if (response) {
-        this.activeModal.close({operation: 'Update', data: response});
+    this.modelService.update(this.model).subscribe((result) => {
+      if (result) {
+        this.activeModal.close();
+        this.tableModelService.update(result._id);
       }
     });
   }
 
   cancel() {
-    this.model = this.originalModel;
-    this.activeModal.dismiss();
+    this.activeModal.close();
+    this.tableModelService.update(this.model._id);
   }
 
   addPayment() {
@@ -56,8 +58,10 @@ export class ContractEditComponent implements OnInit {
     modalRef.componentInstance.contract = this.model;
     // this.activeModal.dismiss();
     modalRef.result.then(result => {
-      const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
-      ref.componentInstance.model = result.contract;
+      this.modelService.getById(result.contract._id).subscribe(contract => {
+        const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
+        ref.componentInstance.model = contract;
+      });
     }, refused => {});
   }
 }

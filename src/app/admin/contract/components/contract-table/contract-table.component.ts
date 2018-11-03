@@ -4,6 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Contract } from '../../models/contract';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppConstants } from '../../../../constants';
+import { ContractTableService } from '../../services/contract-table.service';
 
 @Component({
   selector: 'app-contract-table',
@@ -14,13 +15,14 @@ export class ContractTableComponent implements OnInit {
 
   modelList: Contract[] = [];
 
-  constructor(private service: ContractService,
+  constructor(private service: ContractTableService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.service.getAll().subscribe((result) => {
-      this.modelList = result;
-    });
+    this.service.getActiveContracts().subscribe(contracts => {
+      this.modelList = contracts;
+    }
+  );
   }
 
   /**
@@ -41,17 +43,6 @@ export class ContractTableComponent implements OnInit {
     const modalRef = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
     // Pass poster as a Input to ModalRef
     modalRef.componentInstance.model = model;
-
-    modalRef.result.then(result => {
-      if (result.operation === 'Update') {
-        this.modelList.forEach((value, index, array) => {
-          if (value._id === result.data._id) {
-            array[index] = result.data;
-          }
-        });
-      }
-    }, refused => {});
   }
-
 
 }

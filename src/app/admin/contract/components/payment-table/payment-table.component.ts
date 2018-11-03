@@ -1,3 +1,4 @@
+import { ContractService } from './../../services/contract.service';
 import { Payment } from './../../models/payment';
 import { Component, OnInit, Input } from '@angular/core';
 import { PaymentService } from '../../services/payment.service';
@@ -20,6 +21,7 @@ export class PaymentTableComponent implements OnInit {
   modelList: Payment[] = [];
 
   constructor(private modelService: PaymentService,
+              private contractService: ContractService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -55,17 +57,10 @@ export class PaymentTableComponent implements OnInit {
       modalRef.componentInstance.contract = this.contract;
 
       modalRef.result.then(result => {
-        if (result.operation === 'Update') {
-          this.modelList.forEach((value, index, array) => {
-            if (value._id === result.data._id) {
-              result.data.dateCreated = convertUTCDateTimeToYMD(result.data.dateCreated);
-              result.data.dateModified = convertUTCDateTimeToYMD(result.data.dateModified);
-              array[index] = result.data;
-            }
-          });
-        }
-        const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
-        ref.componentInstance.model = result.contract;
+        this.contractService.getById(result.contract._id).subscribe(contract => {
+          const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
+          ref.componentInstance.model = contract;
+        });
       }, refused => {});
     }
   }

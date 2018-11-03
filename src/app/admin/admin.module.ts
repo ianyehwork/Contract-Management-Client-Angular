@@ -1,3 +1,4 @@
+import { ContractTableService } from './contract/services/contract-table.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -100,7 +101,8 @@ const routes: Routes = [
     ContractService,
     PaymentService,
     ActiveContractService,
-    ActiveParkingLotService
+    ActiveParkingLotService,
+    ContractTableService
   ],
   entryComponents: [
     CustomerEditComponent,
