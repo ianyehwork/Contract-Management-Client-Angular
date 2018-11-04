@@ -22,7 +22,7 @@ import { CustomerHomeComponent } from './customer/components/customer-home/custo
 import { CustomerSearchComponent } from './customer/components/customer-search/customer-search.component';
 import { CustomerTableComponent } from './customer/components/customer-table/customer-table.component';
 import { CustomerService } from './customer/services/customer.service';
-import { ActiveParkingLotTableComponent} from './dashboard/components/active-parking-lot-table/active-parking-lot-table.component';
+import { ActiveParkingLotTableComponent } from './dashboard/components/active-parking-lot-table/active-parking-lot-table.component';
 import { ActivePaymentTableComponent } from './dashboard/components/active-payment-table/active-payment-table.component';
 import { DashboardHomeComponent } from './dashboard/components/dashboard-home/dashboard-home.component';
 import { PaymentCalendarComponent } from './dashboard/components/payment-calendar/payment-calendar.component';
@@ -40,6 +40,7 @@ import { ParkingAreaService } from './parking/services/parking-area.service';
 import { ParkingLotTableService } from './parking/services/parking-lot-table.service';
 import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
+import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 
 const routes: Routes = [
@@ -100,7 +101,8 @@ const routes: Routes = [
     ContractService,
     PaymentService,
     ParkingLotTableService,
-    ContractTableService
+    ContractTableService,
+    ReportService
   ],
   entryComponents: [
     CustomerEditComponent,
