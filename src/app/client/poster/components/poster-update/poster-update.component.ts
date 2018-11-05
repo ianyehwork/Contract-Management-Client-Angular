@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Poster } from '../../models/poster';
 
-import { convertDateTimeToNumber, convertNumberToDateTime } from '../../../../shared/util/date-time-convertor';
+import { convertDateTimeToNumber, convertNumberToDateTime } from '../../util/date-time-convertor';
 import * as _ from 'lodash';
 
 @Component({

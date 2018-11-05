@@ -1,20 +1,38 @@
 <table class="table table-hover table-sm table-striped zeroMargin" >
   <thead>
     <tr>
-      <th scope="col">聯絡人</th>
-      <th scope="col">停車位</th>
-      <th scope="col">起租日期</th>
-      <th scope="col">下次繳費</th>
-      <th scope="col">總收款金額</th>
-      <th scope="col">狀態</th>
+      <th scope="col" (click)="setOrder('_customer.pContact')">聯絡人
+          <i *ngIf="order === '_customer.pContact' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === '_customer.pContact' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col" (click)="setOrder('_lot.identifier')">停車位
+          <i *ngIf="order === '_lot.identifier' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === '_lot.identifier' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col" (click)="setOrder('sDate')">起租日期
+          <i *ngIf="order === 'sDate' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === 'sDate' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col" (click)="setOrder('pDate')">下次繳費
+          <i *ngIf="order === 'pDate' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === 'pDate' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col" (click)="setOrder('pTotal')">總收款金額
+          <i *ngIf="order === 'pTotal' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === 'pTotal' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col" (click)="setOrder('active')">狀態
+          <i *ngIf="order === 'active' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === 'active' && reverse" class="fas fa-sort-down"></i>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
+    <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive'" (click)="openEditModal(model)">
       <td>{{model._customer.pContact}}</td>
       <td>{{model._lot.identifier}}</td>
-      <td>{{model.sYear}}-{{model.sMonth}}-{{model.sDay}}</td>
-      <td>{{model.pYear}}-{{model.pMonth}}-{{model.pDay}}</td>
+      <td>{{model.sDate}}</td>
+      <td>{{model.pDate}}</td>
       <td>{{model.pTotal}}</td>
       <td>{{(model.active ? '生效' : '終止')}}</td>
     </tr>

@@ -5,6 +5,7 @@ import { ContractEditComponent } from '../../../contract/components/contract-edi
 import { AppConstants } from '../../../../constants';
 import { NgbModal, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
+import { SortedTable } from '../../../../shared/sorted-table/sorted-table';
 
 
 @Component({
@@ -12,24 +13,29 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
   templateUrl: './active-payment-table.component.html',
   styleUrls: ['./active-payment-table.component.css']
 })
-export class ActivePaymentTableComponent implements OnInit {
+export class ActivePaymentTableComponent extends SortedTable implements OnInit {
 
   modelList: Contract[] = [];
 
   constructor(private service: ContractTableService,
               private modalService: NgbModal,
-              private calendar: NgbCalendar) { }
+              private calendar: NgbCalendar) {
+    super();
+    // Default Sorting
+    this.order = 'pDate';
+    this.reverse = true;
+  }
 
   ngOnInit() {
     this.service.getContracts().subscribe(contracts => {
         this.modelList = contracts.filter((value) => {
           return value.active;
         });
-        this.modelList.sort((a, b) => {
-          return a.pYear - b.pYear !== 0 ? a.pYear - b.pYear :
-                 a.pMonth - b.pMonth !== 0 ? a.pMonth - b.pMonth :
-                 a.pDay - b.pDay;
-        });
+        for (let i = 0; i < this.modelList.length; i++) {
+          const model = this.modelList[i];
+          model['pDate'] = model.pYear + '-' + model.pMonth + '-' + model.pDay;
+          model['pAmount'] = (model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency * model._lot.rent));
+        }
       }
     );
   }

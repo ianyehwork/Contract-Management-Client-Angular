@@ -1,4 +1,4 @@
-import { convertUTCDateTimeToYMD } from './../../../../shared/util/date-time-convertor';
+import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
 import { CustomerEditComponent } from './../customer-edit/customer-edit.component';
 import { CustomerService } from './../../services/customer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

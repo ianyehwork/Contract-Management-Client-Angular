@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderModule } from 'ngx-order-pipe';
 
 import { AuthGuard } from '../auth/services/auth-guard.service';
 import { SharedModule } from './../shared/shared.module';
@@ -64,6 +65,7 @@ const routes: Routes = [
     FormsModule,
     NgbModule,
     RouterModule.forChild(routes),
+    OrderModule
   ],
   declarations: [
     HomeComponent,

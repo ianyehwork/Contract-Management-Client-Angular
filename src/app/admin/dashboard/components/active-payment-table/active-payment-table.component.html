@@ -1,18 +1,33 @@
 <table id="pTable" class="table table-hover table-sm table-striped mt-3">
   <thead>
     <tr>
-      <th scope="col-3">付款日期</th>
-      <th scope="col-3">付款金額</th>
-      <th scope="col-3">姓名</th>
-      <th scope="col-3">電話</th>
-      <th scope="col-3">停車位</th>
+      <th scope="col-3" (click)="setOrder('pDate')">付款日期
+          <i *ngIf="order === 'pDate' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === 'pDate' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col-3" (click)="setOrder('pAmount')">付款金額
+          <i *ngIf="order === 'pAmount' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === 'pAmount' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col-3" (click)="setOrder('_customer.pContact')">姓名
+          <i *ngIf="order === '_customer.pContact' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === '_customer.pContact' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col-3" (click)="setOrder('_customer.pPhone')">電話
+          <i *ngIf="order === '_customer.pPhone' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === '_customer.pPhone' && reverse" class="fas fa-sort-down"></i>
+      </th>
+      <th scope="col-3" (click)="setOrder('_lot.identifier')">停車位
+          <i *ngIf="order === '_lot.identifier' && !reverse" class="fas fa-sort-up"></i>
+          <i *ngIf="order === '_lot.identifier' && reverse" class="fas fa-sort-down"></i>
+      </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let model of modelList" (click)="openEditModal(model)" [class.isToday]="isToday(model)"
+    <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive'" (click)="openEditModal(model)" [class.isToday]="isToday(model)"
       [class.isFuture]="isFuture(model)" [class.isPastDue]="isPastDue(model)">
-      <td>{{model.pYear}}-{{model.pMonth}}-{{model.pDay}}</td>
-      <td>{{(model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency * model._lot.rent))}}</td>
+      <td>{{model.pDate}}</td>
+      <td>{{model.pAmount}}</td>
       <td>{{model._customer.pContact}}</td>
       <td>{{model._customer.pPhone}}</td>
       <td>{{model._lot.identifier}}</td>

@@ -1,6 +1,6 @@
 import { ParkingArea } from './../../models/parking-area';
 import { Component, OnInit, Input } from '@angular/core';
-import { convertUTCDateTimeToYMD } from './../../../../shared/util/date-time-convertor';
+import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
 import { ParkingLotService } from '../../services/parking-lot.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ParkingLot } from './../../models/parking-lot';
