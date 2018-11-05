@@ -18,19 +18,6 @@
 
     <div class="form-row">
       <div class="col">
-        <label for="defaultDeposit">默認押金</label>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">NT$</span>
-          </div>
-          <input type="number" id="defaultDeposit" name="defaultDeposit" class="form-control" required [(ngModel)]="model.defaultDeposit"
-            #defaultDeposit="ngModel">
-        </div>
-        <div class="alert alert-danger" *ngIf="defaultDeposit.touched && defaultDeposit.invalid">
-          <div>請輸入數字</div>
-        </div>
-      </div>
-      <div class="col">
         <label for="defaultRent">默認租金</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -40,6 +27,19 @@
             #defaultRent="ngModel">
         </div>
         <div class="alert alert-danger" *ngIf="defaultRent.touched && defaultRent.invalid">
+          <div>請輸入數字</div>
+        </div>
+      </div>
+      <div class="col">
+        <label for="defaultDeposit">默認押金</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">NT$</span>
+          </div>
+          <input type="number" id="defaultDeposit" name="defaultDeposit" class="form-control" required [(ngModel)]="model.defaultDeposit"
+            #defaultDeposit="ngModel">
+        </div>
+        <div class="alert alert-danger" *ngIf="defaultDeposit.touched && defaultDeposit.invalid">
           <div>請輸入數字</div>
         </div>
       </div>

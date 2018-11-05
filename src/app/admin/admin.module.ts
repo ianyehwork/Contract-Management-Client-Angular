@@ -46,6 +46,7 @@ import { SettingHomeComponent } from './setting/components/setting-home/setting-
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
     children: [
+      { path: '', component: DashboardHomeComponent, outlet: 'admin' },
       { path: 'dashboard', component: DashboardHomeComponent, outlet: 'admin' },
       { path: 'parking', component: ParkingHomeComponent, outlet: 'admin' },
       { path: 'customer', component: CustomerHomeComponent, outlet: 'admin' },
