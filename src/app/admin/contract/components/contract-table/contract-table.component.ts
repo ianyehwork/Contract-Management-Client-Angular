@@ -15,17 +15,26 @@ export class ContractTableComponent extends SortedTable implements OnInit {
 
   modelList: Contract[] = [];
 
+  // Used for searching
+  field = '';
+  match = '';
+
   constructor(private service: ContractTableService,
               private modalService: NgbModal) {
     super();
   }
 
   ngOnInit() {
+    // Default search field
+    this.field = '_customer.pContact';
     this.service.getContracts().subscribe(contracts => {
       for (let i = 0; i < contracts.length; i++) {
         const model = contracts[i];
         model['sDate'] = new Date(model.sYear, model.sMonth - 1, model.sDay);
         model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
+        model['ssDate'] = model.sYear + '-' + model.sMonth + '-' + model.sDay;
+        model['spDate'] = model.pYear + '-' + model.pMonth + '-' + model.pDay;
+        model['sStatus'] = (model.active ? '生效' : '終止');
       }
       this.modelList = contracts;
     }

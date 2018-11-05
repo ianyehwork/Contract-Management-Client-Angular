@@ -15,6 +15,10 @@ export class CustomerTableComponent implements OnInit {
 
   modelList: Customer[] = [];
 
+  // Used for searching
+  field = 'pContact';
+  match = '';
+
   constructor(private modelService: CustomerService,
               private modalService: NgbModal) { }
 
