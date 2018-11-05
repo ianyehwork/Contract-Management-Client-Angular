@@ -14,8 +14,6 @@ import { SortedTable } from '../../../../shared/sorted-table/sorted-table';
 export class ContractTableComponent extends SortedTable implements OnInit {
 
   modelList: Contract[] = [];
-  // order = '';
-  // reverse = true;
 
   constructor(private service: ContractTableService,
               private modalService: NgbModal) {
@@ -26,8 +24,8 @@ export class ContractTableComponent extends SortedTable implements OnInit {
     this.service.getContracts().subscribe(contracts => {
       for (let i = 0; i < contracts.length; i++) {
         const model = contracts[i];
-        model['sDate'] = model.sYear + '-' + model.sMonth + '-' + model.sDay;
-        model['pDate'] = model.pYear + '-' + model.pMonth + '-' + model.pDay;
+        model['sDate'] = new Date(model.sYear, model.sMonth - 1, model.sDay);
+        model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
       }
       this.modelList = contracts;
     }
@@ -54,14 +52,4 @@ export class ContractTableComponent extends SortedTable implements OnInit {
     modalRef.componentInstance.model = model;
   }
 
-  /**
-   * This function is REQUIRED for ngx-order-pipe Sorting
-   * @param value
-   */
-  // setOrder(value: string) {
-  //   if (this.order === value) {
-  //     this.reverse = !this.reverse;
-  //   }
-  //   this.order = value;
-  // }
 }

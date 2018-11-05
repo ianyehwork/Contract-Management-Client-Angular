@@ -26,7 +26,7 @@
   <tbody>
     <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive'" (click)="openEditModal(model)" [class.isToday]="isToday(model)"
       [class.isFuture]="isFuture(model)" [class.isPastDue]="isPastDue(model)">
-      <td>{{model.pDate}}</td>
+      <td>{{model.pYear + '-' + model.pMonth + '-' + model.pDay}}</td>
       <td>{{model.pAmount}}</td>
       <td>{{model._customer.pContact}}</td>
       <td>{{model._customer.pPhone}}</td>

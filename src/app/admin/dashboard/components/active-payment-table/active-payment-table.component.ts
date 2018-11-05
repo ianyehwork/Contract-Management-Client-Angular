@@ -23,7 +23,7 @@ export class ActivePaymentTableComponent extends SortedTable implements OnInit {
     super();
     // Default Sorting
     this.order = 'pDate';
-    this.reverse = true;
+    this.reverse = false;
   }
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class ActivePaymentTableComponent extends SortedTable implements OnInit {
         });
         for (let i = 0; i < this.modelList.length; i++) {
           const model = this.modelList[i];
-          model['pDate'] = model.pYear + '-' + model.pMonth + '-' + model.pDay;
+          model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
           model['pAmount'] = (model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency * model._lot.rent));
         }
       }

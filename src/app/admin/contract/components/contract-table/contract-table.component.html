@@ -31,8 +31,8 @@
     <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive'" (click)="openEditModal(model)">
       <td>{{model._customer.pContact}}</td>
       <td>{{model._lot.identifier}}</td>
-      <td>{{model.sDate}}</td>
-      <td>{{model.pDate}}</td>
+      <td>{{model.sYear + '-' + model.sMonth + '-' + model.sDay}}</td>
+      <td>{{model.pYear + '-' + model.pMonth + '-' + model.pDay}}</td>
       <td>{{model.pTotal}}</td>
       <td>{{(model.active ? '生效' : '終止')}}</td>
     </tr>
