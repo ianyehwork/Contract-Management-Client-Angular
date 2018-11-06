@@ -44,6 +44,7 @@ import { ReportHomeComponent } from './report/components/report-home/report-home
 import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { StartsWithPipe } from '../shared/pipe/starts-with.pipe';
+import { CustomerDeleteComponent } from './customer/components/customer-delete/customer-delete.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
@@ -97,7 +98,8 @@ const routes: Routes = [
     PaymentCalendarComponent,
     ActivePaymentTableComponent,
     ActiveParkingLotTableComponent,
-    StartsWithPipe
+    StartsWithPipe,
+    CustomerDeleteComponent
   ],
   providers: [
     CustomerService,
@@ -111,6 +113,7 @@ const routes: Routes = [
   ],
   entryComponents: [
     CustomerEditComponent,
+    CustomerDeleteComponent,
     ParkingAreaEditComponent,
     ParkingLotEditComponent,
     CustomerSearchComponent,
