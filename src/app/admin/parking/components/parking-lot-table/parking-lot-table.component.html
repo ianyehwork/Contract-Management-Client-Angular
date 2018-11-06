@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
+    <tr *ngFor="let model of modelList | paginate: { itemsPerPage: 15, currentPage: page, id: area._id}" (click)="openEditModal(model)">
       <td>{{model.identifier}}</td>
       <td>{{model.rent}}</td>
       <td>{{model.deposit}}</td>
@@ -16,3 +16,8 @@
     </tr>
   </tbody>
 </table>
+<pagination-controls (pageChange)="page = $event; onPageChange()" 
+                      [responsive]=true
+                      [maxSize]=5
+                      [id]= area._id>
+</pagination-controls>

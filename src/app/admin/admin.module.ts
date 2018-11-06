@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrderModule } from 'ngx-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AuthGuard } from '../auth/services/auth-guard.service';
 import { SharedModule } from './../shared/shared.module';
@@ -46,7 +47,8 @@ import { SettingHomeComponent } from './setting/components/setting-home/setting-
 import { StartsWithPipe } from '../shared/pipe/starts-with.pipe';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
+  {
+    path: 'home', component: HomeComponent, canActivate: [AuthGuard],
     children: [
       { path: '', component: DashboardHomeComponent, outlet: 'admin' },
       { path: 'dashboard', component: DashboardHomeComponent, outlet: 'admin' },
@@ -54,7 +56,7 @@ const routes: Routes = [
       { path: 'customer', component: CustomerHomeComponent, outlet: 'admin' },
       { path: 'contract', component: ContractHomeComponent, outlet: 'admin' },
       { path: 'report', component: ReportHomeComponent, outlet: 'admin' },
-      { path: 'setting', component: SettingHomeComponent, outlet: 'admin'}
+      { path: 'setting', component: SettingHomeComponent, outlet: 'admin' }
     ]
   }
 ];
@@ -66,7 +68,8 @@ const routes: Routes = [
     FormsModule,
     NgbModule,
     RouterModule.forChild(routes),
-    OrderModule
+    OrderModule,
+    NgxPaginationModule
   ],
   declarations: [
     HomeComponent,

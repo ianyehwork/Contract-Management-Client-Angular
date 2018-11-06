@@ -17,8 +17,11 @@ export class ParkingLotTableComponent implements OnInit {
   @Input() area: ParkingArea;
   modelList: ParkingLot[] = [];
 
+  page: number;
+  itemsPP = 15;
+
   constructor(private service: ParkingLotService,
-              private modalService: NgbModal) { }
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.service.getAll(`?_area=${this.area._id}`).subscribe((result) => {
@@ -28,6 +31,13 @@ export class ParkingLotTableComponent implements OnInit {
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
     });
+  }
+
+  /**
+   * This function is used for pagination
+   */
+  onPageChange() {
+    console.log(this.page);
   }
 
   /**
@@ -67,7 +77,7 @@ export class ParkingLotTableComponent implements OnInit {
           }
         });
       }
-    }, refused => {});
+    }, refused => { });
   }
 
 }

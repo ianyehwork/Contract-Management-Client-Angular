@@ -21,7 +21,7 @@ export class ToastService {
   sendMessage(content: string, style: string) {
     const message = new Message(content, style);
     this.messages.push(message);
-    this.messagesChannel.pipe(debounceTime(2000)).subscribe(() => {
+    this.messagesChannel.pipe(debounceTime(1000)).subscribe(() => {
       this.dismissMessage(message.id);
     });
     this.messagesChannel.next(this.messages);

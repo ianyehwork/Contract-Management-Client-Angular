@@ -23,6 +23,9 @@ export class ActiveParkingLotTableComponent implements OnInit {
   formTemplate;
   modalRef: NgbModalRef;
 
+  page: number;
+  itemsPP = 15;
+
   modelList: ParkingLot[] = [];
 
   constructor(private service: ParkingLotTableService,
@@ -37,6 +40,13 @@ export class ActiveParkingLotTableComponent implements OnInit {
       this.modelList = parkinglots;
     }
     );
+  }
+
+  /**
+   * This function is used for pagination
+   */
+  onPageChange() {
+    console.log(this.page);
   }
 
   /**

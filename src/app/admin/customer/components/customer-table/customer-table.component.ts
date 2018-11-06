@@ -19,6 +19,9 @@ export class CustomerTableComponent implements OnInit {
   field = 'pContact';
   match = '';
 
+  page: number;
+  itemsPP = 15;
+
   constructor(private modelService: CustomerService,
     private modalService: NgbModal) { }
 
@@ -30,6 +33,13 @@ export class CustomerTableComponent implements OnInit {
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
     });
+  }
+
+  /**
+   * This function is used for pagination
+   */
+  onPageChange() {
+    console.log(this.page);
   }
 
   /**
