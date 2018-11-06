@@ -20,7 +20,7 @@ export class CustomerTableComponent implements OnInit {
   match = '';
 
   constructor(private modelService: CustomerService,
-              private modalService: NgbModal) { }
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.modelService.getAll().subscribe((result) => {
@@ -40,7 +40,14 @@ export class CustomerTableComponent implements OnInit {
   addNewModel(model: Customer) {
     model.dateCreated = convertUTCDateTimeToYMD(model.dateCreated);
     model.dateModified = convertUTCDateTimeToYMD(model.dateModified);
-    this.modelList.push(model);
+    // Create a new array, and reassign to this.modelList
+    // to trigger DOM update
+    const updatedList = [];
+    this.modelList.forEach((value, index, array) => {
+      updatedList.push(array[index]);
+    });
+    updatedList.push(model);
+    this.modelList = updatedList;
   }
 
   /**
@@ -61,14 +68,19 @@ export class CustomerTableComponent implements OnInit {
           }
         });
       } else if (result.operation === 'Update') {
+        // Create a new array, and reassign to this.modelList
+        // to trigger DOM update
+        const updatedList = [];
         this.modelList.forEach((value, index, array) => {
           if (value._id === result.data._id) {
             result.data.dateCreated = convertUTCDateTimeToYMD(result.data.dateCreated);
             result.data.dateModified = convertUTCDateTimeToYMD(result.data.dateModified);
             array[index] = result.data;
           }
+          updatedList.push(array[index]);
         });
+        this.modelList = updatedList;
       }
-    }, refused => {});
+    }, refused => { });
   }
 }
