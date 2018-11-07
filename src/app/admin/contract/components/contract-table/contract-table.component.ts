@@ -1,27 +1,21 @@
-import { ContractEditComponent } from './../contract-edit/contract-edit.component';
-import { Component, OnInit, Input } from '@angular/core';
-import { Contract } from '../../models/contract';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AppConstants } from '../../../../constants';
+
+import { ModelTable } from '../../../../shared/components/model-table';
+import { Contract } from '../../models/contract';
 import { ContractTableService } from '../../services/contract-table.service';
-import { SortedTable } from '../../../../shared/sorted-table/sorted-table';
+import { ContractEditComponent } from './../contract-edit/contract-edit.component';
 
 @Component({
   selector: 'app-contract-table',
   templateUrl: './contract-table.component.html',
   styleUrls: ['./contract-table.component.css']
 })
-export class ContractTableComponent extends SortedTable implements OnInit {
+export class ContractTableComponent extends ModelTable<Contract, ContractTableService> implements OnInit {
 
-  modelList: Contract[] = [];
-
-  // Used for searching
-  field = '';
-  match = '';
-
-  constructor(private service: ContractTableService,
-              private modalService: NgbModal) {
-    super();
+  constructor(service: ContractTableService,
+              modalService: NgbModal) {
+    super(service, modalService, ContractEditComponent);
   }
 
   ngOnInit() {
@@ -38,27 +32,6 @@ export class ContractTableComponent extends SortedTable implements OnInit {
       }
       this.modelList = contracts;
     }
-  );
+    );
   }
-
-  /**
-   * This function is triggered when the user clicks the "Save" button
-   * in CreateCustomerComponent.
-   * @param model new Customer created by the user
-   */
-  addNewModel(model: Contract) {
-    this.modelList.push(model);
-  }
-
-  /**
-   * This function is triggered when the user clicks the table row
-   * to edit the model.
-   * @param model new Customer created by the user
-   */
-  openEditModal(model: Contract) {
-    const modalRef = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
-    // Pass poster as a Input to ModalRef
-    modalRef.componentInstance.model = model;
-  }
-
 }

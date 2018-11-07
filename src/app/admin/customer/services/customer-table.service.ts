@@ -7,9 +7,8 @@ import { CustomerService } from './customer.service';
 @Injectable()
 export class CustomerTableService extends TableService<Customer, CustomerService> {
 
-  constructor(public service: CustomerService) {
-    super();
-    this.setService(this.service);
+  constructor(service: CustomerService) {
+    super(service);
   }
 
 }

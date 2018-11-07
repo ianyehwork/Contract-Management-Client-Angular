@@ -10,13 +10,8 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
 
   modelList: T1[] = [];
   modelChannel = new Subject<Array<T1>>();
-  service: T2;
 
-  constructor() {
-  }
-
-  setService(service: T2) {
-    this.service = service;
+  constructor(public service: T2) {
   }
 
   getModelChannel(): Observable<Array<T1>> {

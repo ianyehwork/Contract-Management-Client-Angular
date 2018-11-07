@@ -1,15 +1,14 @@
-import { ParkingLotSearchComponent } from './../../../parking/components/parking-lot-search/parking-lot-search.component';
-import { environment } from './../../../../../environments/environment';
-import { ContractTableComponent } from './../contract-table/contract-table.component';
-import { Contract } from '../../models/contract';
-import { Component, OnInit, Input } from '@angular/core';
-import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
-
-import { NgbModal, NgbModalRef, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { ContractService } from '../../services/contract.service';
-import { CustomerSearchComponent } from '../../../customer/components/customer-search/customer-search.component';
-import { AppConstants } from '../../../../constants';
+import { Component, OnInit } from '@angular/core';
+import { NgbCalendar, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
+
+import { AppConstants } from '../../../../constants';
+import { BS4AlertType, ToastService } from '../../../../shared/services/toast.service';
+import { CustomerSearchComponent } from '../../../customer/components/customer-search/customer-search.component';
+import { Contract } from '../../models/contract';
+import { ContractService } from '../../services/contract.service';
+import { ParkingLotSearchComponent } from './../../../parking/components/parking-lot-search/parking-lot-search.component';
+import { ContractTableService } from './../../services/contract-table.service';
 
 @Component({
   selector: 'app-contract-create',
@@ -17,13 +16,14 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
   styleUrls: ['./contract-create.component.css']
 })
 export class ContractCreateComponent implements OnInit {
-  @Input() table: ContractTableComponent;
+
   model: Contract;
   startDate: NgbDate;
   formTemplate;
   modalRef: NgbModalRef;
 
   constructor(private modelService: ContractService,
+    private tableService: ContractTableService,
     private modalService: NgbModal,
     private toast: ToastService,
     private calendar: NgbCalendar) { }
@@ -55,7 +55,7 @@ export class ContractCreateComponent implements OnInit {
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);
-        this.table.addNewModel(result);
+        this.tableService.add(result);
         customerForm.resetForm();
         this.model = new Contract();
         this.modalRef.close();

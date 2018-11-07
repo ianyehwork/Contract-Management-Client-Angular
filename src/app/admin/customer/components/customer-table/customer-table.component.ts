@@ -21,7 +21,13 @@ export class CustomerTableComponent implements OnInit {
   match = '';
 
   page: number;
-  itemsPP = 15;
+  pageSize = 15;
+  /**
+   * This function is used for pagination
+   */
+  onPageChange() {
+    console.log(this.page);
+  }
 
   constructor(private modelService: CustomerTableService,
     private modalService: NgbModal) { }
@@ -37,38 +43,13 @@ export class CustomerTableComponent implements OnInit {
   }
 
   /**
-   * This function is used for pagination
-   */
-  onPageChange() {
-    console.log(this.page);
-  }
-
-  /**
-   * This function is triggered when the user clicks the "Save" button
-   * in CreateCustomerComponent.
-   * @param model new Customer created by the user
-   */
-  addNewModel(model: Customer) {
-    model.dateCreated = convertUTCDateTimeToYMD(model.dateCreated);
-    model.dateModified = convertUTCDateTimeToYMD(model.dateModified);
-    // Create a new array, and reassign to this.modelList
-    // to trigger DOM update
-    const updatedList = [];
-    this.modelList.forEach((value, index, array) => {
-      updatedList.push(array[index]);
-    });
-    updatedList.push(model);
-    this.modelList = updatedList;
-  }
-
-  /**
    * This function is triggered when the user clicks the table row
    * to edit the model.
    * @param model new Customer created by the user
    */
   openEditModal(model: Customer) {
     const modalRef = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
-    // Pass poster as a Input to ModalRef
+    // Pass model as a Input to ModalRef
     modalRef.componentInstance.model = model;
   }
 }

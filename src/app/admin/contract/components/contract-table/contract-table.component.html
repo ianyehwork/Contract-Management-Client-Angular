@@ -47,7 +47,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive' | startsWith:field:match"
+        <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive' | startsWith:field:match | paginate: { itemsPerPage: pageSize, currentPage: page}"
             (click)="openEditModal(model)">
             <td>{{model._customer.pContact}}</td>
             <td>{{model._lot.identifier}}</td>
@@ -58,3 +58,7 @@
         </tr>
     </tbody>
 </table>
+<pagination-controls *ngIf="this.modelList.length > pageSize" (pageChange)="page = $event; onPageChange()" 
+    [responsive]=true
+    [maxSize]=5>
+</pagination-controls>

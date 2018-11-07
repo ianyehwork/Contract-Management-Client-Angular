@@ -1,11 +1,11 @@
-import { ContractTableService } from './../../../contract/services/contract-table.service';
 import { Component, OnInit } from '@angular/core';
-import { Contract } from '../../../contract/models/contract';
-import { ContractEditComponent } from '../../../contract/components/contract-edit/contract-edit.component';
-import { AppConstants } from '../../../../constants';
-import { NgbModal, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
-import { SortedTable } from '../../../../shared/sorted-table/sorted-table';
+
+import { ModelTable } from '../../../../shared/components/model-table';
+import { ContractEditComponent } from '../../../contract/components/contract-edit/contract-edit.component';
+import { Contract } from '../../../contract/models/contract';
+import { ContractTableService } from './../../../contract/services/contract-table.service';
 
 
 @Component({
@@ -13,20 +13,18 @@ import { SortedTable } from '../../../../shared/sorted-table/sorted-table';
   templateUrl: './active-payment-table.component.html',
   styleUrls: ['./active-payment-table.component.css']
 })
-export class ActivePaymentTableComponent extends SortedTable implements OnInit {
+export class ActivePaymentTableComponent extends ModelTable<Contract, ContractTableService> implements OnInit {
 
-  modelList: Contract[] = [];
-
-  constructor(private service: ContractTableService,
-              private modalService: NgbModal,
+  constructor(service: ContractTableService,
+              modalService: NgbModal,
               private calendar: NgbCalendar) {
-    super();
-    // Default Sorting
-    this.order = 'pDate';
-    this.reverse = false;
+    super(service, modalService, ContractEditComponent);
   }
 
   ngOnInit() {
+    // Default Sorting
+    this.order = 'pDate';
+    this.reverse = false;
     this.service.getModelChannel().subscribe(contracts => {
         this.modelList = contracts.filter((value) => {
           return value.active;
@@ -38,17 +36,6 @@ export class ActivePaymentTableComponent extends SortedTable implements OnInit {
         }
       }
     );
-  }
-
-  /**
-   * This function is triggered when the user clicks the table row
-   * to edit the model.
-   * @param model new Customer created by the user
-   */
-  openEditModal(model: Contract) {
-    const modalRef = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
-    // Pass poster as a Input to ModalRef
-    modalRef.componentInstance.model = model;
   }
 
   // Return true if the Contract Payment Date is Today

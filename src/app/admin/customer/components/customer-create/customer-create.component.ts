@@ -48,7 +48,6 @@ export class CustomerCreateComponent implements OnInit {
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('客戶建立完成', BS4AlertType.SUCCESS);
-        // this.table.addNewModel(result);
         this.tableService.add(result);
         customerForm.resetForm();
         this.model = new Customer();

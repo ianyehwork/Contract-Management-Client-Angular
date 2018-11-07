@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let model of modelList | startsWith:field:match | paginate: { itemsPerPage: 15, currentPage: page}" (click)="openEditModal(model)">
+    <tr *ngFor="let model of modelList | startsWith:field:match | paginate: { itemsPerPage: pageSize, currentPage: page}" (click)="openEditModal(model)">
       <td>{{model.pContact}}</td>
       <td>{{model.pPhone}}</td>
       <td>{{model.vehicles}}</td>
@@ -27,7 +27,7 @@
     </tr>
   </tbody>
 </table>
-<pagination-controls *ngIf="this.modelList.length > itemsPP" (pageChange)="page = $event; onPageChange()" 
+<pagination-controls *ngIf="this.modelList.length > pageSize" (pageChange)="page = $event; onPageChange()" 
                       [responsive]=true
                       [maxSize]=5>
 </pagination-controls>
