@@ -1,5 +1,6 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { ParkingAreaTableService } from './../../services/parking-area-table.service';
 import { ParkingLotTableService } from './../../services/parking-lot-table.service';
 
 @Component({
@@ -9,10 +10,12 @@ import { ParkingLotTableService } from './../../services/parking-lot-table.servi
 })
 export class ParkingHomeComponent implements OnInit {
 
-  constructor(private service: ParkingLotTableService) { }
+  constructor(private parkingLotService: ParkingLotTableService,
+              private parkingAreaService: ParkingAreaTableService) { }
 
   ngOnInit() {
-    this.service.refresh();
+    this.parkingLotService.refresh();
+    this.parkingAreaService.refresh();
   }
 
 }

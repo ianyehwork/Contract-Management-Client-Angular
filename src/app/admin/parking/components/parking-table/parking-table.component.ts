@@ -1,71 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
-import { ParkingAreaService } from '../../services/parking-area.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ParkingArea } from './../../models/parking-area';
+
+import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
+import { ModelTableComponent } from '../../../../shared/components/model-table-component';
 import { ParkingAreaEditComponent } from '../parking-area-edit/parking-area-edit.component';
-import { AppConstants } from '../../../../constants';
+import { ParkingArea } from './../../models/parking-area';
+import { ParkingAreaTableService } from './../../services/parking-area-table.service';
 
 @Component({
   selector: 'app-parking-table',
   templateUrl: './parking-table.component.html',
   styleUrls: ['./parking-table.component.css']
 })
-export class ParkingTableComponent implements OnInit {
+export class ParkingTableComponent extends ModelTableComponent<ParkingArea, ParkingAreaTableService> implements OnInit {
 
-  modelList: ParkingArea[] = [];
-
-  constructor(private service: ParkingAreaService,
-              private modalService: NgbModal) { }
+  constructor(service: ParkingAreaTableService, modalService: NgbModal) {
+    super(service, modalService, ParkingAreaEditComponent);
+  }
 
   ngOnInit() {
-    this.service.getAll().subscribe((result) => {
+    this.service.getModelChannel().subscribe((result) => {
       this.modelList = result;
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
     });
-  }
-
-  /**
-   * This function is triggered when the user clicks the "Save" button
-   * in CreateCustomerComponent.
-   * @param model new Customer created by the user
-   */
-  addNewModel(model: ParkingArea) {
-    model.dateCreated = convertUTCDateTimeToYMD(model.dateCreated);
-    model.dateModified = convertUTCDateTimeToYMD(model.dateModified);
-    this.modelList.push(model);
-  }
-
-  /**
-   * This function is triggered when the user clicks the table row
-   * to edit the model.
-   * @param model new Customer created by the user
-   */
-  openEditModal(model: ParkingArea) {
-    const modalRef = this.modalService.open(ParkingAreaEditComponent, AppConstants.MODAL_OPTIONS);
-    // Pass poster as a Input to ModalRef
-    modalRef.componentInstance.model = model;
-
-    modalRef.result.then(result => {
-      if (result.operation === 'Delete') {
-        this.modelList = this.modelList.filter((item) => {
-          if (item._id !== result.data._id) {
-            return item;
-          }
-        });
-      } else if (result.operation === 'Update') {
-        this.modelList.forEach((value, index, array) => {
-          if (value._id === result.data._id) {
-            result.data.dateCreated = convertUTCDateTimeToYMD(result.data.dateCreated);
-            result.data.dateModified = convertUTCDateTimeToYMD(result.data.dateModified);
-            array[index] = result.data;
-          }
-        });
-      }
-    }, refused => {});
   }
 
 }

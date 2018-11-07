@@ -6,6 +6,7 @@ import { ParkingArea } from '../../models/parking-area';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ParkingTableComponent } from '../parking-table/parking-table.component';
 import { AppConstants } from '../../../../constants';
+import { ParkingAreaTableService } from '../../services/parking-area-table.service';
 
 @Component({
   selector: 'app-parking-area-create',
@@ -14,11 +15,11 @@ import { AppConstants } from '../../../../constants';
 })
 export class ParkingAreaCreateComponent implements OnInit {
 
-  @Input() table: ParkingTableComponent;
   model = new ParkingArea();
   modalRef: NgbModalRef;
 
   constructor(private modelService: ParkingAreaService,
+              private tableService: ParkingAreaTableService,
               private ngbService: NgbModal,
               private toast: ToastService) { }
 
@@ -43,7 +44,7 @@ export class ParkingAreaCreateComponent implements OnInit {
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('停車區建立完成', BS4AlertType.SUCCESS);
-        this.table.addNewModel(result);
+        this.tableService.add(result);
         customerForm.resetForm();
         this.model = new ParkingArea();
         this.modalRef.close();

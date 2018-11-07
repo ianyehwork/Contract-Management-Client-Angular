@@ -1,3 +1,4 @@
+import { ParkingAreaTableService } from './../../services/parking-area-table.service';
 import { ParkingAreaDeleteComponent } from './../parking-area-delete/parking-area-delete.component';
 import { ParkingAreaService } from '../../services/parking-area.service';
 import { Component, OnInit, Input } from '@angular/core';
@@ -13,11 +14,13 @@ import { AppConstants } from '../../../../constants';
   styleUrls: ['./parking-area-edit.component.css']
 })
 export class ParkingAreaEditComponent implements OnInit {
+
   @Input() model: ParkingArea;
   originalModel: ParkingArea;
 
   constructor(private activeModal: NgbActiveModal,
               private modelService: ParkingAreaService,
+              private tableService: ParkingAreaTableService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -30,12 +33,13 @@ export class ParkingAreaEditComponent implements OnInit {
   updateModel() {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
-        this.activeModal.close({operation: 'Update', data: result});
+        this.tableService.update(result);
+        this.activeModal.close();
       }
     });
   }
 
-  openDeleteModal(){
+  openDeleteModal() {
     this.activeModal.dismiss();
     const modalRef = this.modalService.open(ParkingAreaDeleteComponent, AppConstants.MODAL_OPTIONS);
 
@@ -46,7 +50,7 @@ export class ParkingAreaEditComponent implements OnInit {
           const ref = this.modalService.open(ParkingAreaEditComponent, AppConstants.MODAL_OPTIONS);
           ref.componentInstance.model = parkingLot;
         });
-      }  
+      }
     }, refused => {});
   }
 
