@@ -78,7 +78,7 @@ export class ActiveParkingLotTableComponent implements OnInit {
         // this.table.addNewModel(result);
         this.modalRef.close();
         this.service.update();
-        this.contractService.updateAll();
+        this.contractService.refresh();
       }
     }, (error) => {
       // this.invalidLogin = true;

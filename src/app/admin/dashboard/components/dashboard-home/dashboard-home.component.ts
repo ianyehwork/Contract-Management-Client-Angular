@@ -14,7 +14,7 @@ export class DashboardHomeComponent implements OnInit {
               private parkingLotService: ParkingLotTableService) {}
 
   ngOnInit() {
-    this.contractService.updateAll();
+    this.contractService.refresh();
     this.parkingLotService.update();
   }
 

@@ -11,7 +11,7 @@ export class ContractHomeComponent implements OnInit {
   constructor(private service: ContractTableService) { }
 
   ngOnInit() {
-    this.service.updateAll();
+    this.service.refresh();
   }
 
 }

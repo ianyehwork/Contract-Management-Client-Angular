@@ -1,13 +1,12 @@
-import { CustomerTableService } from './../../services/customer-table.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
-
-import { CustomerService } from '../../services/customer.service';
-import { Customer } from '../../models/customer';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
-import { CustomerTableComponent } from '../customer-table/customer-table.component';
+
 import { AppConstants } from '../../../../constants';
+import { BS4AlertType, ToastService } from '../../../../shared/services/toast.service';
+import { Customer } from '../../models/customer';
+import { CustomerService } from '../../services/customer.service';
+import { CustomerTableService } from './../../services/customer-table.service';
 
 @Component({
   selector: 'app-customer-create',

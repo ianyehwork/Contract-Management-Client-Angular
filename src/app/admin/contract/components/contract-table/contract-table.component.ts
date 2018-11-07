@@ -27,7 +27,7 @@ export class ContractTableComponent extends SortedTable implements OnInit {
   ngOnInit() {
     // Default search field
     this.field = '_customer.pContact';
-    this.service.getContracts().subscribe(contracts => {
+    this.service.getModelChannel().subscribe(contracts => {
       for (let i = 0; i < contracts.length; i++) {
         const model = contracts[i];
         model['sDate'] = new Date(model.sYear, model.sMonth - 1, model.sDay);

@@ -1,35 +1,16 @@
-import { Contract } from './../../contract/models/contract';
-import { Observable } from 'rxjs/Observable';
-import { ContractService } from './../../contract/services/contract.service';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+
+import { TableService } from '../../../shared/services/table.service';
+import { Contract } from './../../contract/models/contract';
+import { ContractService } from './../../contract/services/contract.service';
 
 @Injectable()
-export class ContractTableService {
+export class ContractTableService extends TableService<Contract, ContractService> {
 
-  modelList: Contract[] = [];
-  modelChannel = new Subject<Array<Contract>>();
-
-  constructor(private service: ContractService) { }
-
-  getContracts(): Observable<Array<Contract>> {
-    return this.modelChannel.asObservable();
-  }
-
-  updateAll() {
-    this.service.getAll().subscribe((result) => {
-      this.modelList = result;
-      this.modelChannel.next(result);
-    });
-  }
-
-  update(model: Contract) {
-    this.modelList.forEach((val, index) => {
-      if (val._id === model._id) {
-        this.modelList[index] = model;
-      }
-    });
-    this.modelChannel.next(this.modelList);
+  constructor(public service: ContractService) {
+    super();
+    this.setService(this.service);
   }
 
 }
+

@@ -20,7 +20,7 @@ export class PaymentCalendarComponent implements OnInit {
 
   ngOnInit() {
     this.today = this.calendar.getToday();
-    this.service.getContracts().subscribe(contracts => {
+    this.service.getModelChannel().subscribe(contracts => {
       this.modelList = contracts.filter((value) => {
         return value.active;
       });

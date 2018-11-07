@@ -27,7 +27,7 @@ export class ActivePaymentTableComponent extends SortedTable implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getContracts().subscribe(contracts => {
+    this.service.getModelChannel().subscribe(contracts => {
         this.modelList = contracts.filter((value) => {
           return value.active;
         });
