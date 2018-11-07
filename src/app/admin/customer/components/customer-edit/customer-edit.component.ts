@@ -1,7 +1,11 @@
+import { TestBed } from '@angular/core/testing';
 import { CustomerService } from './../../services/customer.service';
+import { CustomerDeleteComponent } from './../customer-delete/customer-delete.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { Customer } from '../../models/customer';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppConstants } from '../../../../constants';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,7 +19,8 @@ export class CustomerEditComponent implements OnInit {
   originalModel: Customer;
 
   constructor(private activeModal: NgbActiveModal,
-              private modelService: CustomerService) { }
+              private modelService: CustomerService,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
     this.modelService.getById(this.model._id).subscribe((response) => {
@@ -32,12 +37,22 @@ export class CustomerEditComponent implements OnInit {
     });
   }
 
-  deleteModel() {
-    this.modelService.delete(this.model).subscribe((response) => {
-      if (response) {
-        this.activeModal.close({operation: 'Delete', data: response});
-      }
-    });
+  /**
+   * This function is triggered when the user clicks the delete button
+   * to delete the model.
+   * @param model new Customer created by the user
+   */
+  openDeleteModal(model: Customer) {
+    this.activeModal.dismiss();
+    const modalRef = this.modalService.open(CustomerDeleteComponent);
+
+    modalRef.componentInstance.model = model;
+    modalRef.result.then(result => {
+      this.modelService.getById(result.data._id).subscribe(customer => {
+        const ref = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
+        ref.componentInstance.model = customer;
+      });
+    }, refused => {});
   }
 
   cancel() {
