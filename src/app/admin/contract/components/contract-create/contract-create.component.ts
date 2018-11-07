@@ -3,7 +3,8 @@ import { NgbCalendar, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
 import { AppConstants } from '../../../../constants';
-import { BS4AlertType, ToastService } from '../../../../shared/services/toast.service';
+import { ModelCreateComponent } from '../../../../shared/components/model-create-component';
+import { ToastService } from '../../../../shared/services/toast.service';
 import { CustomerSearchComponent } from '../../../customer/components/customer-search/customer-search.component';
 import { Contract } from '../../models/contract';
 import { ContractService } from '../../services/contract.service';
@@ -15,55 +16,38 @@ import { ContractTableService } from './../../services/contract-table.service';
   templateUrl: './contract-create.component.html',
   styleUrls: ['./contract-create.component.css']
 })
-export class ContractCreateComponent implements OnInit {
+export class ContractCreateComponent extends ModelCreateComponent<Contract, ContractService, ContractTableService> implements OnInit {
 
-  model: Contract;
   startDate: NgbDate;
   formTemplate;
-  modalRef: NgbModalRef;
 
-  constructor(private modelService: ContractService,
-    private tableService: ContractTableService,
-    private modalService: NgbModal,
-    private toast: ToastService,
-    private calendar: NgbCalendar) { }
+  constructor(
+    service: ContractService,
+    tableService: ContractTableService,
+    ngbService: NgbModal,
+    toast: ToastService,
+    private calendar: NgbCalendar) {
+    super(new Contract(), service, tableService, ngbService, toast);
+    this.successMessage = '合同建立完成';
+  }
 
   ngOnInit() {
   }
 
-  /**
-   * This function is REQUIRED to initialize the Bootstrap
-   * Modal.
-   * @param template Modal Template
-   */
+  // Override
   open(template) {
     this.startDate = this.calendar.getToday();
-    this.model = new Contract();
     this.formTemplate = template;
-    this.modalRef = this.modalService.open(template, AppConstants.MODAL_OPTIONS);
+    super.open(template);
+    this.model.pFrequency = 1;
   }
 
-  /**
-   * This function is REQUIRED to submit the data to the server
-   * when the "save" button is clicked.
-   * @param customerForm the form content
-   */
-  submitModel(customerForm) {
+  // Override
+  submitModel(form) {
     this.model.sYear = this.startDate.year;
     this.model.sMonth = this.startDate.month;
     this.model.sDay = this.startDate.day;
-    this.modelService.create(this.model).subscribe((result) => {
-      if (result) {
-        this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);
-        this.tableService.add(result);
-        customerForm.resetForm();
-        this.model = new Contract();
-        this.modalRef.close();
-      }
-    }, (error) => {
-      // this.invalidLogin = true;
-      console.log('Failed!');
-    });
+    super.submitModel(form);
   }
 
   /**
@@ -72,14 +56,14 @@ export class ContractCreateComponent implements OnInit {
    */
   searchCustomer() {
     this.modalRef.dismiss();
-    const modalRef = this.modalService.open(CustomerSearchComponent, AppConstants.MODAL_OPTIONS);
+    const modalRef = this.ngbService.open(CustomerSearchComponent, AppConstants.MODAL_OPTIONS);
 
     modalRef.result.then(result => {
       if (result.operation === 'OK') {
         this.model._customer = result.data;
       }
-      this.modalRef = this.modalService.open(this.formTemplate, AppConstants.MODAL_OPTIONS);
-    }, refused => {});
+      this.modalRef = this.ngbService.open(this.formTemplate, AppConstants.MODAL_OPTIONS);
+    }, refused => { });
   }
 
   /**
@@ -88,13 +72,13 @@ export class ContractCreateComponent implements OnInit {
    */
   searchLot() {
     this.modalRef.dismiss();
-    const modalRef = this.modalService.open(ParkingLotSearchComponent, AppConstants.MODAL_OPTIONS);
+    const modalRef = this.ngbService.open(ParkingLotSearchComponent, AppConstants.MODAL_OPTIONS);
 
     modalRef.result.then(result => {
       if (result.operation === 'OK') {
         this.model._lot = result.data;
       }
-      this.modalRef = this.modalService.open(this.formTemplate, AppConstants.MODAL_OPTIONS);
-    }, refused => {});
+      this.modalRef = this.ngbService.open(this.formTemplate, AppConstants.MODAL_OPTIONS);
+    }, refused => { });
   }
 }

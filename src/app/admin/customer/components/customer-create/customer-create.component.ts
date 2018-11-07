@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 
-import { AppConstants } from '../../../../constants';
-import { BS4AlertType, ToastService } from '../../../../shared/services/toast.service';
+import { ToastService } from '../../../../shared/services/toast.service';
 import { Customer } from '../../models/customer';
 import { CustomerService } from '../../services/customer.service';
+import { ModelCreateComponent } from './../../../../shared/components/model-create-component';
 import { CustomerTableService } from './../../services/customer-table.service';
 
 @Component({
@@ -13,50 +13,18 @@ import { CustomerTableService } from './../../services/customer-table.service';
   templateUrl: './customer-create.component.html',
   styleUrls: ['./customer-create.component.css']
 })
-export class CustomerCreateComponent implements OnInit {
+export class CustomerCreateComponent extends ModelCreateComponent<Customer, CustomerService, CustomerTableService> implements OnInit {
 
-  model = new Customer();
-  modalRef: NgbModalRef;
-
-  constructor(private modelService: CustomerService,
-              private tableService: CustomerTableService,
-              private ngbService: NgbModal,
-              private toast: ToastService) { }
+  constructor(
+    service: CustomerService,
+    tableService: CustomerTableService,
+    ngbService: NgbModal,
+    toast: ToastService) {
+    super(new Customer(), service, tableService, ngbService, toast);
+    this.successMessage = '客戶建立完成';
+  }
 
   ngOnInit() {
-  }
-
-  /**
-   * This function is REQUIRED to initialize the Bootstrap
-   * Modal.
-   * @param template Modal Template
-   */
-  open(template) {
-    this.modalRef = this.ngbService.open(template, AppConstants.MODAL_OPTIONS);
-  }
-
-  close() {
-    this.modalRef.close();
-  }
-
-  /**
-   * This function is REQUIRED to submit the data to the server
-   * when the "save" button is clicked.
-   * @param customerForm the form content
-   */
-  submitModel(customerForm) {
-    this.modelService.create(this.model).subscribe((result) => {
-      if (result) {
-        this.toast.sendMessage('客戶建立完成', BS4AlertType.SUCCESS);
-        this.tableService.add(result);
-        customerForm.resetForm();
-        this.model = new Customer();
-        this.modalRef.close();
-      }
-    }, (error) => {
-      // this.invalidLogin = true;
-      console.log('Failed!');
-    });
   }
 
   /**
