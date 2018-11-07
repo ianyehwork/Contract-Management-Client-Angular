@@ -46,6 +46,7 @@ import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { StartsWithPipe } from '../shared/pipe/starts-with.pipe';
 import { CustomerDeleteComponent } from './customer/components/customer-delete/customer-delete.component';
+import { ParkingLotDeleteComponent } from './parking/components/parking-lot-delete/parking-lot-delete.component';
 
 const routes: Routes = [
   {
@@ -102,7 +103,8 @@ const routes: Routes = [
     ActivePaymentTableComponent,
     ActiveParkingLotTableComponent,
     StartsWithPipe,
-    CustomerDeleteComponent
+    CustomerDeleteComponent,
+    ParkingLotDeleteComponent
   ],
   providers: [
     CustomerService,
@@ -119,6 +121,7 @@ const routes: Routes = [
     CustomerDeleteComponent,
     ParkingAreaEditComponent,
     ParkingLotEditComponent,
+    ParkingLotDeleteComponent,
     CustomerSearchComponent,
     ParkingLotSearchComponent,
     ContractEditComponent,
