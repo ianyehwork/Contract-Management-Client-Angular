@@ -1,38 +1,28 @@
-import { ParkingAreaService } from './../../services/parking-area.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { ParkingArea } from '../../models/parking-area';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ParkingAreaTableService } from '../../services/parking-area-table.service';
+
+import { ModelDeleteComponent } from '../../../../shared/components/model-delete-component';
+import { ToastService } from '../../../../shared/services/toast.service';
+import { ParkingArea } from '../../models/parking-area';
+import { ParkingAreaTableService } from './../../services/parking-area-table.service';
+import { ParkingAreaService } from './../../services/parking-area.service';
 
 @Component({
   selector: 'app-parking-area-delete',
   templateUrl: './parking-area-delete.component.html',
   styleUrls: ['./parking-area-delete.component.css']
 })
-export class ParkingAreaDeleteComponent implements OnInit {
+export class ParkingAreaDeleteComponent extends ModelDeleteComponent<ParkingArea, ParkingAreaService, ParkingAreaTableService> implements OnInit {
 
-  @Input() model: ParkingArea;
-
-  constructor(private activeModal: NgbActiveModal,
-              private modelService: ParkingAreaService,
-              private tableService: ParkingAreaTableService) { }
+  constructor(
+    activeModal: NgbActiveModal,
+    modelService: ParkingAreaService,
+    tableService: ParkingAreaTableService,
+    toast: ToastService) {
+    super(activeModal, modelService, tableService, toast);
+  }
 
   ngOnInit() {
   }
 
-  deleteModel() {
-    this.modelService.delete(this.model).subscribe((response) => {
-      if (response) {
-        this.tableService.delete(response);
-        this.activeModal.close({});
-      }
-    }, (error) => {
-      console.log('Failed!');
-    });
-  }
-
-
-  cancel() {
-    this.activeModal.close({operation: 'Cancel', data: this.model});
-  }
 }

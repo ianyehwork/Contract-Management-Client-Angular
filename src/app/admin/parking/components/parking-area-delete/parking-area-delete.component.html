@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <form class="form-customer" #form="ngForm" (ngSubmit)="cancel()">
-    您确定要删除{{model.identifier}}吗？
+    确定要删除 {{model.identifier}} ?
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" (click)="deleteModel()">刪除</button>
       <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>

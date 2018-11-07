@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { ModelDeleteComponent } from '../../../../shared/components/model-delete-component';
+import { ToastService } from '../../../../shared/services/toast.service';
 import { Customer } from '../../models/customer';
 import { CustomerTableService } from './../../services/customer-table.service';
 import { CustomerService } from './../../services/customer.service';
@@ -10,29 +12,17 @@ import { CustomerService } from './../../services/customer.service';
   templateUrl: './customer-delete.component.html',
   styleUrls: ['./customer-delete.component.css']
 })
-export class CustomerDeleteComponent implements OnInit {
+export class CustomerDeleteComponent extends ModelDeleteComponent<Customer, CustomerService, CustomerTableService> implements OnInit {
 
-  @Input() model: Customer;
-
-  constructor(private activeModal: NgbActiveModal,
-              private modelService: CustomerService,
-              private tableService: CustomerTableService) { }
+  constructor(
+    activeModal: NgbActiveModal,
+    modelService: CustomerService,
+    tableService: CustomerTableService,
+    toast: ToastService) {
+    super(activeModal, modelService, tableService, toast);
+  }
 
   ngOnInit() {
   }
 
-  deleteModel() {
-    this.modelService.delete(this.model).subscribe((response) => {
-      if (response) {
-        this.tableService.delete(response);
-        this.activeModal.close({});
-      }
-    }, (error) => {
-      console.log('Failed!');
-    });
-  }
-
-  cancel() {
-    this.activeModal.close({data: this.model});
-  }
 }

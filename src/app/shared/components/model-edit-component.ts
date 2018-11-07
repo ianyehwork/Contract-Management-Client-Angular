@@ -50,8 +50,6 @@ export class ModelEditComponent<T1 extends HasIdInterface,
             console.log(result);
             if (result.data) {
                 this.modelService.getById(result.data._id).subscribe(data => {
-                    console.log('Here');
-                    console.log(this.editComponent);
                     const ref = this.modalService.open(this.editComponent, AppConstants.MODAL_OPTIONS);
                     ref.componentInstance.model = data;
                 });
