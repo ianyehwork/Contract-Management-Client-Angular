@@ -1,8 +1,11 @@
+import { ParkingAreaDeleteComponent } from './../parking-area-delete/parking-area-delete.component';
 import { ParkingAreaService } from '../../services/parking-area.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
 import { ParkingArea } from '../../models/parking-area';
+import { AppConstants } from '../../../../constants';
 
 @Component({
   selector: 'app-parking-area-edit',
@@ -14,7 +17,8 @@ export class ParkingAreaEditComponent implements OnInit {
   originalModel: ParkingArea;
 
   constructor(private activeModal: NgbActiveModal,
-              private modelService: ParkingAreaService) { }
+              private modelService: ParkingAreaService,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
     this.modelService.getById(this.model._id).subscribe((response) => {
@@ -31,17 +35,23 @@ export class ParkingAreaEditComponent implements OnInit {
     });
   }
 
-  deleteModel() {
-    this.modelService.delete(this.model).subscribe((response) => {
-      if (response) {
-        this.activeModal.close({operation: 'Delete', data: response});
-      }
-    });
+  openDeleteModal(){
+    this.activeModal.dismiss();
+    const modalRef = this.modalService.open(ParkingAreaDeleteComponent, AppConstants.MODAL_OPTIONS);
+
+    modalRef.componentInstance.model = this.model;
+    modalRef.result.then(result => {
+      if (result.operation === 'Cancel') {
+        this.modelService.getById(result.data._id).subscribe(parkingLot => {
+          const ref = this.modalService.open(ParkingAreaEditComponent, AppConstants.MODAL_OPTIONS);
+          ref.componentInstance.model = parkingLot;
+        });
+      }  
+    }, refused => {});
   }
 
   cancel() {
     this.model = this.originalModel;
     this.activeModal.dismiss();
   }
-
 }

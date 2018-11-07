@@ -1,19 +1,19 @@
+import { ParkingAreaService } from './../../services/parking-area.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { ParkingArea } from '../../models/parking-area';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ParkingLot } from '../../models/parking-lot';
-import { ParkingLotService } from '../../services/parking-lot.service';
 
 @Component({
-  selector: 'app-parking-lot-delete',
-  templateUrl: './parking-lot-delete.component.html',
-  styleUrls: ['./parking-lot-delete.component.css']
+  selector: 'app-parking-area-delete',
+  templateUrl: './parking-area-delete.component.html',
+  styleUrls: ['./parking-area-delete.component.css']
 })
-export class ParkingLotDeleteComponent implements OnInit {
+export class ParkingAreaDeleteComponent implements OnInit {
 
-  @Input() model: ParkingLot;
+  @Input() model: ParkingArea;
 
   constructor(private activeModal: NgbActiveModal,
-              private modelService: ParkingLotService) { }
+              private modelService: ParkingAreaService) { }
 
   ngOnInit() {
   }
