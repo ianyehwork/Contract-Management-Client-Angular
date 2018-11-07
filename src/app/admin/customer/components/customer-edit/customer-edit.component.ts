@@ -44,11 +44,11 @@ export class CustomerEditComponent implements OnInit {
    * to delete the model.
    * @param model new Customer created by the user
    */
-  openDeleteModal(model: Customer) {
+  openDeleteModal() {
     this.activeModal.dismiss();
     const modalRef = this.modalService.open(CustomerDeleteComponent, AppConstants.MODAL_OPTIONS);
 
-    modalRef.componentInstance.model = model;
+    modalRef.componentInstance.model = this.model;
 
     modalRef.result.then(result => {
       if (result.data) {

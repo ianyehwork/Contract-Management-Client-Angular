@@ -5,7 +5,7 @@ import { HasIdInterface } from '../models/has-id.interface';
 import { DataService } from '../services/data.service';
 import { TableService } from '../services/table.service';
 
-export class ModelTable<T1 extends HasIdInterface,
+export class ModelTableComponent<T1 extends HasIdInterface,
     T2 extends TableService<T1, DataService<T1>>> {
 
     modelList: T1[] = [];

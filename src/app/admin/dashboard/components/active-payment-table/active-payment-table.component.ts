@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NgbCalendar, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
-import { ModelTable } from '../../../../shared/components/model-table';
 import { ContractEditComponent } from '../../../contract/components/contract-edit/contract-edit.component';
 import { Contract } from '../../../contract/models/contract';
+import { ModelTableComponent } from './../../../../shared/components/model-table-component';
 import { ContractTableService } from './../../../contract/services/contract-table.service';
-
 
 @Component({
   selector: 'app-active-payment-table',
   templateUrl: './active-payment-table.component.html',
   styleUrls: ['./active-payment-table.component.css']
 })
-export class ActivePaymentTableComponent extends ModelTable<Contract, ContractTableService> implements OnInit {
+export class ActivePaymentTableComponent extends ModelTableComponent<Contract, ContractTableService> implements OnInit {
 
   page: number;
   pageSize = 15;

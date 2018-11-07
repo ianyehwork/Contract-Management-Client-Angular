@@ -37,8 +37,10 @@ export class ActiveParkingLotTableComponent implements OnInit {
               private contractService: ContractTableService) { }
 
   ngOnInit() {
-    this.service.getActiveParkingLots().subscribe(parkinglots => {
-      this.modelList = parkinglots;
+    this.service.getModelChannel().subscribe(parkinglots => {
+      this.modelList = parkinglots.filter((value) => {
+        return value.status;
+      });
     }
     );
   }
@@ -76,9 +78,8 @@ export class ActiveParkingLotTableComponent implements OnInit {
     this.modelService.create(this.contract).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);
-        // this.table.addNewModel(result);
         this.modalRef.close();
-        this.service.update();
+        this.service.delete(result._lot);
         this.contractService.refresh();
       }
     }, (error) => {

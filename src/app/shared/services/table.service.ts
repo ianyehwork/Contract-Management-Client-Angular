@@ -56,4 +56,7 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     this.modelChannel.next(this.modelList);
   }
 
+  notify() {
+    this.modelChannel.next(this.modelList);
+  }
 }

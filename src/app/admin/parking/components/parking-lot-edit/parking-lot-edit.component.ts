@@ -1,3 +1,4 @@
+import { ParkingLotTableService } from './../../services/parking-lot-table.service';
 import { ParkingLotDeleteComponent } from './../parking-lot-delete/parking-lot-delete.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +20,7 @@ export class ParkingLotEditComponent implements OnInit {
 
   constructor(private activeModal: NgbActiveModal,
               private modelService: ParkingLotService,
+              private tableService: ParkingLotTableService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -31,7 +33,8 @@ export class ParkingLotEditComponent implements OnInit {
   updateModel() {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
-        this.activeModal.close({operation: 'Update', data: result});
+        this.tableService.update(result);
+        this.activeModal.close();
       }
     });
   }
@@ -41,11 +44,12 @@ export class ParkingLotEditComponent implements OnInit {
     const modalRef = this.modalService.open(ParkingLotDeleteComponent, AppConstants.MODAL_OPTIONS);
 
     modalRef.componentInstance.model = this.model;
+
     modalRef.result.then(result => {
-      if (result.operation === 'Cancel') {
-        this.modelService.getById(result.data._id).subscribe(parkingLot => {
-          const ref = this.modalService.open(ParkingLotEditComponent, AppConstants.MODAL_OPTIONS);
-          ref.componentInstance.model = parkingLot;
+      if (result.data) {
+        this.modelService.getById(result.data._id).subscribe(customer => {
+          const ref = this.modalService.open(ParkingLotDeleteComponent, AppConstants.MODAL_OPTIONS);
+          ref.componentInstance.model = customer;
         });
       }
     }, refused => {});

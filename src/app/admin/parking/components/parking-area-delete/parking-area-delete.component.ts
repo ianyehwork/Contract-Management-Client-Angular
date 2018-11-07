@@ -28,7 +28,7 @@ export class ParkingAreaDeleteComponent implements OnInit {
     });
   }
 
-  cancel(){
+  cancel() {
     this.activeModal.close({operation: 'Cancel', data: this.model});
   }
 }

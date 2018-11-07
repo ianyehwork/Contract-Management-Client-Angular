@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
-import { ModelTable } from '../../../../shared/components/model-table';
+import { ModelTableComponent } from '../../../../shared/components/model-table-component';
 import { Customer } from '../../models/customer';
 import { CustomerTableService } from './../../services/customer-table.service';
 import { CustomerEditComponent } from './../customer-edit/customer-edit.component';
@@ -12,7 +12,7 @@ import { CustomerEditComponent } from './../customer-edit/customer-edit.componen
   templateUrl: './customer-table.component.html',
   styleUrls: ['./customer-table.component.css']
 })
-export class CustomerTableComponent extends ModelTable<Customer, CustomerTableService> implements OnInit {
+export class CustomerTableComponent extends ModelTableComponent<Customer, CustomerTableService> implements OnInit {
 
   constructor(service: CustomerTableService,
               modalService: NgbModal) {

@@ -1,12 +1,12 @@
-import { ParkingLotService } from '../../services/parking-lot.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
-
-import { ParkingLot } from '../../models/parking-lot';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ParkingLotTableComponent } from '../parking-lot-table/parking-lot-table.component';
-import { ParkingArea } from '../../models/parking-area';
+
 import { AppConstants } from '../../../../constants';
+import { BS4AlertType, ToastService } from '../../../../shared/services/toast.service';
+import { ParkingArea } from '../../models/parking-area';
+import { ParkingLot } from '../../models/parking-lot';
+import { ParkingLotService } from '../../services/parking-lot.service';
+import { ParkingLotTableService } from '../../services/parking-lot-table.service';
 
 @Component({
   selector: 'app-parking-lot-create',
@@ -15,13 +15,15 @@ import { AppConstants } from '../../../../constants';
 })
 export class ParkingLotCreateComponent implements OnInit {
   @Input() area: ParkingArea;
-  @Input() table: ParkingLotTableComponent;
+
   model = new ParkingLot();
   modalRef: NgbModalRef;
 
   constructor(private modelService: ParkingLotService,
+              private tableService: ParkingLotTableService,
               private ngbService: NgbModal,
-              private toast: ToastService) { }
+              private toast: ToastService,
+              ) { }
 
   ngOnInit() {
   }
@@ -48,7 +50,7 @@ export class ParkingLotCreateComponent implements OnInit {
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('停車位建立完成', BS4AlertType.SUCCESS);
-        this.table.addNewModel(result);
+        this.tableService.add(result);
         customerForm.resetForm();
         this.model = new ParkingLot();
         this.modalRef.close();

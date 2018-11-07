@@ -5,8 +5,8 @@
       <i class="far fa-edit" (click)="openEditModal(model)"></i>
     </ng-template>
     <ng-template ngbPanelContent>
-      <app-parking-lot-create [table]="table" [area]="model"></app-parking-lot-create>
-      <app-parking-lot-table #table [area]="model"></app-parking-lot-table>
+      <app-parking-lot-create [area]="model"></app-parking-lot-create>
+      <app-parking-lot-table [area]="model"></app-parking-lot-table>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>

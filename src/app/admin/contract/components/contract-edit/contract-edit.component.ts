@@ -45,7 +45,8 @@ export class ContractEditComponent implements OnInit {
       if (result) {
         this.activeModal.close();
         this.tableModelService.update(this.model);
-        this.parkingLotTableService.update();
+        this.model._lot.status = true;
+        this.parkingLotTableService.update(this.model._lot);
       }
     });
   }

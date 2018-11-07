@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+
+import { ParkingLotTableService } from './../../services/parking-lot-table.service';
 
 @Component({
   selector: 'app-parking-home',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParkingHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: ParkingLotTableService) { }
 
   ngOnInit() {
+    this.service.refresh();
   }
 
 }

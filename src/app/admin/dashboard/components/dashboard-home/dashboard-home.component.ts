@@ -15,7 +15,7 @@ export class DashboardHomeComponent implements OnInit {
 
   ngOnInit() {
     this.contractService.refresh();
-    this.parkingLotService.update();
+    this.parkingLotService.refresh();
   }
 
 }

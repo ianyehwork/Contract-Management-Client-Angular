@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ModelTable } from '../../../../shared/components/model-table';
+import { ModelTableComponent } from '../../../../shared/components/model-table-component';
 import { Contract } from '../../models/contract';
 import { ContractTableService } from '../../services/contract-table.service';
 import { ContractEditComponent } from './../contract-edit/contract-edit.component';
@@ -11,7 +11,7 @@ import { ContractEditComponent } from './../contract-edit/contract-edit.componen
   templateUrl: './contract-table.component.html',
   styleUrls: ['./contract-table.component.css']
 })
-export class ContractTableComponent extends ModelTable<Contract, ContractTableService> implements OnInit {
+export class ContractTableComponent extends ModelTableComponent<Contract, ContractTableService> implements OnInit {
 
   constructor(service: ContractTableService,
               modalService: NgbModal) {
