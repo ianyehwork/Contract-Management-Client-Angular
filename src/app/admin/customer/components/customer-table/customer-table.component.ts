@@ -1,10 +1,11 @@
-import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
-import { CustomerEditComponent } from './../customer-edit/customer-edit.component';
-import { CustomerService } from './../../services/customer.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../../models/customer';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
 import { AppConstants } from '../../../../constants';
+import { Customer } from '../../models/customer';
+import { CustomerTableService } from './../../services/customer-table.service';
+import { CustomerEditComponent } from './../customer-edit/customer-edit.component';
 
 @Component({
   selector: 'app-customer-table',
@@ -22,11 +23,11 @@ export class CustomerTableComponent implements OnInit {
   page: number;
   itemsPP = 15;
 
-  constructor(private modelService: CustomerService,
+  constructor(private modelService: CustomerTableService,
     private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.modelService.getAll().subscribe((result) => {
+    this.modelService.getCustomers().subscribe((result) => {
       this.modelList = result;
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);

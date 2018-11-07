@@ -23,17 +23,13 @@ export class ContractTableService {
     });
   }
 
-  // This can be optimized
-  update(id: number) {
-    // console.log('ActiveContractService Update');
-    this.service.getById(id).subscribe((result) => {
-      this.modelList.forEach((val, index) => {
-        if (val._id === result._id) {
-          this.modelList[index] = result;
-        }
-      });
-      this.modelChannel.next(this.modelList);
+  update(model: Contract) {
+    this.modelList.forEach((val, index) => {
+      if (val._id === model._id) {
+        this.modelList[index] = model;
+      }
     });
+    this.modelChannel.next(this.modelList);
   }
 
 }

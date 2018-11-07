@@ -1,3 +1,4 @@
+import { CustomerTableService } from './../../services/customer-table.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: CustomerTableService) {
+  }
 
   ngOnInit() {
+    this.service.updateAll();
   }
 
 }

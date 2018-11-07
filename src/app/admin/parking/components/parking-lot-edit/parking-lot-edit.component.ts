@@ -36,7 +36,7 @@ export class ParkingLotEditComponent implements OnInit {
     });
   }
 
-  openDeleteModal(){
+  openDeleteModal() {
     this.activeModal.dismiss();
     const modalRef = this.modalService.open(ParkingLotDeleteComponent, AppConstants.MODAL_OPTIONS);
 
@@ -47,7 +47,7 @@ export class ParkingLotEditComponent implements OnInit {
           const ref = this.modalService.open(ParkingLotEditComponent, AppConstants.MODAL_OPTIONS);
           ref.componentInstance.model = parkingLot;
         });
-      }  
+      }
     }, refused => {});
   }
 

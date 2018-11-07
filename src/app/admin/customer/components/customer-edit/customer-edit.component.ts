@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as _ from 'lodash';
+
+import { AppConstants } from '../../../../constants';
+import { Customer } from '../../models/customer';
+import { CustomerTableComponent } from '../customer-table/customer-table.component';
 import { CustomerService } from './../../services/customer.service';
 import { CustomerDeleteComponent } from './../customer-delete/customer-delete.component';
-import { Component, OnInit, Input } from '@angular/core';
-import { Customer } from '../../models/customer';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AppConstants } from '../../../../constants';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'app-customer-edit',
@@ -44,14 +44,17 @@ export class CustomerEditComponent implements OnInit {
    */
   openDeleteModal(model: Customer) {
     this.activeModal.dismiss();
-    const modalRef = this.modalService.open(CustomerDeleteComponent);
+    const modalRef = this.modalService.open(CustomerDeleteComponent, AppConstants.MODAL_OPTIONS);
 
     modalRef.componentInstance.model = model;
+
     modalRef.result.then(result => {
-      this.modelService.getById(result.data._id).subscribe(customer => {
-        const ref = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
-        ref.componentInstance.model = customer;
-      });
+      if (result.operation === 'Cancel') {
+        this.modelService.getById(result.data._id).subscribe(customer => {
+          const ref = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
+          ref.componentInstance.model = customer;
+        });
+      }
     }, refused => {});
   }
 

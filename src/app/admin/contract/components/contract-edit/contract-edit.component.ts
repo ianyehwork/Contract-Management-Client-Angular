@@ -34,7 +34,7 @@ export class ContractEditComponent implements OnInit {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
         this.activeModal.close();
-        this.tableModelService.update(result._id);
+        this.tableModelService.update(result);
       }
     });
   }
@@ -44,7 +44,7 @@ export class ContractEditComponent implements OnInit {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
         this.activeModal.close();
-        this.tableModelService.update(result._id);
+        this.tableModelService.update(this.model);
         this.parkingLotTableService.update();
       }
     });
@@ -52,7 +52,7 @@ export class ContractEditComponent implements OnInit {
 
   cancel() {
     this.activeModal.close();
-    this.tableModelService.update(this.model._id);
+    this.tableModelService.update(this.model);
   }
 
   addPayment() {

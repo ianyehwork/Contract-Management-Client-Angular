@@ -1,3 +1,4 @@
+import { CustomerTableService } from './customer/services/customer-table.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -116,7 +117,8 @@ const routes: Routes = [
     PaymentService,
     ParkingLotTableService,
     ContractTableService,
-    ReportService
+    ReportService,
+    CustomerTableService
   ],
   entryComponents: [
     CustomerEditComponent,
