@@ -12,8 +12,21 @@ export class CustomerSearchComponent implements OnInit {
 
   modelList: Customer[] = [];
 
+  /**
+   * Used for pagination
+   */
+  page: number;
+  pageSize = 15;
+  /**
+   * This function is used for pagination
+   */
+  onPageChange() {
+    // TODO
+    console.log(this.page);
+  }
+
   constructor(private activeModal: NgbActiveModal,
-              private modelService: CustomerService) { }
+    private modelService: CustomerService) { }
 
   ngOnInit() {
     this.modelService.getAll().subscribe((result) => {
@@ -38,14 +51,14 @@ export class CustomerSearchComponent implements OnInit {
    * @param model the selected model
    */
   returnModel(model) {
-    this.activeModal.close({operation: 'OK', data: model});
+    this.activeModal.close({ operation: 'OK', data: model });
   }
 
   /**
    * This function is REQUIRED when the users close the Modal
    */
   cancel() {
-    this.activeModal.close({operation: 'Cancel'});
+    this.activeModal.close({ operation: 'Cancel' });
   }
 
 }

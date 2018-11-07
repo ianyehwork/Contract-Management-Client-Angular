@@ -24,7 +24,8 @@ export class ActiveParkingLotTableComponent implements OnInit {
   modalRef: NgbModalRef;
 
   page: number;
-  itemsPP = 15;
+  pageSize = 15;
+  paginationId = 'active-parking-lot';
 
   modelList: ParkingLot[] = [];
 

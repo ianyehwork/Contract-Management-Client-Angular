@@ -14,7 +14,7 @@
       <button class="btn btn-outline-secondary" type="button" (click)="search(text.value)">搜索</button>
     </div>
   </div>
-  <table class="table table-hover table-sm table-striped zeroMargin" >
+  <table class="table table-hover table-sm table-striped zeroMargin">
     <thead>
       <tr>
         <th scope="col">編號</th>
@@ -23,11 +23,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let model of modelList" (click)="returnModel(model)">
+      <tr *ngFor="let model of modelList | paginate: { itemsPerPage: pageSize, currentPage: page}" (click)="returnModel(model)">
         <td>{{model.identifier}}</td>
         <td>{{model.rent}}</td>
         <td>{{model.deposit}}</td>
       </tr>
     </tbody>
   </table>
+  <pagination-controls *ngIf="this.modelList.length >= pageSize" (pageChange)="page = $event; onPageChange()"
+    [responsive]=true [maxSize]=5>
+  </pagination-controls>
 </div>

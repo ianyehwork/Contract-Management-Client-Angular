@@ -18,7 +18,7 @@ export class ParkingLotTableComponent implements OnInit {
   modelList: ParkingLot[] = [];
 
   page: number;
-  itemsPP = 15;
+  pageSize = 15;
 
   constructor(private service: ParkingLotService,
     private modalService: NgbModal) { }

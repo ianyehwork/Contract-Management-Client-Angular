@@ -58,7 +58,7 @@
         </tr>
     </tbody>
 </table>
-<pagination-controls *ngIf="this.modelList.length > pageSize" (pageChange)="page = $event; onPageChange()" 
+<pagination-controls *ngIf="this.modelList.length >= pageSize" (pageChange)="page = $event; onPageChange()" 
     [responsive]=true
     [maxSize]=5>
 </pagination-controls>

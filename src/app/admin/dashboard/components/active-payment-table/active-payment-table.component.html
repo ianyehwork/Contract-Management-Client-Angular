@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive'" (click)="openEditModal(model)" [class.isToday]="isToday(model)"
+    <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive' | paginate: { itemsPerPage: pageSize, currentPage: page, id: paginationId }" (click)="openEditModal(model)" [class.isToday]="isToday(model)"
       [class.isFuture]="isFuture(model)" [class.isPastDue]="isPastDue(model)">
       <td>{{model.pYear + '-' + model.pMonth + '-' + model.pDay}}</td>
       <td>{{model.pAmount}}</td>
@@ -34,3 +34,8 @@
     </tr>
   </tbody>
 </table>
+<pagination-controls *ngIf="this.modelList.length >= pageSize" (pageChange)="page = $event; onPageChange()" 
+  [responsive]=true
+  [maxSize]=5
+  [id]=paginationId>
+</pagination-controls>

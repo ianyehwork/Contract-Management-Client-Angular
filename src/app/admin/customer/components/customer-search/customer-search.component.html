@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let model of modelList" (click)="returnModel(model)">
+      <tr *ngFor="let model of modelList | paginate: { itemsPerPage: pageSize, currentPage: page}" (click)="returnModel(model)">
         <td>{{model.pContact}}</td>
         <td>{{model.pPhone}}</td>
         <td>{{model.vehicles}}</td>
@@ -28,3 +28,6 @@
     </tbody>
   </table>
 </div>
+<pagination-controls *ngIf="this.modelList.length >= pageSize" (pageChange)="page = $event; onPageChange()"
+  [responsive]=true [maxSize]=5>
+</pagination-controls>

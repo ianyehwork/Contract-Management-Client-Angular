@@ -15,6 +15,19 @@ export class ParkingLotSearchComponent implements OnInit {
   modelList: ParkingLot[] = [];
   areaList: ParkingArea[] = [];
 
+  /**
+   * Used for pagination
+   */
+  page: number;
+  pageSize = 15;
+  /**
+   * This function is used for pagination
+   */
+  onPageChange() {
+    // TODO
+    console.log(this.page);
+  }
+
   constructor(private activeModal: NgbActiveModal,
               private modelService: ParkingLotService,
               private parkingAreaService: ParkingAreaService) { }

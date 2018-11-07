@@ -15,9 +15,20 @@ import { ContractTableService } from './../../../contract/services/contract-tabl
 })
 export class ActivePaymentTableComponent extends ModelTable<Contract, ContractTableService> implements OnInit {
 
+  page: number;
+  pageSize = 15;
+  paginationId = 'active-payment';
+  /**
+   * This function is used for pagination
+   */
+  onPageChange() {
+    // TODO
+    console.log(this.page);
+  }
+
   constructor(service: ContractTableService,
-              modalService: NgbModal,
-              private calendar: NgbCalendar) {
+    modalService: NgbModal,
+    private calendar: NgbCalendar) {
     super(service, modalService, ContractEditComponent);
   }
 
@@ -26,15 +37,15 @@ export class ActivePaymentTableComponent extends ModelTable<Contract, ContractTa
     this.order = 'pDate';
     this.reverse = false;
     this.service.getModelChannel().subscribe(contracts => {
-        this.modelList = contracts.filter((value) => {
-          return value.active;
-        });
-        for (let i = 0; i < this.modelList.length; i++) {
-          const model = this.modelList[i];
-          model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
-          model['pAmount'] = (model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency * model._lot.rent));
-        }
+      this.modelList = contracts.filter((value) => {
+        return value.active;
+      });
+      for (let i = 0; i < this.modelList.length; i++) {
+        const model = this.modelList[i];
+        model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
+        model['pAmount'] = (model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency * model._lot.rent));
       }
+    }
     );
   }
 
@@ -42,8 +53,8 @@ export class ActivePaymentTableComponent extends ModelTable<Contract, ContractTa
   isToday(model: Contract) {
     const date = this.calendar.getToday();
     return date.year === model.pYear &&
-           date.month === model.pMonth &&
-           date.day === model.pDay;
+      date.month === model.pMonth &&
+      date.day === model.pDay;
   }
 
   isPastDue(model: Contract) {
