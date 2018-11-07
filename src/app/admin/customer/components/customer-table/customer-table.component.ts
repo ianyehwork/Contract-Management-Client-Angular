@@ -27,7 +27,7 @@ export class CustomerTableComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.modelService.getCustomers().subscribe((result) => {
+    this.modelService.getModelChannel().subscribe((result) => {
       this.modelList = result;
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
@@ -70,28 +70,5 @@ export class CustomerTableComponent implements OnInit {
     const modalRef = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
     // Pass poster as a Input to ModalRef
     modalRef.componentInstance.model = model;
-
-    modalRef.result.then(result => {
-      if (result.operation === 'Delete') {
-        this.modelList = this.modelList.filter((item) => {
-          if (item._id !== result.data._id) {
-            return item;
-          }
-        });
-      } else if (result.operation === 'Update') {
-        // Create a new array, and reassign to this.modelList
-        // to trigger DOM update
-        const updatedList = [];
-        this.modelList.forEach((value, index, array) => {
-          if (value._id === result.data._id) {
-            result.data.dateCreated = convertUTCDateTimeToYMD(result.data.dateCreated);
-            result.data.dateModified = convertUTCDateTimeToYMD(result.data.dateModified);
-            array[index] = result.data;
-          }
-          updatedList.push(array[index]);
-        });
-        this.modelList = updatedList;
-      }
-    }, refused => { });
   }
 }

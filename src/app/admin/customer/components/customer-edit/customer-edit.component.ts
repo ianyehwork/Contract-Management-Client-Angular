@@ -4,9 +4,9 @@ import * as _ from 'lodash';
 
 import { AppConstants } from '../../../../constants';
 import { Customer } from '../../models/customer';
-import { CustomerTableComponent } from '../customer-table/customer-table.component';
 import { CustomerService } from './../../services/customer.service';
 import { CustomerDeleteComponent } from './../customer-delete/customer-delete.component';
+import { CustomerTableService } from '../../services/customer-table.service';
 
 @Component({
   selector: 'app-customer-edit',
@@ -20,6 +20,7 @@ export class CustomerEditComponent implements OnInit {
 
   constructor(private activeModal: NgbActiveModal,
               private modelService: CustomerService,
+              private tableService: CustomerTableService,
               private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -32,7 +33,8 @@ export class CustomerEditComponent implements OnInit {
   updateModel() {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
-        this.activeModal.close({operation: 'Update', data: result});
+        this.tableService.update(result);
+        this.activeModal.close();
       }
     });
   }
@@ -49,7 +51,7 @@ export class CustomerEditComponent implements OnInit {
     modalRef.componentInstance.model = model;
 
     modalRef.result.then(result => {
-      if (result.operation === 'Cancel') {
+      if (result.data) {
         this.modelService.getById(result.data._id).subscribe(customer => {
           const ref = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
           ref.componentInstance.model = customer;

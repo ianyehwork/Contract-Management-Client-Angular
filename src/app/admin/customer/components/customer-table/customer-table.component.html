@@ -27,7 +27,7 @@
     </tr>
   </tbody>
 </table>
-<pagination-controls (pageChange)="page = $event; onPageChange()" 
+<pagination-controls *ngIf="this.modelList.length > itemsPP" (pageChange)="page = $event; onPageChange()" 
                       [responsive]=true
                       [maxSize]=5>
 </pagination-controls>

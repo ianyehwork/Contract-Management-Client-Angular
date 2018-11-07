@@ -1,9 +1,9 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { Customer } from '../../models/customer';
 import { CustomerTableService } from './../../services/customer-table.service';
 import { CustomerService } from './../../services/customer.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { Customer } from '../../models/customer';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CustomerTableComponent } from '../customer-table/customer-table.component';
 
 @Component({
   selector: 'app-customer-delete',
@@ -25,7 +25,7 @@ export class CustomerDeleteComponent implements OnInit {
     this.modelService.delete(this.model).subscribe((response) => {
       if (response) {
         this.tableService.delete(response);
-        this.activeModal.close({operation: 'Delete'});
+        this.activeModal.close({});
       }
     }, (error) => {
       console.log('Failed!');
@@ -33,6 +33,6 @@ export class CustomerDeleteComponent implements OnInit {
   }
 
   cancel() {
-    this.activeModal.close({operation: 'Cancel', data: this.model});
+    this.activeModal.close({data: this.model});
   }
 }

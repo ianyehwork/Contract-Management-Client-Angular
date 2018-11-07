@@ -12,7 +12,7 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.updateAll();
+    this.service.refresh();
   }
 
 }

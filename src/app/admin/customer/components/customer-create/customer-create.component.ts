@@ -1,3 +1,4 @@
+import { CustomerTableService } from './../../services/customer-table.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ToastService, BS4AlertType } from '../../../../shared/services/toast.service';
 
@@ -15,11 +16,11 @@ import { AppConstants } from '../../../../constants';
 })
 export class CustomerCreateComponent implements OnInit {
 
-  @Input() table: CustomerTableComponent;
   model = new Customer();
   modalRef: NgbModalRef;
 
   constructor(private modelService: CustomerService,
+              private tableService: CustomerTableService,
               private ngbService: NgbModal,
               private toast: ToastService) { }
 
@@ -48,7 +49,8 @@ export class CustomerCreateComponent implements OnInit {
     this.modelService.create(this.model).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('客戶建立完成', BS4AlertType.SUCCESS);
-        this.table.addNewModel(result);
+        // this.table.addNewModel(result);
+        this.tableService.add(result);
         customerForm.resetForm();
         this.model = new Customer();
         this.modalRef.close();

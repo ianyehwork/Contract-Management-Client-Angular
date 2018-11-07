@@ -13,11 +13,11 @@ export class CustomerTableService {
 
   constructor(private service: CustomerService) { }
 
-  getCustomers(): Observable<Array<Customer>> {
+  getModelChannel(): Observable<Array<Customer>> {
     return this.modelChannel.asObservable();
   }
 
-  updateAll() {
+  refresh() {
     this.service.getAll().subscribe((result) => {
       this.modelList = result;
       this.modelChannel.next(result);
@@ -25,11 +25,14 @@ export class CustomerTableService {
   }
 
   update(model: Customer) {
+    const updatedList = [];
     this.modelList.forEach((val, index) => {
       if (val._id === model._id) {
         this.modelList[index] = model;
       }
+      updatedList.push(this.modelList[index]);
     });
+    this.modelList = updatedList;
     this.modelChannel.next(this.modelList);
   }
 
@@ -39,6 +42,16 @@ export class CustomerTableService {
         return item;
       }
     });
+    this.modelChannel.next(this.modelList);
+  }
+
+  add(model: Customer) {
+    const updatedList = [];
+    this.modelList.forEach((value, index) => {
+      updatedList.push(this.modelList[index]);
+    });
+    updatedList.push(model);
+    this.modelList = updatedList;
     this.modelChannel.next(this.modelList);
   }
 }
