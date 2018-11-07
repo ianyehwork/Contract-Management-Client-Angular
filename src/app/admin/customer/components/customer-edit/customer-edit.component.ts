@@ -48,7 +48,7 @@ export class CustomerEditComponent implements OnInit {
 
     modalRef.componentInstance.model = model;
     modalRef.result.then(result => {
-      this.modelService.getById(result.contract._id).subscribe(customer => {
+      this.modelService.getById(result.data._id).subscribe(customer => {
         const ref = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
         ref.componentInstance.model = customer;
       });

@@ -29,6 +29,6 @@ export class CustomerDeleteComponent implements OnInit {
   }
 
   cancel(){
-    this.activeModal.close({operation: 'Cancel', model: this.model});
+    this.activeModal.close({operation: 'Cancel', data: this.model});
   }
 }
