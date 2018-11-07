@@ -43,9 +43,16 @@ export class CustomerEditComponent implements OnInit {
    * @param model new Customer created by the user
    */
   openDeleteModal(model: Customer) {
+    this.activeModal.dismiss();
     const modalRef = this.modalService.open(CustomerDeleteComponent);
-    // Pass poster as a Input to ModalRef
+
     modalRef.componentInstance.model = model;
+    modalRef.result.then(result => {
+      this.modelService.getById(result.contract._id).subscribe(customer => {
+        const ref = this.modalService.open(CustomerEditComponent, AppConstants.MODAL_OPTIONS);
+        ref.componentInstance.model = customer;
+      });
+    }, refused => {});
   }
 
   cancel() {

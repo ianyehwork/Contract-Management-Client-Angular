@@ -23,11 +23,13 @@ export class CustomerDeleteComponent implements OnInit {
       if (response) {
         this.activeModal.close({operation: 'Delete', data: response});
       }
+    }, (error) => {
+      console.log('Failed!');
     });
   }
 
   cancel(){
-    this.activeModal.dismiss();
+    this.activeModal.close({operation: 'Cancel', model: this.model});
   }
 
 }
