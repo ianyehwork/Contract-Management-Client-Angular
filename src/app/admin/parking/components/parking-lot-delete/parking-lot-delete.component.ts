@@ -33,6 +33,8 @@ export class ParkingLotDeleteComponent implements OnInit {
   }
 
   cancel() {
+    console.log('Here123');
+    console.log(this.model);
     this.activeModal.close({data: this.model});
   }
 }
