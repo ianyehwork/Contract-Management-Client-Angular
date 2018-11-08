@@ -13,7 +13,7 @@ export class ToastService {
   messagesChannel = new Subject<Array<Message>>();
 
   constructor() {
-    this.messagesChannel.pipe(debounceTime(3000)).subscribe(() => {
+    this.messagesChannel.pipe(debounceTime(1500)).subscribe(() => {
       this.messages = [];
       this.messagesChannel.next(this.messages);
     });

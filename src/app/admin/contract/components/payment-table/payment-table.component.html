@@ -1,3 +1,8 @@
+<div class="mb-2">
+  <span class="dot D"></span>&nbsp;押金&nbsp;
+  <span class="dot R"></span>&nbsp;租金&nbsp;
+  <span class="dot RF"></span>&nbsp;退款
+</div>
 <table class="table table-hover table-sm table-striped">
   <thead>
     <tr>
@@ -8,9 +13,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
+    <tr *ngFor="let model of modelList" 
+        [class.isR]="model.type === 'R'"
+        [class.isD]="model.type === 'D'" 
+        [class.isRF]="model.type === 'RF'" 
+        (click)="openEditModal(model)">
       <td>{{model.dateCreated}}</td>
-      <td>{{(model.type === 'D' ? '押金' : '租金')}}</td>
+      <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退款' : '租金'}}</td>
       <td>{{model.amount}}</td>
       <td>{{model.comment}}</td>
     </tr>

@@ -1,0 +1,33 @@
+.isD {
+    color: blue;
+}
+
+.isRF {
+    color: red;
+}
+
+.isR {
+    color: green;
+}
+
+.R {
+    background-color: green;
+    border-radius: 1rem;
+    color: white;
+}
+.RF {
+    background-color: red;
+    border-radius: 1rem;
+    color: white;
+}
+.D {
+    background-color: blue;
+    border-radius: 1rem;
+    color: white;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+}
