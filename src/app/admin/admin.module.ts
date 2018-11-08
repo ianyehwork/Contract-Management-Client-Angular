@@ -51,7 +51,8 @@ import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
-import { PaymentHomeComponent } from './payment/payment-home/payment-home.component';
+import { IncomeHomeComponent } from './income/components/income-home/income-home.component';
+import { IncomeTableComponent } from './income/components/income-table/income-table.component';
 
 const routes: Routes = [
   {
@@ -62,9 +63,9 @@ const routes: Routes = [
       { path: 'parking', component: ParkingHomeComponent, outlet: 'admin' },
       { path: 'customer', component: CustomerHomeComponent, outlet: 'admin' },
       { path: 'contract', component: ContractHomeComponent, outlet: 'admin' },
+      { path: 'income', component: IncomeHomeComponent, outlet: 'admin' },
       { path: 'report', component: ReportHomeComponent, outlet: 'admin' },
-      { path: 'setting', component: SettingHomeComponent, outlet: 'admin' },
-      { path: 'payment', component: PaymentHomeComponent, outlet: 'admin' }
+      { path: 'setting', component: SettingHomeComponent, outlet: 'admin' }
     ]
   }
 ];
@@ -112,8 +113,9 @@ const routes: Routes = [
     CustomerDeleteComponent,
     ParkingLotDeleteComponent,
     ParkingAreaDeleteComponent,
-    PaymentHomeComponent,
-    ContractDeleteComponent
+    ContractDeleteComponent,
+    IncomeHomeComponent,
+    IncomeTableComponent
   ],
   providers: [
     CustomerService,
