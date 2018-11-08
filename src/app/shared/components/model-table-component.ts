@@ -8,6 +8,9 @@ import { TableService } from '../services/table.service';
 export class ModelTableComponent<T1 extends HasIdInterface,
     T2 extends TableService<T1, DataService<T1>>> {
 
+    /**
+     * A list of model
+     */
     modelList: T1[] = [];
 
     constructor(public service: T2,

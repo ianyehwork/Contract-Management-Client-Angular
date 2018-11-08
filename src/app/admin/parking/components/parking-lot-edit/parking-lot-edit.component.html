@@ -20,7 +20,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">NT$</span>
           </div>
-          <input type="number" id="rent" name="rent" class="form-control" required [(ngModel)]="model.rent" #rent="ngModel">
+          <input type="number" id="rent" name="rent" class="form-control" required [readonly]="!model.status" [(ngModel)]="model.rent" #rent="ngModel">
         </div>
         <div class="alert alert-danger" *ngIf="rent.touched && rent.invalid">
           <div>請輸入數字</div>
@@ -32,7 +32,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">NT$</span>
           </div>
-          <input type="number" id="deposit" name="deposit" class="form-control" required [(ngModel)]="model.deposit"
+          <input type="number" id="deposit" name="deposit" class="form-control" required [readonly]="!model.status" [(ngModel)]="model.deposit"
             #deposit="ngModel">
         </div>
         <div class="alert alert-danger" *ngIf="deposit.touched && deposit.invalid">

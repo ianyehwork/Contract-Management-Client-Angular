@@ -1,12 +1,9 @@
-import { AuthService } from '../../services/auth.service';
-import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AppError } from '../../../shared/models/app-error';
-import { BadInputError } from '../../../shared/models/bad-input-error';
-import { NotFoundError } from '../../../shared/models/not-found-error';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
