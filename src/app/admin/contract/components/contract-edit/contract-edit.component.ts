@@ -1,11 +1,13 @@
-import { ContractTableService } from './../../services/contract-table.service';
-import { Contract } from './../../models/contract';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ContractService } from '../../services/contract.service';
-import { PaymentCreateComponent } from '../payment-create/payment-create.component';
+
+import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
 import { AppConstants } from '../../../../constants';
 import { ParkingLotTableService } from '../../../parking/services/parking-lot-table.service';
+import { ContractService } from '../../services/contract.service';
+import { PaymentCreateComponent } from '../payment-create/payment-create.component';
+import { Contract } from './../../models/contract';
+import { ContractTableService } from './../../services/contract-table.service';
 
 @Component({
   selector: 'app-contract-edit',
@@ -17,16 +19,15 @@ export class ContractEditComponent implements OnInit {
   @Input() model: Contract;
 
   constructor(public activeModal: NgbActiveModal,
-              private modelService: ContractService,
-              private tableModelService: ContractTableService,
-              private modalService: NgbModal,
-              private parkingLotTableService: ParkingLotTableService) { }
+    private modelService: ContractService,
+    private tableModelService: ContractTableService,
+    private modalService: NgbModal,
+    private parkingLotTableService: ParkingLotTableService) { }
 
   ngOnInit() {
     this.modelService.getById(this.model._id).subscribe((response) => {
-      if (!this.model) {
-        this.model = response;
-      }
+      response.dateModified = convertUTCDateTimeToYMD(response.dateModified);
+      this.model = response;
     });
   }
 
@@ -66,6 +67,6 @@ export class ContractEditComponent implements OnInit {
         const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
         ref.componentInstance.model = contract;
       });
-    }, refused => {});
+    }, refused => { });
   }
 }

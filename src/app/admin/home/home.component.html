@@ -25,6 +25,11 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" [routerLink]="[{ outlets: { admin: ['payment'] } }]" routerLinkActive="active">
+            <i class="fas fa-piggy-bank text-dark"></i> <span class="text-dark">收款紀錄</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="[{ outlets: { admin: ['report'] } }]" routerLinkActive="active">
             <i class="fas fa-chart-bar text-dark"></i> <span class="text-dark">&nbsp;生成報告</span>
           </a>

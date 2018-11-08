@@ -50,6 +50,8 @@ import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
+import { PaymentHomeComponent } from './payment/payment-home/payment-home.component';
+import { ContractDeleteComponent } from './contract/contract-delete/contract-delete.component';
 
 const routes: Routes = [
   {
@@ -61,7 +63,8 @@ const routes: Routes = [
       { path: 'customer', component: CustomerHomeComponent, outlet: 'admin' },
       { path: 'contract', component: ContractHomeComponent, outlet: 'admin' },
       { path: 'report', component: ReportHomeComponent, outlet: 'admin' },
-      { path: 'setting', component: SettingHomeComponent, outlet: 'admin' }
+      { path: 'setting', component: SettingHomeComponent, outlet: 'admin' },
+      { path: 'payment', component: PaymentHomeComponent, outlet: 'admin' }
     ]
   }
 ];
@@ -108,7 +111,9 @@ const routes: Routes = [
     StartsWithPipe,
     CustomerDeleteComponent,
     ParkingLotDeleteComponent,
-    ParkingAreaDeleteComponent
+    ParkingAreaDeleteComponent,
+    PaymentHomeComponent,
+    ContractDeleteComponent
   ],
   providers: [
     CustomerService,

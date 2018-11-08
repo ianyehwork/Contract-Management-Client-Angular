@@ -15,9 +15,10 @@
             <button class="btn btn-default" id="dropdownBasic1" ngbDropdownToggle><i class="fas fa-user-circle"></i>你好, 管理員!</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['dashboard'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-home"></i> 主頁</button>
-                <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['parking'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-parking"></i> &nbsp;停車場管理</button>
-                <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['customer'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-users"></i> 客戶管理</button>
                 <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['contract'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-file-signature"></i> 合同管理</button>
+                <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['customer'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-users"></i> 客戶管理</button>
+                <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['parking'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-parking"></i> &nbsp;停車場管理</button>
+                <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['payment'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-piggy-bank"></i> 收款紀錄</button>
                 <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['report'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-chart-bar"></i> 生成報告</button>
                 <button class="dropdown-item" [routerLink]="[{ outlets: { admin: ['setting'] } }]" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-cogs"></i> 管理者設置</button>
                 <!-- <button *ngIf="authService.currentUser.role === 'default'" class="dropdown-item" routerLink="/posters" routerLinkActive="active" (click)="toggleCollapsed()"><i class="fas fa-file-alt"></i>Posters</button> -->
