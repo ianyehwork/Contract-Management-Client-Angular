@@ -1,3 +1,4 @@
+import { ContractDeleteComponent } from './contract/components/contract-delete/contract-delete.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -51,7 +52,6 @@ import { ReportHomeComponent } from './report/components/report-home/report-home
 import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { PaymentHomeComponent } from './payment/payment-home/payment-home.component';
-import { ContractDeleteComponent } from './contract/contract-delete/contract-delete.component';
 
 const routes: Routes = [
   {
@@ -138,7 +138,8 @@ const routes: Routes = [
     ParkingLotSearchComponent,
     ContractEditComponent,
     PaymentCreateComponent,
-    PaymentEditComponent
+    PaymentEditComponent,
+    ContractDeleteComponent
   ]
 })
 export class AdminModule { }

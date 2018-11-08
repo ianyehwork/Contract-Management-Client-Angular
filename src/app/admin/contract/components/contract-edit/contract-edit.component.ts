@@ -1,3 +1,4 @@
+import { ContractDeleteComponent } from './../contract-delete/contract-delete.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -41,15 +42,28 @@ export class ContractEditComponent implements OnInit {
   }
 
   deleteModel() {
-    this.model.active = false;
-    this.modelService.update(this.model).subscribe((result) => {
-      if (result) {
-        this.activeModal.close();
-        this.tableModelService.update(this.model);
-        this.model._lot.status = true;
-        this.parkingLotTableService.update(this.model._lot);
+    this.activeModal.dismiss();
+    const modalRef = this.modalService.open(ContractDeleteComponent, AppConstants.MODAL_OPTIONS);
+    modalRef.componentInstance.model = this.model;
+
+    modalRef.result.then(result => {
+      if (result.operation === 'Cancel') {
+        this.modelService.getById(result.data._id).subscribe(data => {
+          const ref = this.modalService.open(ContractEditComponent, AppConstants.MODAL_OPTIONS);
+          ref.componentInstance.model = data;
+        });
+      } else {
+        this.model.active = false;
+        this.modelService.update(this.model).subscribe((updatedModel) => {
+          if (updatedModel) {
+            this.activeModal.close();
+            this.tableModelService.update(this.model);
+            this.model._lot.status = true;
+            this.parkingLotTableService.update(this.model._lot);
+          }
+        });
       }
-    });
+    }, refused => { });
   }
 
   cancel() {
