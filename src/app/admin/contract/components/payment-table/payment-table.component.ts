@@ -3,7 +3,7 @@ import { Payment } from './../../models/payment';
 import { Component, OnInit, Input } from '@angular/core';
 import { PaymentService } from '../../services/payment.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
+import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-convertor';
 import { PaymentEditComponent } from '../payment-edit/payment-edit.component';
 import { AppConstants } from '../../../../constants';
 import { Contract } from '../../models/contract';

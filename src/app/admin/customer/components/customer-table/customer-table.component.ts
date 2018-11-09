@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
+import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-convertor';
 import { ModelTableComponent } from '../../../../shared/components/model-table-component';
 import { Customer } from '../../models/customer';
 import { CustomerTableService } from './../../services/customer-table.service';

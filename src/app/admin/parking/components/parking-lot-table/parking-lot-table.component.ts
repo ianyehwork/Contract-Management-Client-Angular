@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
+import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-convertor';
 import { ParkingLotEditComponent } from '../parking-lot-edit/parking-lot-edit.component';
 import { ModelTableComponent } from './../../../../shared/components/model-table-component';
 import { ParkingArea } from './../../models/parking-area';

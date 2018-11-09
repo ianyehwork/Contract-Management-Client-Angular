@@ -2,7 +2,7 @@ import { ContractDeleteComponent } from './../contract-delete/contract-delete.co
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { convertUTCDateTimeToYMD } from '../../../../client/poster/util/date-time-convertor';
+import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-convertor';
 import { AppConstants } from '../../../../constants';
 import { ParkingLotTableService } from '../../../parking/services/parking-lot-table.service';
 import { ContractService } from '../../services/contract.service';
