@@ -19,6 +19,7 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
   match;
   page;
   pageSize;
+  extraFilterStr = '';
 
   constructor(public service: T2) {
   }
@@ -41,10 +42,7 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     this.page = page;
     this.pageSize = pageSize;
 
-    this.service.getAll(this.buildQuery()).subscribe((result) => {
-      this.modelList = result;
-      this.modelChannel.next(result);
-    });
+    this.fetchData();
   }
 
   update(model: T1) {
@@ -61,22 +59,20 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
 
   // TODO: Remove the model parameter
   delete(model: T1) {
-    this.service.getAll(this.buildQuery()).subscribe((result) => {
-      this.modelList = result;
-      this.modelChannel.next(result);
-    });
+    this.fetchData();
   }
 
   // TODO: Remove the model parameter
   add(model: T1) {
-    this.service.getAll(this.buildQuery()).subscribe((result) => {
-      this.modelList = result;
-      this.modelChannel.next(result);
-    });
+    this.fetchData();
   }
 
   notify() {
     this.modelChannel.next(this.modelList);
+  }
+
+  setExtraFilter(extraFilterStr: string) {
+    this.extraFilterStr = extraFilterStr;
   }
 
   private buildQuery() {
@@ -87,6 +83,14 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     query += '&reverse=' + this.reverse;
     query += '&page=' + this.page;
     query += '&pageSize=' + this.pageSize;
+    query += this.extraFilterStr;
     return query;
+  }
+
+  private fetchData() {
+    this.service.getAll(this.buildQuery()).subscribe((result) => {
+      this.modelList = result;
+      this.modelChannel.next(result);
+    });
   }
 }

@@ -17,11 +17,8 @@ export class CustomerTableComponent extends ModelTableComponent<Customer, Custom
   constructor(service: CustomerTableService,
               modalService: NgbModal) {
     super(service, modalService, CustomerEditComponent);
-  }
-
-  ngOnInit() {
     this.field = 'pContact';
-    this.service.getModelChannel().subscribe((result) => {
+    this.subscription = this.service.getModelChannel().subscribe((result) => {
       console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
@@ -30,6 +27,9 @@ export class CustomerTableComponent extends ModelTableComponent<Customer, Custom
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
     });
+  }
+
+  ngOnInit() {
     this.refresh();
   }
 

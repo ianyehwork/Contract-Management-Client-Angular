@@ -1,4 +1,4 @@
-<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+<ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
   <ngb-panel *ngFor="let model of modelList">
     <ng-template ngbPanelTitle>
       <span>{{model.identifier}}&nbsp;</span>

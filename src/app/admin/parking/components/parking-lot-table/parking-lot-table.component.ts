@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-convertor';
@@ -19,19 +19,19 @@ export class ParkingLotTableComponent extends ModelTableComponent<ParkingLot, Pa
 
   constructor(service: ParkingLotTableService, modalService: NgbModal) {
     super(service, modalService, ParkingLotEditComponent);
-  }
-
-  ngOnInit() {
-    this.service.getModelChannel().subscribe((result) => {
-      this.modelList = result.data.filter((value: any) => {
-        return value._area === this.area._id;
-      });
+    this.subscription = this.service.getModelChannel().subscribe((result) => {
+      this.modelList = result.data;
+      this.collectionSize = result.collectionSize;
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
     });
-    this.service.notify();
+  }
+
+  ngOnInit() {
+    this.service.setExtraFilter('&_area=' + this.area._id);
+    this.refresh();
   }
 
 }

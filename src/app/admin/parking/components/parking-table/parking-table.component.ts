@@ -17,10 +17,7 @@ export class ParkingTableComponent extends ModelTableComponent<ParkingArea, Park
   constructor(service: ParkingAreaTableService, modalService: NgbModal) {
     super(service, modalService, ParkingAreaEditComponent);
     this.pageSize = 5;
-  }
-
-  ngOnInit() {
-    this.service.getModelChannel().subscribe((result) => {
+    this.subscription = this.service.getModelChannel().subscribe((result) => {
       console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
@@ -29,6 +26,9 @@ export class ParkingTableComponent extends ModelTableComponent<ParkingArea, Park
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
     });
+  }
+
+  ngOnInit() {
     this.refresh();
   }
 
