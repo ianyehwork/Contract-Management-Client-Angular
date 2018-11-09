@@ -26,7 +26,7 @@ export class ActivePaymentTableComponent extends ModelTableComponent<Contract, C
     // Default Sorting
     this.order = 'pDate';
     this.reverse = false;
-    this.service.getModelChannel().subscribe(contracts => {
+    this.subscription = this.service.getModelChannel().subscribe(contracts => {
       if (contracts.data) {
         this.modelList = contracts.data.filter((value) => {
           return value.active;

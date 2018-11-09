@@ -1,3 +1,4 @@
+import { PaymentTableService } from './contract/services/payment-table.service';
 import { ContractDeleteComponent } from './contract/components/contract-delete/contract-delete.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -127,7 +128,8 @@ const routes: Routes = [
     ContractTableService,
     ReportService,
     CustomerTableService,
-    ParkingAreaTableService
+    ParkingAreaTableService,
+    PaymentTableService
   ],
   entryComponents: [
     CustomerEditComponent,

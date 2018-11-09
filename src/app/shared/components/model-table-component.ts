@@ -16,30 +16,24 @@ export class ModelTableComponent<T1 extends HasIdInterface,
     // The list of model
     modelList: T1[] = [];
 
+    // Used for Sorting
+    order = 'dateModified';
+    reverse = false;
+
+    // Used for searching
+    field = '';
+    match = '';
+
+    // Used for pagination
+    page = 1;
+    pageSize = 15;
+    collectionSize = 0;
+
     constructor(public service: T2,
         public modalService: NgbModal,
         public editComponent: any) {
 
     }
-
-    /**
-     * Used for Sorting
-     */
-    order = 'dateModified';
-    reverse = false;
-
-    /**
-     *  Used for searching
-     */
-    field = '';
-    match = '';
-
-    /**
-     * Used for pagination
-     */
-    page = 1;
-    pageSize = 15;
-    collectionSize = 0;
 
     /**
      * This function is REQUIRED to refresh the table
