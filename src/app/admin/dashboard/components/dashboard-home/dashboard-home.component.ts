@@ -10,12 +10,9 @@ import { ParkingLotTableService } from './../../../parking/services/parking-lot-
 })
 export class DashboardHomeComponent implements OnInit {
 
-  constructor(private contractService: ContractTableService,
-              private parkingLotService: ParkingLotTableService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.contractService.refresh();
-    this.parkingLotService.refresh();
   }
 
 }

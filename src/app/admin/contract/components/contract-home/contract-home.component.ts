@@ -8,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractHomeComponent implements OnInit {
 
-  constructor(private service: ContractTableService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.service.refresh();
   }
 
 }

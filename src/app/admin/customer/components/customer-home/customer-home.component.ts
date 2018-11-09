@@ -8,11 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerHomeComponent implements OnInit {
 
-  constructor(private service: CustomerTableService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.service.refresh();
   }
 
 }

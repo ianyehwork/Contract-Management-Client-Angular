@@ -22,6 +22,7 @@ export class CustomerTableComponent extends ModelTableComponent<Customer, Custom
   ngOnInit() {
     this.field = 'pContact';
     this.service.getModelChannel().subscribe((result) => {
+      console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
       this.modelList.forEach((value, index, array) => {
@@ -29,6 +30,7 @@ export class CustomerTableComponent extends ModelTableComponent<Customer, Custom
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
     });
+    this.refresh();
   }
 
 }

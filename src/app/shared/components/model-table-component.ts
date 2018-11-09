@@ -16,13 +16,14 @@ export class ModelTableComponent<T1 extends HasIdInterface,
     constructor(public service: T2,
         public modalService: NgbModal,
         public editComponent: any) {
+
     }
 
     /**
      * Used for Sorting
      */
-    order = '';
-    reverse = true;
+    order = 'dateModified';
+    reverse = false;
 
     /**
      *  Used for searching
@@ -33,9 +34,24 @@ export class ModelTableComponent<T1 extends HasIdInterface,
     /**
      * Used for pagination
      */
-    page: 1;
+    page = 1;
     pageSize = 15;
     collectionSize = 0;
+
+    /**
+     * This function is REQUIRED to refresh the table
+     * with search, sort, and pagination options
+     */
+    refresh() {
+        this.service.refresh(
+            this.field,
+            this.match,
+            this.order,
+            this.reverse,
+            this.page,
+            this.pageSize
+          );
+    }
 
     /**
      * This function is REQUIRED for ngx-order-pipe Sorting
@@ -46,14 +62,6 @@ export class ModelTableComponent<T1 extends HasIdInterface,
             this.reverse = !this.reverse;
         }
         this.order = value;
-    }
-
-    /**
-     * This function is used for pagination
-     */
-    onPageChange() {
-        // TODO
-        console.log(this.page);
     }
 
     /**

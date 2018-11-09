@@ -14,7 +14,7 @@ import { ContractEditComponent } from './../contract-edit/contract-edit.componen
 export class ContractTableComponent extends ModelTableComponent<Contract, ContractTableService> implements OnInit {
 
   constructor(service: ContractTableService,
-              modalService: NgbModal) {
+    modalService: NgbModal) {
     super(service, modalService, ContractEditComponent);
   }
 

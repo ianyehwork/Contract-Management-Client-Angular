@@ -11,6 +11,15 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
   modelList: {data: T1[], collectionSize: number} = {data: [], collectionSize: 0};
   modelChannel = new Subject<{data: T1[], collectionSize: number}>();
 
+  // Retain the information since the
+  // last refresh operation
+  order;
+  reverse;
+  field;
+  match;
+  page;
+  pageSize;
+
   constructor(public service: T2) {
   }
 
@@ -18,8 +27,21 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     return this.modelChannel.asObservable();
   }
 
-  refresh() {
-    this.service.getAll().subscribe((result) => {
+  refresh(field: string,
+          match: string,
+          order: string,
+          reverse: boolean,
+          page: number,
+          pageSize: number) {
+    // Retain the last refresh values
+    this.field = field;
+    this.match = match;
+    this.order = order;
+    this.reverse = reverse;
+    this.page = page;
+    this.pageSize = pageSize;
+
+    this.service.getAll(this.buildQuery()).subscribe((result) => {
       this.modelList = result;
       this.modelChannel.next(result);
     });
@@ -29,34 +51,42 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     const updatedList = [];
     this.modelList.data.forEach((val, index) => {
       if (val._id === model._id) {
-        this.modelList[index] = model;
+        this.modelList.data[index] = model;
       }
-      updatedList.push(this.modelList[index]);
+      updatedList.push(this.modelList.data[index]);
     });
     this.modelList.data = updatedList;
     this.modelChannel.next(this.modelList);
   }
 
+  // TODO: Remove the model parameter
   delete(model: T1) {
-    this.modelList.data = this.modelList.data.filter((item) => {
-      if (item._id !== model._id) {
-        return item;
-      }
+    this.service.getAll(this.buildQuery()).subscribe((result) => {
+      this.modelList = result;
+      this.modelChannel.next(result);
     });
-    this.modelChannel.next(this.modelList);
   }
 
+  // TODO: Remove the model parameter
   add(model: T1) {
-    const updatedList = [];
-    this.modelList.data.forEach((value, index) => {
-      updatedList.push(this.modelList[index]);
+    this.service.getAll(this.buildQuery()).subscribe((result) => {
+      this.modelList = result;
+      this.modelChannel.next(result);
     });
-    updatedList.push(model);
-    this.modelList.data = updatedList;
-    this.modelChannel.next(this.modelList);
   }
 
   notify() {
     this.modelChannel.next(this.modelList);
+  }
+
+  private buildQuery() {
+    let query = '?';
+    query += 'field=' + this.field;
+    query += '&match=' + this.match;
+    query += '&order=' + this.order;
+    query += '&reverse=' + this.reverse;
+    query += '&page=' + this.page;
+    query += '&pageSize=' + this.pageSize;
+    return query;
   }
 }

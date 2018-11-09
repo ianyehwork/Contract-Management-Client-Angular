@@ -47,7 +47,6 @@ export class ModelEditComponent<T1 extends HasIdInterface,
         modalRef.componentInstance.model = this.model;
 
         modalRef.result.then(result => {
-            console.log(result);
             if (result.data) {
                 this.modelService.getById(result.data._id).subscribe(data => {
                     const ref = this.modalService.open(this.editComponent, AppConstants.MODAL_OPTIONS);

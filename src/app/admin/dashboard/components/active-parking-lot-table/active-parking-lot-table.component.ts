@@ -82,7 +82,7 @@ export class ActiveParkingLotTableComponent implements OnInit {
         this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);
         this.modalRef.close();
         this.service.delete(result._lot);
-        this.contractService.refresh();
+        // this.contractService.refresh();
       }
     }, (error) => {
       // this.invalidLogin = true;

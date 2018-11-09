@@ -10,12 +10,9 @@ import { ParkingLotTableService } from './../../services/parking-lot-table.servi
 })
 export class ParkingHomeComponent implements OnInit {
 
-  constructor(private parkingLotService: ParkingLotTableService,
-              private parkingAreaService: ParkingAreaTableService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.parkingLotService.refresh();
-    this.parkingAreaService.refresh();
   }
 
 }
