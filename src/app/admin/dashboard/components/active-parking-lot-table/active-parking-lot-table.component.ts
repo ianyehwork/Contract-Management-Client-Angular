@@ -1,57 +1,48 @@
-import { ParkingLotTableService } from './../../../parking/services/parking-lot-table.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbCalendar, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
 import { AppConstants } from '../../../../constants';
+import { ModelTableComponent } from '../../../../shared/components/model-table-component';
 import { BS4AlertType, ToastService } from '../../../../shared/services/toast.service';
 import { Contract } from '../../../contract/models/contract';
 import { ContractService } from '../../../contract/services/contract.service';
 import { CustomerSearchComponent } from '../../../customer/components/customer-search/customer-search.component';
+import { ParkingLotEditComponent } from '../../../parking/components/parking-lot-edit/parking-lot-edit.component';
 import { ParkingLot } from '../../../parking/models/parking-lot';
 import { ContractTableService } from './../../../contract/services/contract-table.service';
+import { ParkingLotTableService } from './../../../parking/services/parking-lot-table.service';
 
 @Component({
   selector: 'app-active-parking-lot-table',
   templateUrl: './active-parking-lot-table.component.html',
   styleUrls: ['./active-parking-lot-table.component.css']
 })
-export class ActiveParkingLotTableComponent implements OnInit {
+export class ActiveParkingLotTableComponent extends ModelTableComponent<ParkingLot, ParkingLotTableService> implements OnInit {
 
   contract: Contract;
   startDate: NgbDate;
   formTemplate;
   modalRef: NgbModalRef;
 
-  page: number;
-  pageSize = 15;
-  paginationId = 'active-parking-lot';
-
-  modelList: ParkingLot[] = [];
-
-  constructor(private service: ParkingLotTableService,
-              private modelService: ContractService,
-              private modalService: NgbModal,
-              private toast: ToastService,
-              private calendar: NgbCalendar,
-              private contractService: ContractTableService) { }
-
-  ngOnInit() {
-    this.service.getModelChannel().subscribe(parkinglots => {
-      if (parkinglots.data) {
-        this.modelList = parkinglots.data.filter((value) => {
-          return value.status;
-        });
-      }
-    }
-    );
+  constructor(
+    private contractService: ContractService,
+    private contractTableService: ContractTableService,
+    private calendar: NgbCalendar,
+    private toast: ToastService,
+    service: ParkingLotTableService,
+    modalService: NgbModal) {
+    super(service, modalService, ParkingLotEditComponent);
+    this.subscription = this.service.getModelChannel().subscribe((result) => {
+      console.log(result);
+      this.modelList = result.data;
+      this.collectionSize = result.collectionSize;
+    });
   }
 
-  /**
-   * This function is used for pagination
-   */
-  onPageChange() {
-    console.log(this.page);
+  ngOnInit() {
+    this.service.setExtraFilter('&status=' + true);
+    this.refresh();
   }
 
   /**
@@ -76,13 +67,12 @@ export class ActiveParkingLotTableComponent implements OnInit {
     this.contract.sYear = this.startDate.year;
     this.contract.sMonth = this.startDate.month;
     this.contract.sDay = this.startDate.day;
-    console.log(this.contract);
-    this.modelService.create(this.contract).subscribe((result) => {
+    this.contractService.create(this.contract).subscribe((result) => {
       if (result) {
         this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);
         this.modalRef.close();
         this.service.delete(result._lot);
-        // this.contractService.refresh();
+        this.contractTableService.add(new Contract());
       }
     }, (error) => {
       // this.invalidLogin = true;

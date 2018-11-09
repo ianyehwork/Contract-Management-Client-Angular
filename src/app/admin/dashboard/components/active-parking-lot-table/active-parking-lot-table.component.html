@@ -7,18 +7,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let model of modelList | paginate: { itemsPerPage: pageSize, currentPage: page, id: paginationId }" (click)="open(template, model)">
+    <tr *ngFor="let model of modelList" (click)="open(template, model)">
       <td>{{model.identifier}}</td>
       <td>{{model.rent}}</td>
       <td>{{model.deposit}}</td>
     </tr>
   </tbody>
 </table>
-<pagination-controls *ngIf="this.modelList.length >= pageSize" (pageChange)="page = $event; onPageChange()" 
-  [responsive]=true
-  [maxSize]=5
-  [id]=paginationId>
-</pagination-controls>
+<div class="mt-3">
+  <ngb-pagination  [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()" aria-label="Default pagination"></ngb-pagination>
+</div>
 
 <ng-template #template let-c="close" let-d="dismiss">
   <div class="modal-header">

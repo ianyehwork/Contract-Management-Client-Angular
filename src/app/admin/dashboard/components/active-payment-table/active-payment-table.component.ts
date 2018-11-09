@@ -16,29 +16,27 @@ export class ActivePaymentTableComponent extends ModelTableComponent<Contract, C
 
   paginationId = 'active-payment';
 
-  constructor(service: ContractTableService,
-    modalService: NgbModal,
-    private calendar: NgbCalendar) {
+  constructor(
+    private calendar: NgbCalendar,
+    service: ContractTableService,
+    modalService: NgbModal) {
     super(service, modalService, ContractEditComponent);
+    this.subscription = this.service.getModelChannel().subscribe(result => {
+      console.log(result);
+      for (let i = 0; i < result.data.length; i++) {
+        const model = result.data[i];
+        model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
+        model['pAmount'] = (model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency * model._lot.rent));
+      }
+      this.modelList = result.data;
+      this.collectionSize = result.collectionSize;
+    }
+    );
   }
 
   ngOnInit() {
-    // Default Sorting
-    this.order = 'pDate';
-    this.reverse = false;
-    this.subscription = this.service.getModelChannel().subscribe(contracts => {
-      if (contracts.data) {
-        this.modelList = contracts.data.filter((value) => {
-          return value.active;
-        });
-        for (let i = 0; i < this.modelList.length; i++) {
-          const model = this.modelList[i];
-          model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
-          model['pAmount'] = (model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency * model._lot.rent));
-        }
-      }
-    }
-    );
+    this.service.setExtraFilter('&active=' + true);
+    this.refresh();
   }
 
   // Return true if the Contract Payment Date is Today
