@@ -16,23 +16,26 @@ export class PaymentCalendarComponent implements OnInit {
   map: Map<string, Array<string>>;
   today: NgbDate;
   constructor(private service: ContractTableService,
-              private calendar: NgbCalendar) { }
+    private calendar: NgbCalendar) { }
 
   ngOnInit() {
     this.today = this.calendar.getToday();
     this.service.getModelChannel().subscribe(contracts => {
-      this.modelList = contracts.filter((value) => {
-        return value.active;
-      });
-      this.map = new Map();
-      for (let i = 0; i < this.modelList.length; i++) {
-        const model = this.modelList[i];
-        let array = this.map.get(model.pYear + '.' + model.pMonth + '.' + model.pDay);
-        if (array === undefined) {
-          array = [];
+      if (contracts.data) {
+        this.modelList = contracts.data.filter((value) => {
+          return value.active;
+        });
+
+        this.map = new Map();
+        for (let i = 0; i < this.modelList.length; i++) {
+          const model = this.modelList[i];
+          let array = this.map.get(model.pYear + '.' + model.pMonth + '.' + model.pDay);
+          if (array === undefined) {
+            array = [];
+          }
+          array.push(model._customer.pContact);
+          this.map.set(model.pYear + '.' + model.pMonth + '.' + model.pDay, array);
         }
-        array.push(model._customer.pContact);
-        this.map.set(model.pYear + '.' + model.pMonth + '.' + model.pDay, array);
       }
     });
   }

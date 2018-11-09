@@ -30,7 +30,7 @@ export class CustomerSearchComponent implements OnInit {
 
   ngOnInit() {
     this.modelService.getAll().subscribe((result) => {
-      this.modelList = result;
+      this.modelList = result.data;
     });
   }
 
@@ -41,7 +41,7 @@ export class CustomerSearchComponent implements OnInit {
    */
   search(text) {
     this.modelService.getAll(`?startWith=${text}`).subscribe((result) => {
-      this.modelList = result;
+      this.modelList = result.data;
     });
   }
 

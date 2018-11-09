@@ -24,7 +24,7 @@ export class DataService <T extends HasIdInterface> {
               public http: HttpClient,
               public authService: AuthService) {}
 
-  public getAll(query: string = ''): Observable<T[]> {
+  public getAll(query: string = ''): Observable<{data: T[], collectionSize: number}> {
     return this.http.get(this.url + query, this.authService.authHeader)
                     .catch(this.handleError);
   }

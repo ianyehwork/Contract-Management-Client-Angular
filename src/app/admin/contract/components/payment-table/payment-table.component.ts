@@ -26,7 +26,7 @@ export class PaymentTableComponent implements OnInit {
 
   ngOnInit() {
     this.modelService.getAll(`?_contract=${this.contract._id}`).subscribe((result) => {
-      this.modelList = result;
+      this.modelList = result.data;
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
       });

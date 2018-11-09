@@ -23,7 +23,7 @@ export class ParkingLotTableComponent extends ModelTableComponent<ParkingLot, Pa
 
   ngOnInit() {
     this.service.getModelChannel().subscribe((result) => {
-      this.modelList = result.filter((value: any) => {
+      this.modelList = result.data.filter((value: any) => {
         return value._area === this.area._id;
       });
       this.modelList.forEach((value, index, array) => {

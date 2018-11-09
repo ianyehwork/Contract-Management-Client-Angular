@@ -22,7 +22,8 @@ export class CustomerTableComponent extends ModelTableComponent<Customer, Custom
   ngOnInit() {
     this.field = 'pContact';
     this.service.getModelChannel().subscribe((result) => {
-      this.modelList = result;
+      this.modelList = result.data;
+      this.collectionSize = result.collectionSize;
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);

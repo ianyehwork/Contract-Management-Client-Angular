@@ -22,7 +22,7 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
     // Default search field
     this.field = '_customer.pContact';
     this.service.getModelChannel().subscribe(contracts => {
-      for (let i = 0; i < contracts.length; i++) {
+      for (let i = 0; i < contracts.data.length; i++) {
         const model = contracts[i];
         model['sDate'] = new Date(model.sYear, model.sMonth - 1, model.sDay);
         model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
@@ -30,7 +30,8 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
         model['spDate'] = model.pYear + '-' + model.pMonth + '-' + model.pDay;
         model['sStatus'] = (model.active ? '生效' : '終止');
       }
-      this.modelList = contracts;
+      this.modelList = contracts.data;
+      this.collectionSize = contracts.collectionSize;
     }
     );
   }

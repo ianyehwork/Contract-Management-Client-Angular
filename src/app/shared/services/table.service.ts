@@ -8,13 +8,13 @@ import { DataService } from './data.service';
 @Injectable()
 export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>> {
 
-  modelList: T1[] = [];
-  modelChannel = new Subject<Array<T1>>();
+  modelList: {data: T1[], collectionSize: number} = {data: [], collectionSize: 0};
+  modelChannel = new Subject<{data: T1[], collectionSize: number}>();
 
   constructor(public service: T2) {
   }
 
-  getModelChannel(): Observable<Array<T1>> {
+  getModelChannel(): Observable<{data: T1[], collectionSize: number}> {
     return this.modelChannel.asObservable();
   }
 
@@ -27,18 +27,18 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
 
   update(model: T1) {
     const updatedList = [];
-    this.modelList.forEach((val, index) => {
+    this.modelList.data.forEach((val, index) => {
       if (val._id === model._id) {
         this.modelList[index] = model;
       }
       updatedList.push(this.modelList[index]);
     });
-    this.modelList = updatedList;
+    this.modelList.data = updatedList;
     this.modelChannel.next(this.modelList);
   }
 
   delete(model: T1) {
-    this.modelList = this.modelList.filter((item) => {
+    this.modelList.data = this.modelList.data.filter((item) => {
       if (item._id !== model._id) {
         return item;
       }
@@ -48,11 +48,11 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
 
   add(model: T1) {
     const updatedList = [];
-    this.modelList.forEach((value, index) => {
+    this.modelList.data.forEach((value, index) => {
       updatedList.push(this.modelList[index]);
     });
     updatedList.push(model);
-    this.modelList = updatedList;
+    this.modelList.data = updatedList;
     this.modelChannel.next(this.modelList);
   }
 

@@ -38,9 +38,11 @@ export class ActiveParkingLotTableComponent implements OnInit {
 
   ngOnInit() {
     this.service.getModelChannel().subscribe(parkinglots => {
-      this.modelList = parkinglots.filter((value) => {
-        return value.status;
-      });
+      if (parkinglots.data) {
+        this.modelList = parkinglots.data.filter((value) => {
+          return value.status;
+        });
+      }
     }
     );
   }

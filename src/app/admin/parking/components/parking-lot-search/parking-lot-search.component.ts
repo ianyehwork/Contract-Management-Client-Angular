@@ -34,10 +34,10 @@ export class ParkingLotSearchComponent implements OnInit {
 
   ngOnInit() {
     this.parkingAreaService.getAll().subscribe((result) => {
-      this.areaList = result;
+      this.areaList = result.data;
     });
     this.modelService.getAll(`?status=1`).subscribe((result) => {
-      this.modelList = result;
+      this.modelList = result.data;
     });
   }
 
@@ -48,7 +48,7 @@ export class ParkingLotSearchComponent implements OnInit {
    */
   search(text) {
     this.modelService.getAll(`?_area=${text}&status=1`).subscribe((result) => {
-      this.modelList = result;
+      this.modelList = result.data;
     });
   }
 

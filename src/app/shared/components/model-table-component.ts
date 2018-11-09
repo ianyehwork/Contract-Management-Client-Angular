@@ -33,8 +33,9 @@ export class ModelTableComponent<T1 extends HasIdInterface,
     /**
      * Used for pagination
      */
-    page: number;
+    page: 1;
     pageSize = 15;
+    collectionSize = 0;
 
     /**
      * This function is REQUIRED for ngx-order-pipe Sorting
