@@ -23,7 +23,7 @@
 
       <div class="form-row">
         <div class="col">
-          <label for="defaultRent">默認租金</label>
+          <label for="defaultRent">默認租金<span class="text_red">*</span>&nbsp;</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">NT$</span>
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="col">
-          <label for="defaultDeposit">默認押金</label>
+          <label for="defaultDeposit">默認押金<span class="text_red">*</span>&nbsp;</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text">NT$</span>
@@ -53,7 +53,7 @@
       <label for="comment">備註</label>
       <textarea id="comment" name="comment" class="form-control" row="3" [(ngModel)]="model.comment" #comment="ngModel"></textarea>
 
-      <label>所有標註星號的（*）皆為必填項。</label>
+      <label>所有標註星號的（<span class="text_red">*</span>）皆為必填項。</label>
 
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" [disabled]="form.invalid">保存</button>
