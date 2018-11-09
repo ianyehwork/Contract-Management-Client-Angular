@@ -15,35 +15,36 @@
       <div class="input-group mb-3">
         <input type="text" id="customer" name="customer" class="form-control" required readonly [(ngModel)]="model._customer.pContact"
           #customer="ngModel">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" (click)="searchCustomer()">查詢</button>
+        <div class="input-group-append" (click)="searchCustomer()">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
         </div>
       </div>
       <div>
         <label *ngIf="model._customer.pPhone !== ''">聯繫電話: {{model._customer.pPhone}}</label>
         <label *ngIf="model._customer.vehicles.length !== 0">車號: {{model._customer.vehicles}}</label>
       </div>
-      
+
 
       <label for="lot">停車位<span class="text_red">*</span>&nbsp;</label>
       <div class="input-group mb-3">
-        <input type="text" id="lot" name="lot" class="form-control" required readonly [(ngModel)]="model._lot.identifier" #lot="ngModel">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" (click)="searchLot()">查詢</button>
+        <input type="text" id="lot" name="lot" class="form-control" required readonly [(ngModel)]="model._lot.identifier"
+          #lot="ngModel">
+        <div class="input-group-append" (click)="searchLot()">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
         </div>
       </div>
       <div>
         <label *ngIf="model._lot.rent !== 0">租金: {{model._lot.rent}}</label>
         <label *ngIf="model._lot.deposit !== 0">押金: {{model._lot.deposit}}</label>
       </div>
-      
+
       <label for="">起租日期<span class="text_red">*</span>&nbsp;</label>
       <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">開始</span>
         </div>
-        <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="startDate" required ngbDatepicker
-          #d1="ngbDatepicker">
+        <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="startDate" required
+          ngbDatepicker #d1="ngbDatepicker">
         <div class="input-group-addon">
           <i class="far fa-calendar-alt" (click)="d1.toggle()"></i>
         </div>

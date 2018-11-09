@@ -1,55 +1,54 @@
+import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { ModelTableComponent } from '../../../../shared/components/model-table-component';
+import { ParkingLot } from '../../models/parking-lot';
+import { ParkingLotEditComponent } from '../parking-lot-edit/parking-lot-edit.component';
 import { ParkingArea } from './../../models/parking-area';
 import { ParkingAreaService } from './../../services/parking-area.service';
-import { Component, OnInit } from '@angular/core';
-import { ParkingLot } from '../../models/parking-lot';
-import { ParkingLotService } from '../../services/parking-lot.service';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ParkingLotTableService } from './../../services/parking-lot-table.service';
 
 @Component({
   selector: 'app-parking-lot-search',
   templateUrl: './parking-lot-search.component.html',
   styleUrls: ['./parking-lot-search.component.css']
 })
-export class ParkingLotSearchComponent implements OnInit {
+export class ParkingLotSearchComponent extends ModelTableComponent<ParkingLot, ParkingLotTableService> implements OnInit {
 
-  modelList: ParkingLot[] = [];
   areaList: ParkingArea[] = [];
+  areaId = '';
 
-  /**
-   * Used for pagination
-   */
-  page: number;
-  pageSize = 15;
-  /**
-   * This function is used for pagination
-   */
-  onPageChange() {
-    // TODO
-    console.log(this.page);
-  }
+  constructor(
+    private activeModal: NgbActiveModal,
+    private parkingAreaService: ParkingAreaService,
+    service: ParkingLotTableService,
+    modalService: NgbModal) {
+    super(service, modalService, ParkingLotEditComponent);
 
-  constructor(private activeModal: NgbActiveModal,
-              private modelService: ParkingLotService,
-              private parkingAreaService: ParkingAreaService) { }
-
-  ngOnInit() {
     this.parkingAreaService.getAll().subscribe((result) => {
       this.areaList = result.data;
     });
-    this.modelService.getAll(`?status=1`).subscribe((result) => {
+
+    this.field = '';
+    this.subscription = this.service.getModelChannel().subscribe((result) => {
+      console.log(result);
       this.modelList = result.data;
+      this.collectionSize = result.collectionSize;
     });
   }
 
-  /**
-   * This function is REQUIRED to fire the search request to the server
-   * when the search button is clicked
-   * @param text criteria
-   */
-  search(text) {
-    this.modelService.getAll(`?_area=${text}&status=1`).subscribe((result) => {
-      this.modelList = result.data;
-    });
+  ngOnInit() {
+    this.service.setExtraFilter('&status=1');
+    this.refresh();
+  }
+
+  search() {
+    let filterStr = '&status=1';
+    if (this.areaId) {
+      filterStr += '&_area=' + this.areaId;
+    }
+    this.service.setExtraFilter(filterStr);
+    this.refresh();
   }
 
   /**

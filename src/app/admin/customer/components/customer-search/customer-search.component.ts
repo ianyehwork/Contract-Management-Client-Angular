@@ -34,25 +34,6 @@ export class CustomerSearchComponent extends ModelTableComponent<Customer, Custo
   ngOnInit() {
     this.refresh();
   }
-  // constructor(private activeModal: NgbActiveModal,
-  //   private modelService: CustomerService) { }
-
-  // ngOnInit() {
-  //   this.modelService.getAll().subscribe((result) => {
-  //     this.modelList = result.data;
-  //   });
-  // }
-
-  /**
-   * This function is REQUIRED to fire the search request to the server
-   * when the search button is clicked
-   * @param text criteria
-   */
-  // search(text) {
-  //   this.modelService.getAll(`?startWith=${text}`).subscribe((result) => {
-  //     this.modelList = result.data;
-  //   });
-  // }
 
   /**
    * This function is REQUIRED to return the selected model when the users
