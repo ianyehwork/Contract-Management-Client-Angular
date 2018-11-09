@@ -1,7 +1,7 @@
 <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
   <ngb-panel *ngFor="let model of modelList">
     <ng-template ngbPanelTitle>
-      <span>{{model.identifier}}</span>
+      <span>{{model.identifier}}     &nbsp;</span>
       <i class="far fa-edit" (click)="openEditModal(model)"></i>
     </ng-template>
     <ng-template ngbPanelContent>
