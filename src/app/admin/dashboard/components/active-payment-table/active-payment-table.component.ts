@@ -36,6 +36,7 @@ export class ActivePaymentTableComponent extends ModelTableComponent<Contract, C
 
   ngOnInit() {
     this.service.setExtraFilter('&active=' + true);
+    this.order = 'pDate';
     this.refresh();
   }
 

@@ -71,6 +71,10 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     this.modelChannel.next(this.modelList);
   }
 
+  clearExtraFilter() {
+    this.extraFilterStr = '';
+  }
+
   setExtraFilter(extraFilterStr: string) {
     this.extraFilterStr = extraFilterStr;
   }
