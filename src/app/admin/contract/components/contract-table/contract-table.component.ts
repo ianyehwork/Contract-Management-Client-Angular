@@ -16,14 +16,10 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
   constructor(service: ContractTableService,
     modalService: NgbModal) {
     super(service, modalService, ContractEditComponent);
-  }
-
-  ngOnInit() {
-    // Default search field
-    this.field = '_customer.pContact';
-    this.service.getModelChannel().subscribe(contracts => {
+    this.subscription = this.service.getModelChannel().subscribe(contracts => {
+      console.log(contracts);
       for (let i = 0; i < contracts.data.length; i++) {
-        const model = contracts[i];
+        const model = contracts.data[i];
         model['sDate'] = new Date(model.sYear, model.sMonth - 1, model.sDay);
         model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
         model['ssDate'] = model.sYear + '-' + model.sMonth + '-' + model.sDay;
@@ -34,5 +30,10 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
       this.collectionSize = contracts.collectionSize;
     }
     );
+  }
+
+  ngOnInit() {
+    this.field = '_customer.pContact';
+    this.refresh();
   }
 }

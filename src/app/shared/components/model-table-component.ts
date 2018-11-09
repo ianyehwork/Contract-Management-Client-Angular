@@ -65,6 +65,7 @@ export class ModelTableComponent<T1 extends HasIdInterface,
             this.reverse = !this.reverse;
         }
         this.order = value;
+        this.refresh();
     }
 
     /**

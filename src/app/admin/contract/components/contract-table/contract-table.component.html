@@ -1,9 +1,6 @@
 <form>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-search"></i></span>
-        </div>
-        <div class="input-group-prepend">
             <select class="custom-select noBorderRadius" name="field" [(ngModel)]="field">
                 <option value="_customer.pContact">聯絡人</option>
                 <option value="_lot.identifier">停車位</option>
@@ -14,7 +11,9 @@
             </select>
         </div>
         <input type="text" name="match" class="form-control" [(ngModel)]="match">
-
+        <div class="input-group-append" (click)="refresh()">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
     </div>
 </form>
 <table class="table table-hover table-sm table-striped zeroMargin">
@@ -23,31 +22,37 @@
             <th scope="col" (click)="setOrder('_customer.pContact')">聯絡人
                 <i *ngIf="order === '_customer.pContact' && !reverse" class="fas fa-sort-up"></i>
                 <i *ngIf="order === '_customer.pContact' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order !== '_customer.pContact'" class="fas fa-sort"></i>
             </th>
             <th scope="col" (click)="setOrder('_lot.identifier')">停車位
                 <i *ngIf="order === '_lot.identifier' && !reverse" class="fas fa-sort-up"></i>
                 <i *ngIf="order === '_lot.identifier' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order !== '_lot.identifier'" class="fas fa-sort"></i>
             </th>
             <th scope="col" (click)="setOrder('sDate')">起租日期
                 <i *ngIf="order === 'sDate' && !reverse" class="fas fa-sort-up"></i>
                 <i *ngIf="order === 'sDate' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order !== 'sDate'" class="fas fa-sort"></i>
             </th>
             <th scope="col" (click)="setOrder('pDate')">下次繳費
                 <i *ngIf="order === 'pDate' && !reverse" class="fas fa-sort-up"></i>
                 <i *ngIf="order === 'pDate' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order !== 'pDate'" class="fas fa-sort"></i>
             </th>
             <th scope="col" (click)="setOrder('pTotal')">總收款金額
                 <i *ngIf="order === 'pTotal' && !reverse" class="fas fa-sort-up"></i>
                 <i *ngIf="order === 'pTotal' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order !== 'pTotal'" class="fas fa-sort"></i>
             </th>
             <th scope="col" (click)="setOrder('active')">狀態
                 <i *ngIf="order === 'active' && !reverse" class="fas fa-sort-up"></i>
                 <i *ngIf="order === 'active' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order !== 'active'" class="fas fa-sort"></i>
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let model of modelList | orderBy: order:reverse:'case-insensitive' | startsWith:field:match | paginate: { itemsPerPage: pageSize, currentPage: page}"
+        <tr *ngFor="let model of modelList"
             (click)="openEditModal(model)">
             <td>{{model._customer.pContact}}</td>
             <td>{{model._lot.identifier}}</td>
@@ -58,7 +63,7 @@
         </tr>
     </tbody>
 </table>
-<pagination-controls *ngIf="this.modelList.length >= pageSize" (pageChange)="page = $event; onPageChange()" 
-    [responsive]=true
-    [maxSize]=5>
-</pagination-controls>
+<div class="mt-3">
+<ngb-pagination  [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()" aria-label="Default pagination"></ngb-pagination>
+</div>
+  
