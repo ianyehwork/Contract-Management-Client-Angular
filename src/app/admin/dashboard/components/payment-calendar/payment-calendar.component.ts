@@ -73,9 +73,9 @@ export class PaymentCalendarComponent implements OnInit {
     }
   }
 
-  getDisplayedMonth() {
-    return window.innerWidth <= 400 ? 1 : 2;
-  }
+  // getDisplayedMonth() {
+  //   return window.innerWidth <= 400 ? 1 : 2;
+  // }
 
   isDisabled(date: NgbDateStruct, current: { month: number }) {
     return date.month !== current.month;
