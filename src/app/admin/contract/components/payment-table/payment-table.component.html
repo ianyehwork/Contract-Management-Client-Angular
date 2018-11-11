@@ -14,11 +14,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let model of modelList" 
-        [class.isR]="model.type === 'R'"
-        [class.isD]="model.type === 'D'" 
-        [class.isRF]="model.type === 'RF'" 
-        (click)="openEditModal(model)">
+    <tr *ngFor="let model of modelList" [class.isR]="model.type === 'R'" [class.isD]="model.type === 'D'" [class.isRF]="model.type === 'RF'"
+      (click)="openEditModal(model)">
       <td>{{model.dateCreated}}</td>
       <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退款' : '租金'}}</td>
       <td>{{model.amount}}</td>
@@ -26,7 +23,7 @@
     </tr>
   </tbody>
 </table>
-<div>
-  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
-      aria-label="Default pagination"></ngb-pagination>
-</div>
+<div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize : ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
+  collectionSize : page * pageSize}} 共 {{collectionSize}} 付款</div>
+<ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+  aria-label="Default pagination"></ngb-pagination>

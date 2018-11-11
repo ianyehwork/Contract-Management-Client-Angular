@@ -11,6 +11,11 @@
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
-<div [class.mt-3]="!isLoading">
-  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()" aria-label="Default pagination"></ngb-pagination>
+<div *ngIf="!isLoading" class="font-weight-bold" [class.mt-3]="!isLoading">{{((page - 1) * pageSize + 1) >
+  collectionSize ? collectionSize :
+  ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
+  collectionSize : page * pageSize}} 共 {{collectionSize}} 停車區</div>
+<div>
+  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+    aria-label="Default pagination"></ngb-pagination>
 </div>

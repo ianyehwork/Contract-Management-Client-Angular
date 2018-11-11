@@ -1,5 +1,5 @@
 <app-page-loading *ngIf="isLoading"></app-page-loading>
-<table *ngIf="!isLoading" class="table table-hover table-sm table-striped zeroMargin mb-3" >
+<table *ngIf="!isLoading" class="table table-hover table-sm table-striped zeroMargin mb-3">
   <thead>
     <tr>
       <th scope="col">編號</th>
@@ -17,6 +17,8 @@
     </tr>
   </tbody>
 </table>
-<div>
-  <ngb-pagination  [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()" aria-label="Default pagination"></ngb-pagination>
-</div>
+<div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize :
+  ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
+  collectionSize : page * pageSize}} 共 {{collectionSize}} 停車位</div>
+<ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+  aria-label="Default pagination"></ngb-pagination>
