@@ -71,7 +71,9 @@ export class ModelTableComponent<T1 extends HasIdInterface,
      * to edit the model.
      * @param model new Customer created by the user
      */
-    openEditModal(model: T1) {
+    openEditModal(model: T1, event?: MouseEvent) {
+        event.preventDefault();
+        event.stopPropagation();
         const modalRef = this.modalService.open(this.editComponent, AppConstants.MODAL_OPTIONS);
         // Pass model as a Input to ModalRef
         modalRef.componentInstance.model = model;

@@ -1,9 +1,9 @@
 <app-page-loading *ngIf="isLoading"></app-page-loading>
-<ngb-accordion *ngIf="!isLoading" [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
+<ngb-accordion *ngIf="!isLoading" [closeOthers]="true" #acc="ngbAccordion">
   <ngb-panel *ngFor="let model of modelList">
     <ng-template ngbPanelTitle>
-      <span>{{model.identifier}}&nbsp;</span>
-      <i class="far fa-edit" (click)="openEditModal(model)"></i>
+      <span>{{model.identifier}}</span>
+      <i class="far fa-edit" (click)="openEditModal(model, $event)"></i>
     </ng-template>
     <ng-template ngbPanelContent>
       <app-parking-lot-create [area]="model"></app-parking-lot-create>
