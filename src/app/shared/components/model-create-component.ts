@@ -47,7 +47,7 @@ export class ModelCreateComponent<T1 extends HasIdInterface,
         this.service.create(this.model).subscribe((result) => {
             if (result) {
                 this.toast.sendMessage(this.successMessage, BS4AlertType.SUCCESS);
-                this.tableService.add(result);
+                this.tableService.fetchData();
                 form.resetForm();
                 this.modalRef.close();
             }

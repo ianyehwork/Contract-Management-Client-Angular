@@ -19,15 +19,28 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
   match;
   page;
   pageSize;
-  extraFilterStr = '';
+  customerFilterString = '';
 
   constructor(public service: T2) {
   }
 
+  /**
+   * Return the observable of the subject
+   */
   getModelChannel(): Observable<{data: T1[], collectionSize: number}> {
     return this.modelChannel.asObservable();
   }
 
+  /**
+   * Save the query parameters and fetch the data
+   * from the server
+   * @param field
+   * @param match
+   * @param order
+   * @param reverse
+   * @param page
+   * @param pageSize
+   */
   refresh(field: string,
           match: string,
           order: string,
@@ -45,6 +58,11 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     this.fetchData();
   }
 
+  /**
+   * Perform in-memory update instead of re-fetching
+   * the data from the server.
+   * @param model updated model
+   */
   update(model: T1) {
     const updatedList = [];
     this.modelList.data.forEach((val, index) => {
@@ -57,28 +75,34 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     this.modelChannel.next(this.modelList);
   }
 
-  // TODO: Remove the model parameter
-  delete(model: T1) {
-    this.fetchData();
+  /**
+   * Set custom filter string
+   * @param customerFilterString '&{key}={value}'
+   */
+  setCustomFilter(customerFilterString: string) {
+    this.customerFilterString = customerFilterString;
   }
 
-  // TODO: Remove the model parameter
-  add(model: T1) {
-    this.fetchData();
+  /**
+   * Clear custom filter string
+   */
+  clearCustomFilter() {
+    this.customerFilterString = '';
   }
 
-  notify() {
-    this.modelChannel.next(this.modelList);
+  /**
+   * Fetch the data from the server
+   */
+  fetchData() {
+    this.service.getAll(this.buildQuery()).subscribe((result) => {
+      this.modelList = result;
+      this.modelChannel.next(result);
+    });
   }
 
-  clearExtraFilter() {
-    this.extraFilterStr = '';
-  }
-
-  setExtraFilter(extraFilterStr: string) {
-    this.extraFilterStr = extraFilterStr;
-  }
-
+  /**
+   * Build URL query parameter to pass to the server
+   */
   private buildQuery() {
     let query = '?';
     query += 'field=' + this.field;
@@ -87,14 +111,7 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
     query += '&reverse=' + this.reverse;
     query += '&page=' + this.page;
     query += '&pageSize=' + this.pageSize;
-    query += this.extraFilterStr;
+    query += this.customerFilterString;
     return query;
-  }
-
-  private fetchData() {
-    this.service.getAll(this.buildQuery()).subscribe((result) => {
-      this.modelList = result;
-      this.modelChannel.next(result);
-    });
   }
 }

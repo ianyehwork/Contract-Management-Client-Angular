@@ -39,7 +39,7 @@ export class PaymentTableComponent extends ModelTableComponent<Payment, PaymentT
   }
 
   ngOnInit() {
-    this.service.setExtraFilter('&_contract=' + this.contract._id);
+    this.service.setCustomFilter('&_contract=' + this.contract._id);
     this.refresh();
   }
 

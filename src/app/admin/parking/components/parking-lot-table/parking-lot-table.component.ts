@@ -30,7 +30,7 @@ export class ParkingLotTableComponent extends ModelTableComponent<ParkingLot, Pa
   }
 
   ngOnInit() {
-    this.service.setExtraFilter('&_area=' + this.area._id);
+    this.service.setCustomFilter('&_area=' + this.area._id);
     this.refresh();
   }
 

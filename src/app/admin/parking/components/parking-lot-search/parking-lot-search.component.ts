@@ -38,7 +38,7 @@ export class ParkingLotSearchComponent extends ModelTableComponent<ParkingLot, P
   }
 
   ngOnInit() {
-    this.service.setExtraFilter('&status=1');
+    this.service.setCustomFilter('&status=1');
     this.refresh();
   }
 
@@ -47,7 +47,7 @@ export class ParkingLotSearchComponent extends ModelTableComponent<ParkingLot, P
     if (this.areaId) {
       filterStr += '&_area=' + this.areaId;
     }
-    this.service.setExtraFilter(filterStr);
+    this.service.setCustomFilter(filterStr);
     this.refresh();
   }
 

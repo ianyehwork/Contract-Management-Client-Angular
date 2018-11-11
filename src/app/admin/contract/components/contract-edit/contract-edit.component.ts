@@ -58,8 +58,8 @@ export class ContractEditComponent implements OnInit {
           if (updatedModel) {
             console.log('Delete contract!');
             this.activeModal.close();
-            this.tableModelService.update(this.model);
-            this.parkingLotTableService.update(this.model._lot);
+            this.tableModelService.fetchData();
+            this.parkingLotTableService.fetchData();
           }
         });
       }

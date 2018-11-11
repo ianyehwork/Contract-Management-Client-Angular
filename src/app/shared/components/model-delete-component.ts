@@ -21,7 +21,7 @@ export class ModelDeleteComponent<T1 extends HasIdInterface,
     deleteModel() {
         this.modelService.delete(this.model).subscribe((response) => {
             if (response) {
-                this.tableService.delete(response);
+                this.tableService.fetchData();
                 this.activeModal.close({});
             }
         }, (error) => {

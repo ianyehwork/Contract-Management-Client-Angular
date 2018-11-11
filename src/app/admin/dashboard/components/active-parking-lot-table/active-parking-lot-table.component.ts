@@ -41,7 +41,7 @@ export class ActiveParkingLotTableComponent extends ModelTableComponent<ParkingL
   }
 
   ngOnInit() {
-    this.service.setExtraFilter('&status=' + true);
+    this.service.setCustomFilter('&status=' + true);
     this.refresh();
   }
 
@@ -71,8 +71,8 @@ export class ActiveParkingLotTableComponent extends ModelTableComponent<ParkingL
       if (result) {
         this.toast.sendMessage('合同建立完成', BS4AlertType.SUCCESS);
         this.modalRef.close();
-        this.service.delete(result._lot);
-        this.contractTableService.add(new Contract());
+        this.service.fetchData();
+        this.contractTableService.fetchData();
       }
     }, (error) => {
       // this.invalidLogin = true;
