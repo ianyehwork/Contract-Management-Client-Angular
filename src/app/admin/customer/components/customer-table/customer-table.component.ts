@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-convertor';
-import { ModelTableComponent } from '../../../../shared/components/model-table-component';
+import { ModelTableComponent } from '../../../../shared/models/model-table-component';
 import { Customer } from '../../models/customer';
 import { CustomerTableService } from './../../services/customer-table.service';
 import { CustomerEditComponent } from './../customer-edit/customer-edit.component';
@@ -26,6 +26,7 @@ export class CustomerTableComponent extends ModelTableComponent<Customer, Custom
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
+      this.isLoading = false;
     });
   }
 

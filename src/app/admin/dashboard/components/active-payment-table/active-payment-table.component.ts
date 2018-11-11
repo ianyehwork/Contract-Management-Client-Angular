@@ -4,7 +4,7 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
 import { ContractEditComponent } from '../../../contract/components/contract-edit/contract-edit.component';
 import { Contract } from '../../../contract/models/contract';
-import { ModelTableComponent } from './../../../../shared/components/model-table-component';
+import { ModelTableComponent } from '../../../../shared/models/model-table-component';
 import { ContractTableService } from './../../../contract/services/contract-table.service';
 
 @Component({
@@ -30,6 +30,7 @@ export class ActivePaymentTableComponent extends ModelTableComponent<Contract, C
       }
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
+      this.isLoading = false;
     }
     );
   }

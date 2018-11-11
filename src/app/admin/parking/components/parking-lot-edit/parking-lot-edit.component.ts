@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ModelEditComponent } from '../../../../shared/components/model-edit-component';
+import { ModelEditComponent } from '../../../../shared/models/model-edit-component';
 import { ParkingLot } from '../../models/parking-lot';
 import { ParkingLotService } from '../../services/parking-lot.service';
 import { ParkingLotTableService } from './../../services/parking-lot-table.service';

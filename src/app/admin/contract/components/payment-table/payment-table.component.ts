@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppConstants } from '../../../../constants';
-import { ModelTableComponent } from '../../../../shared/components/model-table-component';
+import { ModelTableComponent } from '../../../../shared/models/model-table-component';
 import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-convertor';
 import { Contract } from '../../models/contract';
 import { ContractEditComponent } from '../contract-edit/contract-edit.component';
@@ -35,6 +35,7 @@ export class PaymentTableComponent extends ModelTableComponent<Payment, PaymentT
       this.modelList.forEach((value, index, array) => {
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
       });
+      this.isLoading = false;
     });
   }
 

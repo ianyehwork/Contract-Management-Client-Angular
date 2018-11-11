@@ -1,8 +1,8 @@
-import { ToastService, BS4AlertType } from './../services/toast.service';
+import { ToastService, BS4AlertType } from '../services/toast.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppConstants } from '../../constants';
-import { HasIdInterface } from '../models/has-id.interface';
+import { HasIdInterface } from './has-id.interface';
 import { DataService } from '../services/data.service';
 import { TableService } from '../services/table.service';
 

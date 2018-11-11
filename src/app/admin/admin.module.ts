@@ -1,5 +1,4 @@
-import { PaymentTableService } from './contract/services/payment-table.service';
-import { ContractDeleteComponent } from './contract/components/contract-delete/contract-delete.component';
+import { PageLoadingComponent } from './../shared/components/page-loading/page-loading.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +10,7 @@ import { AuthGuard } from '../auth/services/auth-guard.service';
 import { StartsWithPipe } from '../shared/pipe/starts-with.pipe';
 import { SharedModule } from './../shared/shared.module';
 import { ContractCreateComponent } from './contract/components/contract-create/contract-create.component';
+import { ContractDeleteComponent } from './contract/components/contract-delete/contract-delete.component';
 import { ContractEditComponent } from './contract/components/contract-edit/contract-edit.component';
 import { ContractHomeComponent } from './contract/components/contract-home/contract-home.component';
 import { ContractTableComponent } from './contract/components/contract-table/contract-table.component';
@@ -19,6 +19,7 @@ import { PaymentEditComponent } from './contract/components/payment-edit/payment
 import { PaymentTableComponent } from './contract/components/payment-table/payment-table.component';
 import { ContractTableService } from './contract/services/contract-table.service';
 import { ContractService } from './contract/services/contract.service';
+import { PaymentTableService } from './contract/services/payment-table.service';
 import { PaymentService } from './contract/services/payment.service';
 import { CustomerCreateComponent } from './customer/components/customer-create/customer-create.component';
 import { CustomerDeleteComponent } from './customer/components/customer-delete/customer-delete.component';
@@ -33,6 +34,8 @@ import { ActivePaymentTableComponent } from './dashboard/components/active-payme
 import { DashboardHomeComponent } from './dashboard/components/dashboard-home/dashboard-home.component';
 import { PaymentCalendarComponent } from './dashboard/components/payment-calendar/payment-calendar.component';
 import { HomeComponent } from './home/home.component';
+import { IncomeHomeComponent } from './income/components/income-home/income-home.component';
+import { IncomeTableComponent } from './income/components/income-table/income-table.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ParkingAreaCreateComponent } from './parking/components/parking-area-create/parking-area-create.component';
 import { ParkingAreaDeleteComponent } from './parking/components/parking-area-delete/parking-area-delete.component';
@@ -51,8 +54,6 @@ import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
-import { IncomeHomeComponent } from './income/components/income-home/income-home.component';
-import { IncomeTableComponent } from './income/components/income-table/income-table.component';
 
 const routes: Routes = [
   {
@@ -114,7 +115,8 @@ const routes: Routes = [
     ParkingAreaDeleteComponent,
     ContractDeleteComponent,
     IncomeHomeComponent,
-    IncomeTableComponent
+    IncomeTableComponent,
+    PageLoadingComponent
   ],
   providers: [
     CustomerService,

@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { Customer } from '../../models/customer';
 import { CustomerService } from '../../services/customer.service';
-import { ModelCreateComponent } from './../../../../shared/components/model-create-component';
+import { ModelCreateComponent } from '../../../../shared/models/model-create-component';
 import { CustomerTableService } from './../../services/customer-table.service';
 
 @Component({

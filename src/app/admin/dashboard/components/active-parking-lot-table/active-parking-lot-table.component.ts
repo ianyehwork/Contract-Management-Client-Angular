@@ -3,7 +3,7 @@ import { NgbCalendar, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
 import { AppConstants } from '../../../../constants';
-import { ModelTableComponent } from '../../../../shared/components/model-table-component';
+import { ModelTableComponent } from '../../../../shared/models/model-table-component';
 import { BS4AlertType, ToastService } from '../../../../shared/services/toast.service';
 import { Contract } from '../../../contract/models/contract';
 import { ContractService } from '../../../contract/services/contract.service';
@@ -37,6 +37,7 @@ export class ActiveParkingLotTableComponent extends ModelTableComponent<ParkingL
       console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
+      this.isLoading = false;
     });
   }
 

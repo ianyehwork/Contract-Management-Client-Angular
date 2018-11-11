@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ModelTableComponent } from '../../../../shared/components/model-table-component';
+import { ModelTableComponent } from '../../../../shared/models/model-table-component';
 import { ParkingLot } from '../../models/parking-lot';
 import { ParkingLotEditComponent } from '../parking-lot-edit/parking-lot-edit.component';
 import { ParkingArea } from './../../models/parking-area';

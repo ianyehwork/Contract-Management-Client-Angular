@@ -1,4 +1,4 @@
-import { HasIdInterface } from '../models/has-id.interface';
+import { HasIdInterface } from './has-id.interface';
 import { DataService } from '../services/data.service';
 import { TableService } from '../services/table.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';

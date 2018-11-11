@@ -3,7 +3,7 @@ import { NgbCalendar, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
 import { AppConstants } from '../../../../constants';
-import { ModelCreateComponent } from '../../../../shared/components/model-create-component';
+import { ModelCreateComponent } from '../../../../shared/models/model-create-component';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { CustomerSearchComponent } from '../../../customer/components/customer-search/customer-search.component';
 import { Contract } from '../../models/contract';

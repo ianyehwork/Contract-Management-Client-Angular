@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ModelDeleteComponent } from '../../../../shared/components/model-delete-component';
+import { ModelDeleteComponent } from '../../../../shared/models/model-delete-component';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { ParkingArea } from '../../models/parking-area';
 import { ParkingAreaTableService } from './../../services/parking-area-table.service';

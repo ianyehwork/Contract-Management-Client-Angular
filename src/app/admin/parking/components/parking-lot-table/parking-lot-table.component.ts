@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-convertor';
 import { ParkingLotEditComponent } from '../parking-lot-edit/parking-lot-edit.component';
-import { ModelTableComponent } from './../../../../shared/components/model-table-component';
+import { ModelTableComponent } from '../../../../shared/models/model-table-component';
 import { ParkingArea } from './../../models/parking-area';
 import { ParkingLot } from './../../models/parking-lot';
 import { ParkingLotTableService } from './../../services/parking-lot-table.service';
@@ -26,6 +26,7 @@ export class ParkingLotTableComponent extends ModelTableComponent<ParkingLot, Pa
         array[index].dateCreated = convertUTCDateTimeToYMD(array[index].dateCreated);
         array[index].dateModified = convertUTCDateTimeToYMD(array[index].dateModified);
       });
+      this.isLoading = false;
     });
   }
 

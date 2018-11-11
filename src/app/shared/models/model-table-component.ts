@@ -1,7 +1,7 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppConstants } from '../../constants';
-import { HasIdInterface } from '../models/has-id.interface';
+import { HasIdInterface } from './has-id.interface';
 import { DataService } from '../services/data.service';
 import { TableService } from '../services/table.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -29,6 +29,9 @@ export class ModelTableComponent<T1 extends HasIdInterface,
     pageSize = 15;
     collectionSize = 0;
 
+    // Used for hide/show the loading spinner
+    isLoading = true;
+
     constructor(public service: T2,
         public modalService: NgbModal,
         public editComponent: any) {
@@ -40,6 +43,7 @@ export class ModelTableComponent<T1 extends HasIdInterface,
      * with search, sort, and pagination options
      */
     refresh() {
+        this.isLoading = true;
         this.service.refresh(
             this.field,
             this.match,

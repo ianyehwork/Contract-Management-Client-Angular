@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ModelTableComponent } from '../../../../shared/components/model-table-component';
+import { ModelTableComponent } from '../../../../shared/models/model-table-component';
 import { Contract } from '../../models/contract';
 import { ContractTableService } from '../../services/contract-table.service';
 import { ContractEditComponent } from './../contract-edit/contract-edit.component';
@@ -28,6 +28,7 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
       }
       this.modelList = contracts.data;
       this.collectionSize = contracts.collectionSize;
+      this.isLoading = false;
     }
     );
   }
