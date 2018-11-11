@@ -3,3 +3,26 @@
 html, body {
     height: 100%;
 }
+
+@media (min-width: 0px) {  
+    html {font-size: 0.5rem;}
+}
+
+@media (min-width: 540px) {  
+    html {font-size: 0.75rem;}
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 720px) {  
+    html {font-size: 1rem;}
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 960px) { 
+    html {font-size: 1rem;}
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1140px) {  
+    html {font-size: 1rem;}
+}
