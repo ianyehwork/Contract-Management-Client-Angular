@@ -1,55 +1,60 @@
 <form>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <select class="custom-select noBorderRadius" name="field" [(ngModel)]="field">
-                <option value="_customer.pContact">聯絡人</option>
-                <option value="_lot.identifier">停車位</option>
-                <option value="ssDate">起租日期</option>
-                <option value="spDate">下次繳費</option>
-                <option value="pTotal">總收款金額</option>
-                <option value="sStatus">狀態</option>
-            </select>
+    <div class="row">
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">聯絡人</span>
+                </div>
+                <input type="text" name="match" class="form-control" readonly [(ngModel)]="match">
+                <div class="input-group-append" (click)="refresh()">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+            </div>
         </div>
-        <input type="text" name="match" class="form-control" [(ngModel)]="match">
-        <div class="input-group-append" (click)="refresh()">
-            <span class="input-group-text"><i class="fas fa-search"></i></span>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">狀態</span>
+                </div>
+                <select class="custom-select noBorderRadius" name="isActive" [(ngModel)]="isActive">
+                    <option value="">全部</option>
+                    <option value="true">生效</option>
+                    <option value="false">終止</option>
+                </select>
+                <div class="input-group-append" (click)="refresh()">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+            </div>
         </div>
     </div>
+
 </form>
 <app-page-loading *ngIf="isLoading"></app-page-loading>
 <table *ngIf="!isLoading" class="table table-hover table-sm table-striped zeroMargin mb-3">
     <thead>
         <tr>
             <th scope="col" (click)="setOrder('_customer.pContact')">聯絡人
-                <i *ngIf="order === '_customer.pContact' && !reverse" class="fas fa-sort-up"></i>
-                <i *ngIf="order === '_customer.pContact' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order === '_customer.pContact' && reverse == 1" class="fas fa-sort-up"></i>
+                <i *ngIf="order === '_customer.pContact' && reverse == -1" class="fas fa-sort-down"></i>
                 <i *ngIf="order !== '_customer.pContact'" class="fas fa-sort"></i>
             </th>
-            <th scope="col" (click)="setOrder('_lot.identifier')">停車位
-                <i *ngIf="order === '_lot.identifier' && !reverse" class="fas fa-sort-up"></i>
-                <i *ngIf="order === '_lot.identifier' && reverse" class="fas fa-sort-down"></i>
-                <i *ngIf="order !== '_lot.identifier'" class="fas fa-sort"></i>
-            </th>
+            <th scope="col">停車位 </th>
             <th scope="col" (click)="setOrder('sDate')">起租日期
-                <i *ngIf="order === 'sDate' && !reverse" class="fas fa-sort-up"></i>
-                <i *ngIf="order === 'sDate' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order === 'sDate' && reverse == 1" class="fas fa-sort-up"></i>
+                <i *ngIf="order === 'sDate' && reverse == -1" class="fas fa-sort-down"></i>
                 <i *ngIf="order !== 'sDate'" class="fas fa-sort"></i>
             </th>
             <th scope="col" (click)="setOrder('pDate')">下次繳費
-                <i *ngIf="order === 'pDate' && !reverse" class="fas fa-sort-up"></i>
-                <i *ngIf="order === 'pDate' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order === 'pDate' && reverse == 1" class="fas fa-sort-up"></i>
+                <i *ngIf="order === 'pDate' && reverse == -1" class="fas fa-sort-down"></i>
                 <i *ngIf="order !== 'pDate'" class="fas fa-sort"></i>
             </th>
             <th scope="col" (click)="setOrder('pTotal')">總收款金額
-                <i *ngIf="order === 'pTotal' && !reverse" class="fas fa-sort-up"></i>
-                <i *ngIf="order === 'pTotal' && reverse" class="fas fa-sort-down"></i>
+                <i *ngIf="order === 'pTotal' && reverse == 1" class="fas fa-sort-up"></i>
+                <i *ngIf="order === 'pTotal' && reverse == -1" class="fas fa-sort-down"></i>
                 <i *ngIf="order !== 'pTotal'" class="fas fa-sort"></i>
             </th>
-            <th scope="col" (click)="setOrder('active')">狀態
-                <i *ngIf="order === 'active' && !reverse" class="fas fa-sort-up"></i>
-                <i *ngIf="order === 'active' && reverse" class="fas fa-sort-down"></i>
-                <i *ngIf="order !== 'active'" class="fas fa-sort"></i>
-            </th>
+            <th scope="col">狀態</th>
         </tr>
     </thead>
     <tbody>
@@ -63,7 +68,8 @@
         </tr>
     </tbody>
 </table>
-<div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize : ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
+<div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize :
+    ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
     collectionSize : page * pageSize}} 共 {{collectionSize}} 合同</div>
 <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
     aria-label="Default pagination"></ngb-pagination>

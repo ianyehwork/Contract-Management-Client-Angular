@@ -12,6 +12,7 @@ import { ParkingLotEditComponent } from '../../../parking/components/parking-lot
 import { ParkingLot } from '../../../parking/models/parking-lot';
 import { ContractTableService } from './../../../contract/services/contract-table.service';
 import { ParkingLotTableService } from './../../../parking/services/parking-lot-table.service';
+import { PaymentCalendarService } from '../../../contract/services/payment-calendar.service';
 
 @Component({
   selector: 'app-active-parking-lot-table',
@@ -30,6 +31,7 @@ export class ActiveParkingLotTableComponent extends ModelTableComponent<ParkingL
     private contractTableService: ContractTableService,
     private calendar: NgbCalendar,
     private toast: ToastService,
+    private calendarService: PaymentCalendarService,
     service: ParkingLotTableService,
     modalService: NgbModal) {
     super(service, modalService, ParkingLotEditComponent);
@@ -74,6 +76,7 @@ export class ActiveParkingLotTableComponent extends ModelTableComponent<ParkingL
         this.modalRef.close();
         this.service.fetchData();
         this.contractTableService.fetchData();
+        this.calendarService.add(result);
       }
     }, (error) => {
       // this.invalidLogin = true;

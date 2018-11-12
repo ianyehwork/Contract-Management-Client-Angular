@@ -53,6 +53,7 @@ import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
+import { PaymentCalendarService } from './contract/services/payment-calendar.service';
 
 const routes: Routes = [
   {
@@ -127,7 +128,8 @@ const routes: Routes = [
     ReportService,
     CustomerTableService,
     ParkingAreaTableService,
-    PaymentTableService
+    PaymentTableService,
+    PaymentCalendarService
   ],
   entryComponents: [
     CustomerEditComponent,

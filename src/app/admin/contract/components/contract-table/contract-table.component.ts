@@ -13,6 +13,8 @@ import { ContractEditComponent } from './../contract-edit/contract-edit.componen
 })
 export class ContractTableComponent extends ModelTableComponent<Contract, ContractTableService> implements OnInit {
 
+  isActive = '';
+
   constructor(service: ContractTableService,
     modalService: NgbModal) {
     super(service, modalService, ContractEditComponent);
@@ -24,7 +26,6 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
         model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
         model['ssDate'] = model.sYear + '-' + model.sMonth + '-' + model.sDay;
         model['spDate'] = model.pYear + '-' + model.pMonth + '-' + model.pDay;
-        model['sStatus'] = (model.active ? '生效' : '終止');
       }
       this.modelList = contracts.data;
       this.collectionSize = contracts.collectionSize;
@@ -34,7 +35,25 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
   }
 
   ngOnInit() {
-    this.field = '_customer.pContact';
+    this.field = 'pContact';
     this.refresh();
   }
+
+  refresh() {
+    this.isLoading = true;
+    if (this.isActive !== '') {
+      this.service.setCustomFilter('&active=' + this.isActive);
+    } else {
+      this.service.clearCustomFilter();
+    }
+
+    this.service.refresh(
+        this.field,
+        this.match,
+        this.order,
+        this.reverse,
+        this.page,
+        this.pageSize
+    );
+}
 }

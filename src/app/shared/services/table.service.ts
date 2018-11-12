@@ -44,7 +44,7 @@ export class TableService<T1 extends HasIdInterface, T2 extends DataService<T1>>
   refresh(field: string,
           match: string,
           order: string,
-          reverse: boolean,
+          reverse: number,
           page: number,
           pageSize: number) {
     // Retain the last refresh values

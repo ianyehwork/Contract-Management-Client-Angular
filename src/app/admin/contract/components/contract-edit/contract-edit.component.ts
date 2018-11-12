@@ -9,6 +9,7 @@ import { ContractService } from '../../services/contract.service';
 import { PaymentCreateComponent } from '../payment-create/payment-create.component';
 import { Contract } from './../../models/contract';
 import { ContractTableService } from './../../services/contract-table.service';
+import { PaymentCalendarService } from '../../services/payment-calendar.service';
 
 @Component({
   selector: 'app-contract-edit',
@@ -23,7 +24,8 @@ export class ContractEditComponent implements OnInit {
     private modelService: ContractService,
     private tableModelService: ContractTableService,
     private modalService: NgbModal,
-    private parkingLotTableService: ParkingLotTableService) { }
+    private parkingLotTableService: ParkingLotTableService,
+    private calendarService: PaymentCalendarService ) { }
 
   ngOnInit() {
     this.modelService.getById(this.model._id).subscribe((response) => {
@@ -60,6 +62,7 @@ export class ContractEditComponent implements OnInit {
             this.activeModal.close();
             this.tableModelService.fetchData();
             this.parkingLotTableService.fetchData();
+            this.calendarService.remove(updatedModel);
           }
         });
       }

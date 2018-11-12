@@ -18,7 +18,7 @@ export class ModelTableComponent<T1 extends HasIdInterface,
 
     // Used for Sorting
     order = 'dateModified';
-    reverse = true;
+    reverse = 1;
 
     // Used for searching
     field = '';
@@ -60,7 +60,7 @@ export class ModelTableComponent<T1 extends HasIdInterface,
      */
     setOrder(value: string) {
         if (this.order === value) {
-            this.reverse = !this.reverse;
+            this.reverse = this.reverse === 1 ? -1 : 1;
         }
         this.order = value;
         this.refresh();

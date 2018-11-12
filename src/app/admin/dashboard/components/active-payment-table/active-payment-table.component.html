@@ -5,25 +5,14 @@
   <thead>
     <tr>
       <th scope="col-3" (click)="setOrder('pDate')">付款日期
-        <i *ngIf="order === 'pDate' && !reverse" class="fas fa-sort-up"></i>
-        <i *ngIf="order === 'pDate' && reverse" class="fas fa-sort-down"></i>
+        <i *ngIf="order === 'pDate' && reverse == 1" class="fas fa-sort-up"></i>
+        <i *ngIf="order === 'pDate' && reverse == -1" class="fas fa-sort-down"></i>
+        <i *ngIf="order !== 'pDate'" class="fas fa-sort"></i>
       </th>
-      <th scope="col-3" (click)="setOrder('pAmount')">付款金額
-        <i *ngIf="order === 'pAmount' && !reverse" class="fas fa-sort-up"></i>
-        <i *ngIf="order === 'pAmount' && reverse" class="fas fa-sort-down"></i>
-      </th>
-      <th scope="col-3" (click)="setOrder('_customer.pContact')">姓名
-        <i *ngIf="order === '_customer.pContact' && !reverse" class="fas fa-sort-up"></i>
-        <i *ngIf="order === '_customer.pContact' && reverse" class="fas fa-sort-down"></i>
-      </th>
-      <th scope="col-3" (click)="setOrder('_customer.pPhone')">電話
-        <i *ngIf="order === '_customer.pPhone' && !reverse" class="fas fa-sort-up"></i>
-        <i *ngIf="order === '_customer.pPhone' && reverse" class="fas fa-sort-down"></i>
-      </th>
-      <th scope="col-3" (click)="setOrder('_lot.identifier')">停車位
-        <i *ngIf="order === '_lot.identifier' && !reverse" class="fas fa-sort-up"></i>
-        <i *ngIf="order === '_lot.identifier' && reverse" class="fas fa-sort-down"></i>
-      </th>
+      <th scope="col-3">付款金額</th>
+      <th scope="col-3">姓名</th>
+      <th scope="col-3">電話</th>
+      <th scope="col-3">停車位</th>
     </tr>
   </thead>
   <tbody>

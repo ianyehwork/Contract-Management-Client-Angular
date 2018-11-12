@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { Contract } from '../../../contract/models/contract';
+import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
-import { ContractTableService } from '../../../contract/services/contract-table.service';
+
+import { Contract } from '../../../contract/models/contract';
+import { PaymentCalendarService } from '../../../contract/services/payment-calendar.service';
 
 @Component({
   selector: 'app-payment-calendar',
@@ -15,7 +16,7 @@ export class PaymentCalendarComponent implements OnInit {
   modelList: Contract[] = [];
   map: Map<string, Array<string>>;
   today: NgbDate;
-  constructor(private service: ContractTableService,
+  constructor(private service: PaymentCalendarService,
     private calendar: NgbCalendar) { }
 
   ngOnInit() {
@@ -38,6 +39,7 @@ export class PaymentCalendarComponent implements OnInit {
         }
       }
     });
+    this.service.fetchData();
   }
 
   hasPayment(date: NgbDate) {
