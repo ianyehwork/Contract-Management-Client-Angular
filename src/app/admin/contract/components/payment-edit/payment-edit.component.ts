@@ -28,7 +28,7 @@ export class PaymentEditComponent implements OnInit {
   updateModel() {
     this.modelService.update(this.model).subscribe((result) => {
       if (result) {
-        this.activeModal.close({operation: 'Update', contract: this.contract});
+        this.activeModal.close({operation: 'Update', contract: this.contract, payment: result});
       }
     });
   }

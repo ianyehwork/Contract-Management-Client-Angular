@@ -18,7 +18,7 @@ export class ModelTableComponent<T1 extends HasIdInterface,
 
     // Used for Sorting
     order = 'dateModified';
-    reverse = 1;
+    reverse = -1;
 
     // Used for searching
     field = '';

@@ -20,7 +20,6 @@ export class PaymentTableComponent extends ModelTableComponent<Payment, PaymentT
 
   @Input() parentModal: NgbActiveModal;
   @Input() contract: Contract;
-  modelList: Payment[] = [];
 
   constructor(
     private contractService: ContractService,
