@@ -27,6 +27,7 @@ export class PaymentTableComponent extends ModelTableComponent<Payment, PaymentT
     service: PaymentTableService,
     modalService: NgbModal) {
     super(service, modalService, PaymentEditComponent);
+    this.order = 'dateCreated';
     this.pageSize = 5;
     this.subscription = this.service.getModelChannel().subscribe((result) => {
       console.log(result);
