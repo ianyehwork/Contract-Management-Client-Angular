@@ -9,20 +9,20 @@
         <i *ngIf="order === 'pDate' && reverse == -1" class="fas fa-sort-down"></i>
         <i *ngIf="order !== 'pDate'" class="fas fa-sort"></i>
       </th>
-      <th scope="col-3">付款金額</th>
-      <th scope="col-3">姓名</th>
-      <th scope="col-3">電話</th>
-      <th scope="col-3">停車位</th>
+      <th scope="col-3" class="text-right">付款金額</th>
+      <th scope="col-3" class="text-right">姓名</th>
+      <th scope="col-3" class="text-center">電話</th>
+      <th scope="col-3" class="text-right">停車位</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let model of modelList" (click)="openEditModal(model)" [class.isToday]="isToday(model)"
       [class.isFuture]="isFuture(model)" [class.isPastDue]="isPastDue(model)">
       <td>{{model.pYear + '-' + model.pMonth + '-' + model.pDay}}</td>
-      <td>{{model.pAmount}}</td>
-      <td>{{model._customer.pContact}}</td>
-      <td>{{model._customer.pPhone}}</td>
-      <td>{{model._lot.identifier}}</td>
+      <td class="text-right">{{model.pAmount}}</td>
+      <td class="text-right">{{model._customer.pContact}}</td>
+      <td class="text-right">{{model._customer.pPhone}}</td>
+      <td class="text-right">{{model._lot.identifier}}</td>
     </tr>
   </tbody>
 </table>

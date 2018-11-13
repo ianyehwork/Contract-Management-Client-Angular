@@ -19,7 +19,7 @@ export class IncomeTableComponent extends ModelTableComponent<Payment, PaymentTa
     modalService: NgbModal) {
     super(service, modalService, PaymentEditComponent);
     this.order = 'dateCreated';
-    this.pageSize = 20;
+    this.pageSize = 15;
     this.subscription = this.service.getModelChannel().subscribe((result) => {
       console.log(result);
       this.modelList = result.data;

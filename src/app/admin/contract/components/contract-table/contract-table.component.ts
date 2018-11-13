@@ -13,7 +13,7 @@ import { ContractEditComponent } from './../contract-edit/contract-edit.componen
 })
 export class ContractTableComponent extends ModelTableComponent<Contract, ContractTableService> implements OnInit {
 
-  isActive = '';
+  contactName = '';
 
   constructor(service: ContractTableService,
     modalService: NgbModal) {
@@ -35,14 +35,14 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
   }
 
   ngOnInit() {
-    this.field = 'pContact';
+    this.field = 'active';
     this.refresh();
   }
 
   refresh() {
     this.isLoading = true;
-    if (this.isActive !== '') {
-      this.service.setCustomFilter('&active=' + this.isActive);
+    if (this.contactName !== '') {
+      this.service.setCustomFilter('&contactName=' + this.contactName);
     } else {
       this.service.clearCustomFilter();
     }
