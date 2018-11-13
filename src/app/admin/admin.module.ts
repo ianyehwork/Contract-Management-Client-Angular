@@ -54,6 +54,7 @@ import { ReportHomeComponent } from './report/components/report-home/report-home
 import { ReportService } from './report/services/report.service';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { PaymentCalendarService } from './contract/services/payment-calendar.service';
+import { SettingTabsetComponent } from './setting/components/setting-tabset/setting-tabset.component';
 
 const routes: Routes = [
   {
@@ -115,7 +116,8 @@ const routes: Routes = [
     ContractDeleteComponent,
     IncomeHomeComponent,
     IncomeTableComponent,
-    PageLoadingComponent
+    PageLoadingComponent,
+    SettingTabsetComponent
   ],
   providers: [
     CustomerService,
