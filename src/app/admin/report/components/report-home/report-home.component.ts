@@ -30,8 +30,6 @@ export class ReportHomeComponent implements OnInit {
   // in Chrome and Firefox, with the uBlock Origin extension,
   // it would try to open the new window and close it automatically.
   createPaymentReport() {
-    console.log(this.paymentYear);
-    console.log(this.paymentMonth);
     let query = '';
     if (!this.noPaymentFilter) {
       query = `?paymentYear=${this.paymentYear}&paymentMonth=${this.paymentMonth}`;
