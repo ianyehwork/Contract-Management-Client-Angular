@@ -1,10 +1,30 @@
 <ngb-tabset>
-  <ngb-tab title="Simple">
+  <ngb-tab title="修改密碼">
     <ng-template ngbTabContent>
-      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-      master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-      dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-      iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+        <div>
+            每个tab是独立的component，component名字我没想好。本来想要tabset-change-password，但还是想征求你的意见。
+            format这个只是暂时的，表格这样不是我喜欢的。
+        </div>
+        <form class="form-horizontal">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="currPwd">当前密碼:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="currPwd">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="newPwd">新密碼:</label>
+                <div class="col-sm-10"> 
+                    <input type="password" class="form-control" id="newPwd">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="confPwd">確認密碼:</label>
+                <div class="col-sm-10"> 
+                    <input type="password" class="form-control" id="confPwd">
+                </div>
+            </div>
+        </form>
     </ng-template>
   </ngb-tab>
   <ngb-tab>
