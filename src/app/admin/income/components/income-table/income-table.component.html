@@ -1,30 +1,60 @@
-<div class="mb-2">
-  <span class="dot D"></span>&nbsp;押金&nbsp;
-  <span class="dot R"></span>&nbsp;租金&nbsp;
-  <span class="dot RF"></span>&nbsp;退款
-</div>
-<app-page-loading *ngIf="isLoading"></app-page-loading>
-<table *ngIf="!isLoading" class="table table-hover table-sm table-striped mb-3">
-  <thead>
-    <tr>
-      <th scope="col-3">日期</th>
-      <th scope="col-3">付款人</th>
-      <th scope="col-3">種類</th>
-      <th scope="col-3">金額</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let model of modelList" [class.isR]="model.type === 'R'" [class.isD]="model.type === 'D'" [class.isRF]="model.type === 'RF'"
-      (click)="openEditModal(model)">
-      <td>{{model.dateCreated}}</td>
-      <td>{{model._contract._customer.pContact}}</td>
-      <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退款' : '租金'}}</td>
-      <td>{{model.amount}}</td>
-    </tr>
-  </tbody>
-</table>
-<div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize :
-  ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
-  collectionSize : page * pageSize}} 共 {{collectionSize}} 付款</div>
-<ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
-  aria-label="Default pagination"></ngb-pagination>
+<form>
+  <div class="row">
+    <div class="col-sm">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">聯絡人</span>
+        </div>
+        <input type="text" name="match" class="form-control" [(ngModel)]="contactName">
+        <div class="input-group-append" (click)="refresh()">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">狀態</span>
+        </div>
+        <select class="custom-select noBorderRadius" name="isActive" [(ngModel)]="match">
+          <option value="">全部</option>
+          <option value="R">租金</option>
+          <option value="D">押金</option>
+          <option value="RF">退款</option>
+        </select>
+        <div class="input-group-append" (click)="refresh()">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-2">
+    <span class="dot D"></span>&nbsp;押金&nbsp;
+    <span class="dot R"></span>&nbsp;租金&nbsp;
+    <span class="dot RF"></span>&nbsp;退款
+  </div>
+  <app-page-loading *ngIf="isLoading"></app-page-loading>
+  <table *ngIf="!isLoading" class="table table-hover table-sm table-striped mb-3">
+    <thead>
+      <tr>
+        <th scope="col-3">日期</th>
+        <th scope="col-3">付款人</th>
+        <th scope="col-3">種類</th>
+        <th scope="col-3">金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let model of modelList" [class.isR]="model.type === 'R'" [class.isD]="model.type === 'D'"
+        [class.isRF]="model.type === 'RF'" (click)="openEditModal(model)">
+        <td>{{model.dateCreated}}</td>
+        <td>{{model._contract._customer.pContact}}</td>
+        <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退款' : '租金'}}</td>
+        <td>{{model.amount}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize :
+    ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
+    collectionSize : page * pageSize}} 共 {{collectionSize}} 付款</div>
+  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+    aria-label="Default pagination"></ngb-pagination>

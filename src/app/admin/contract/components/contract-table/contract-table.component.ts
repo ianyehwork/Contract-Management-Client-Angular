@@ -48,12 +48,12 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
     }
 
     this.service.refresh(
-        this.field,
-        this.match,
-        this.order,
-        this.reverse,
-        this.page,
-        this.pageSize
+      this.field,
+      this.match,
+      this.order,
+      this.reverse,
+      this.page,
+      this.pageSize
     );
-}
+  }
 }

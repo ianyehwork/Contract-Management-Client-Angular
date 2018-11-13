@@ -14,6 +14,8 @@ import { AppConstants } from '../../../../constants';
 })
 export class IncomeTableComponent extends ModelTableComponent<Payment, PaymentTableService> implements OnInit {
 
+  contactName = '';
+
   constructor(
     service: PaymentTableService,
     modalService: NgbModal) {
@@ -32,7 +34,26 @@ export class IncomeTableComponent extends ModelTableComponent<Payment, PaymentTa
   }
 
   ngOnInit() {
+    this.field = 'type';
     this.refresh();
+  }
+
+  refresh() {
+    this.isLoading = true;
+    if (this.contactName !== '') {
+      this.service.setCustomFilter('&contactName=' + this.contactName);
+    } else {
+      this.service.clearCustomFilter();
+    }
+
+    this.service.refresh(
+      this.field,
+      this.match,
+      this.order,
+      this.reverse,
+      this.page,
+      this.pageSize
+    );
   }
 
   /**
