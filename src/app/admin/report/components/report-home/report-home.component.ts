@@ -25,6 +25,9 @@ export class ReportHomeComponent implements OnInit {
     this.paymentYear = today.year;
     this.paymentMonth = today.month;
     this.noPaymentFilter = true;
+    this.incomeStartDate = this.calendar.getToday();
+    this.incomeStartDate.day = 1;
+    this.incomeEndDate = today;
   }
 
   // in Chrome and Firefox, with the uBlock Origin extension,
@@ -43,5 +46,11 @@ export class ReportHomeComponent implements OnInit {
   createIncomeReport() {
     console.log(this.incomeStartDate);
     console.log(this.incomeEndDate);
+    let query = `?sy=${this.incomeStartDate.year}&sm=${this.incomeStartDate.month}&sd=${this.incomeStartDate.day}&`;
+    query += `ey=${this.incomeEndDate.year}&em=${this.incomeEndDate.month}&ed=${this.incomeEndDate.day}`;
+    this.reportService.getIncomeReport(query).subscribe((response) => {
+      const fileURL = URL.createObjectURL(response);
+      window.open(fileURL);
+    });
   }
 }

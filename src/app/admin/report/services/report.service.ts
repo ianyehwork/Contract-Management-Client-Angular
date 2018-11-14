@@ -28,6 +28,11 @@ export class ReportService {
                     .catch(this.handleError);
   }
 
+  public getIncomeReport(query: string = ''): Observable<any> {
+    return this.http.get(this.url + '/reports/incomes' + query, this.headers)
+                    .catch(this.handleError);
+  }
+
   public handleError(error: Response) {
     if (error.status === 404) {
       return Observable.throw(new NotFoundError());
