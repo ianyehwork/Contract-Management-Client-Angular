@@ -1,41 +1,15 @@
 <ngb-tabset>
   <ngb-tab title="修改密碼">
     <ng-template ngbTabContent>
+        <br/>
         <div>
-            每个tab是独立的component，component名字我没想好。本来想要tabset-change-password，但还是想征求你的意见。
-            format这个只是暂时的，表格这样不是我喜欢的。
+            <app-setting-change-password></app-setting-change-password>
         </div>
-        <form class="form-horizontal">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="currPwd">当前密碼:</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="currPwd">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="newPwd">新密碼:</label>
-                <div class="col-sm-10"> 
-                    <input type="password" class="form-control" id="newPwd">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="confPwd">確認密碼:</label>
-                <div class="col-sm-10"> 
-                    <input type="password" class="form-control" id="confPwd">
-                </div>
-            </div>
-        </form>
     </ng-template>
   </ngb-tab>
-  <ngb-tab>
-    <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
-    <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-      craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-      cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-      yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-      shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-      sint qui sapiente accusamus tattooed echo park.</p>
+  <ngb-tab title="placeholder">
+    <ng-template ngbTabCotent>
+        <p>here is content</p>
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Disabled" [disabled]="true">
