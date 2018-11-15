@@ -6,6 +6,9 @@
 </div>
 <div class="modal-body">
   <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">停車區</span>
+    </div>
     <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="areaId">
       <option selected value="">全部</option>
       <option *ngFor="let area of areaList" value="{{area._id}}">{{area.identifier}}</option>
@@ -30,5 +33,6 @@
       </tr>
     </tbody>
   </table>
-  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()" aria-label="Default pagination"></ngb-pagination>
+  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+    aria-label="Default pagination"></ngb-pagination>
 </div>

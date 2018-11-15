@@ -1,4 +1,7 @@
 <app-page-loading *ngIf="isLoading"></app-page-loading>
+<h5 *ngIf="availableSize !== undefined">
+    <span class="badge badge-success">可租用停車位: {{availableSize}}</span>
+</h5>
 <table *ngIf="!isLoading" class="table table-hover table-sm table-striped zeroMargin mb-3">
   <thead>
     <tr>

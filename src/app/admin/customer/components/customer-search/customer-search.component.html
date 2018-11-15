@@ -6,7 +6,10 @@
 </div>
 <div class="modal-body">
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="聯絡人姓名" [(ngModel)]="match">
+    <div class="input-group-prepend">
+      <span class="input-group-text">聯絡人</span>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="match">
     <div class="input-group-append" (click)="refresh()">
       <span class="input-group-text"><i class="fas fa-search"></i></span>
     </div>
@@ -27,5 +30,6 @@
       </tr>
     </tbody>
   </table>
-  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()" aria-label="Default pagination"></ngb-pagination>
+  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+    aria-label="Default pagination"></ngb-pagination>
 </div>
