@@ -145,6 +145,7 @@ export class AuthService {
 }
 
 interface UserAuthProperties {
+  username: string;
   role: string;
   access: string;
 }

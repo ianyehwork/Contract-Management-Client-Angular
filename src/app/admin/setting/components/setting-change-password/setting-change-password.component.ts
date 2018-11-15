@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-setting-change-password',
@@ -7,16 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingChangePasswordComponent implements OnInit {
 
-  constructor() { }
+  success;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.success = undefined;
   }
 
-  saveNewPwd() {
-
-  }
-
-  cancel() {
-
+  changePassword(form) {
+    form.value.username = this.authService.currentUser.username;
+    this.authService.resetPassword(form.value).subscribe((response) => {
+      this.success = true;
+    }, (error) => {
+      this.success = false;
+    });
   }
 }

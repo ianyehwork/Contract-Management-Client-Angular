@@ -6,6 +6,7 @@ import { ErrorHandlerComponent } from './components/error-handler/error-handler.
 import { TimePickerComponent } from './components/timepicker/timepicker';
 import { ToastMessagesComponent } from './components/toast-messages/toast-messages.component';
 import { ToastService } from './services/toast.service';
+import { ConfirmPasswordValidatorDirective } from './directives/confirm-password-validator.directive';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ToastService } from './services/toast.service';
   declarations: [
     TimePickerComponent,
     ErrorHandlerComponent,
-    ToastMessagesComponent
+    ToastMessagesComponent,
+    ConfirmPasswordValidatorDirective
   ],
   providers: [
     ToastService,
@@ -23,7 +25,8 @@ import { ToastService } from './services/toast.service';
   ],
   exports: [
     TimePickerComponent,
-    ToastMessagesComponent
+    ToastMessagesComponent,
+    ConfirmPasswordValidatorDirective
   ]
 })
 export class SharedModule { }

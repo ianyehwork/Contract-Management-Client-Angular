@@ -1,4 +1,3 @@
-import { PageLoadingComponent } from './../shared/components/page-loading/page-loading.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthGuard } from '../auth/services/auth-guard.service';
 import { StartsWithPipe } from '../shared/pipe/starts-with.pipe';
+import { PageLoadingComponent } from './../shared/components/page-loading/page-loading.component';
 import { SharedModule } from './../shared/shared.module';
 import { ContractCreateComponent } from './contract/components/contract-create/contract-create.component';
 import { ContractDeleteComponent } from './contract/components/contract-delete/contract-delete.component';
@@ -18,6 +18,7 @@ import { PaymentEditComponent } from './contract/components/payment-edit/payment
 import { PaymentTableComponent } from './contract/components/payment-table/payment-table.component';
 import { ContractTableService } from './contract/services/contract-table.service';
 import { ContractService } from './contract/services/contract.service';
+import { PaymentCalendarService } from './contract/services/payment-calendar.service';
 import { PaymentTableService } from './contract/services/payment-table.service';
 import { PaymentService } from './contract/services/payment.service';
 import { CustomerCreateComponent } from './customer/components/customer-create/customer-create.component';
@@ -52,10 +53,9 @@ import { ParkingLotTableService } from './parking/services/parking-lot-table.ser
 import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { ReportService } from './report/services/report.service';
-import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
-import { PaymentCalendarService } from './contract/services/payment-calendar.service';
-import { SettingTabsetComponent } from './setting/components/setting-tabset/setting-tabset.component';
 import { SettingChangePasswordComponent } from './setting/components/setting-change-password/setting-change-password.component';
+import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
+import { SettingTabsetComponent } from './setting/components/setting-tabset/setting-tabset.component';
 
 const routes: Routes = [
   {

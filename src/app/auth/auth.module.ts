@@ -10,8 +10,8 @@ import { NoAccessComponent } from './components/no-access/no-access.component';
 import { PasswordChangeComponent } from './components/password-change/password-change.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ConfirmPasswordValidatorDirective } from './directives/confirm-password-validator.directive';
 import { LoginGuard } from './services/login-guard.service';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
@@ -28,15 +28,15 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     RecaptchaModule.forRoot(),
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    SharedModule
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
     NoAccessComponent,
     PasswordResetComponent,
-    PasswordChangeComponent,
-    ConfirmPasswordValidatorDirective
+    PasswordChangeComponent
   ]
 })
 export class AuthModule { }
