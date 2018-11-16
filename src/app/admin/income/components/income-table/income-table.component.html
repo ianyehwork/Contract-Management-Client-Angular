@@ -39,6 +39,7 @@
       <tr>
         <th scope="col-3">日期</th>
         <th scope="col-3">付款人</th>
+        <th scope="col-3">停車位</th>
         <th scope="col-3">種類</th>
         <th scope="col-3">金額</th>
       </tr>
@@ -48,6 +49,7 @@
         [class.isRF]="model.type === 'RF'" (click)="openEditModal(model)">
         <td>{{model.dateCreated}}</td>
         <td>{{model._contract._customer.pContact}}</td>
+        <td>{{model._contract._lot.identifier}}</td>
         <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退款' : '租金'}}</td>
         <td>{{model.amount}}</td>
       </tr>
