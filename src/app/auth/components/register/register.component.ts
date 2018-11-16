@@ -14,10 +14,11 @@ import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 export class RegisterComponent implements OnInit {
   @Input() tabset: NgbTabset;
   newUser = new User();
-  success = false;
+  success;
   constructor(private router: Router, private service: AuthService) { }
 
   ngOnInit() {
+    this.success = undefined;
   }
 
   registerUser(regForm: NgForm) {
@@ -25,6 +26,9 @@ export class RegisterComponent implements OnInit {
       (response) => {
         this.success = true;
         // this.router.navigate(['login']);
+      },
+      (err) => {
+        this.success = false;
       }
     );
   }
