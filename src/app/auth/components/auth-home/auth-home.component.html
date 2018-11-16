@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <ngb-tabset #t="ngbTabset" type="pills">
+    <ngb-tab id="tab-login">
+      <ng-template ngbTabTitle><span [class.white]="t.activeId === 'tab-login'" [class.black]="t.activeId !== 'tab-login'">登入</span></ng-template>
+      <ng-template ngbTabContent>
+        <div class="border p-3 whiteBg">
+          <app-login [tabset]=t></app-login>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-register">
+        <ng-template ngbTabTitle><span [class.white]="t.activeId === 'tab-register'" [class.black]="t.activeId !== 'tab-register'">註冊</span></ng-template>
+      <ng-template ngbTabContent>
+        <div class="border p-3 whiteBg">
+          <app-register [tabset]=t></app-register>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="tab-forget-password">
+        <ng-template ngbTabTitle><span [class.white]="t.activeId === 'tab-forget-password'" [class.black]="t.activeId !== 'tab-forget-password'">忘記密碼</span></ng-template>
+      <ng-template ngbTabContent>
+        <div class="border p-3 whiteBg">
+          <app-password-reset></app-password-reset>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

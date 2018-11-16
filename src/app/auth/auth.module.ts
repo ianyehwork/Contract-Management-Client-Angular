@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginComponent } from './components/login/login.component';
 import { NoAccessComponent } from './components/no-access/no-access.component';
@@ -12,14 +13,13 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 import { RegisterComponent } from './components/register/register.component';
 import { LoginGuard } from './services/login-guard.service';
 import { SharedModule } from '../shared/shared.module';
+import { AuthHomeComponent } from './components/auth-home/auth-home.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
-  { path: 'register', component: RegisterComponent},
+  { path: 'login', component: AuthHomeComponent, canActivate: [LoginGuard]},
   { path: 'no-access', component: NoAccessComponent },
   { path: 'password-reset/:username/:token', component: PasswordChangeComponent},
-  { path: 'password-reset', component: PasswordResetComponent},
-  { path: '**', component: LoginComponent }
+  { path: '**', component: AuthHomeComponent }
 ];
 
 @NgModule({
@@ -29,14 +29,16 @@ const routes: Routes = [
     FormsModule,
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
     NoAccessComponent,
     PasswordResetComponent,
-    PasswordChangeComponent
+    PasswordChangeComponent,
+    AuthHomeComponent
   ]
 })
 export class AuthModule { }

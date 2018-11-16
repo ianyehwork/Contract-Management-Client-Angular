@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +12,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  @Input() tabset: NgbTabset;
   newUser = new User();
-
+  success = false;
   constructor(private router: Router, private service: AuthService) { }
 
   ngOnInit() {
@@ -21,7 +23,8 @@ export class RegisterComponent implements OnInit {
   registerUser(regForm: NgForm) {
     this.service.register(this.newUser).subscribe(
       (response) => {
-        this.router.navigate(['login']);
+        this.success = true;
+        // this.router.navigate(['login']);
       }
     );
   }

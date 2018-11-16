@@ -5,6 +5,24 @@ html, body {
 }
 
 @media (min-width: 0px) {  
+    .form-signin {
+        width: 250px !important;
+    }
+    .form-register {
+        width: 250px !important;
+    }
+}
+
+@media (min-width: 450px) {  
+    .form-signin {
+        width: 330px !important;
+    }
+    .form-register {
+        width: 330px !important;
+    }
+}
+
+@media (min-width: 0px) {  
     html {font-size: 0.4rem;}
 }
 
@@ -26,3 +44,11 @@ html, body {
 @media (min-width: 1140px) {  
     html {font-size: 1rem;}
 }
+
+button:hover {
+    cursor: pointer;
+}
+
+span.badge:hover {
+    cursor: pointer;
+  }

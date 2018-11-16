@@ -19,15 +19,21 @@ export class PasswordResetComponent implements OnInit {
    * Send password reset email button
    */
   submitted: Boolean = false;
+  success;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.success = undefined;
   }
 
   resetPassword(value) {
     this.submitted = true;
-    this.authService.resetPassword(value).subscribe((response) => {});
+    this.authService.resetPassword(value).subscribe((response) => {
+      this.success = true;
+    }, (err) => {
+      this.success = false;
+    });
   }
 
   resolved(captchaResponse: string) {

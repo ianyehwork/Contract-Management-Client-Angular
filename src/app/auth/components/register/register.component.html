@@ -41,6 +41,8 @@
     </div>
 
     <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" [disabled]="!regForm.valid">註冊</button>
-  
+    <div class="alert alert-success mt-3" *ngIf="success">
+      <div>註冊成功! <span class="badge badge-success" (click)="tabset.select('tab-login');">返回登入</span></div>
+    </div>
   </form>
 </div>
