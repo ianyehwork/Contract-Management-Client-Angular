@@ -9,6 +9,12 @@ import { Customer } from '../models/customer';
 
 @Injectable()
 export class CustomerService extends DataService <Customer> {
+
+  createCustomerToken(customer: Customer) {
+    return this.http.post(`${environment.nodeServerURL}/users/customers/token`, customer, this.authService.authHeader)
+    .catch(this.handleError);
+  }
+
   constructor(http: HttpClient, authService: AuthService) {
     super(environment.nodeServerURL + '/customers', http, authService);
   }

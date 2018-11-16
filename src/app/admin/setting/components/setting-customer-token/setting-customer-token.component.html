@@ -1,0 +1,14 @@
+<form class="form-horizontal" #customerTokenForm="ngForm" (ngSubmit)="createCustomerToken()">
+  <label for="customer">聯繫人</label>
+  <div class="input-group mb-3">
+    <input type="text" id="customer" name="customer" class="form-control" required readonly [(ngModel)]="_customer.pContact"
+      #customer="ngModel">
+    <div class="input-group-append" (click)="searchCustomer()">
+      <span class="input-group-text"><i class="fas fa-search"></i></span>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-sm btn-primary btn-block btnlog" [disabled]="customerTokenForm.invalid">确定</button>
+  <div class="alert alert-success mt-3" *ngIf="token">
+    <div>客戶令牌: {{token}}</div>
+  </div>
+</form>

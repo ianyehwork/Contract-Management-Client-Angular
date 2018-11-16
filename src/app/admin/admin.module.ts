@@ -56,6 +56,7 @@ import { ReportService } from './report/services/report.service';
 import { SettingChangePasswordComponent } from './setting/components/setting-change-password/setting-change-password.component';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { SettingTabsetComponent } from './setting/components/setting-tabset/setting-tabset.component';
+import { SettingCustomerTokenComponent } from './setting/components/setting-customer-token/setting-customer-token.component';
 
 const routes: Routes = [
   {
@@ -119,7 +120,8 @@ const routes: Routes = [
     IncomeTableComponent,
     PageLoadingComponent,
     SettingTabsetComponent,
-    SettingChangePasswordComponent
+    SettingChangePasswordComponent,
+    SettingCustomerTokenComponent
   ],
   providers: [
     CustomerService,
