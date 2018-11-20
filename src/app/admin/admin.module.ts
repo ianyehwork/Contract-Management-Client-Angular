@@ -57,10 +57,11 @@ import { SettingChangePasswordComponent } from './setting/components/setting-cha
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { SettingTabsetComponent } from './setting/components/setting-tabset/setting-tabset.component';
 import { SettingCustomerTokenComponent } from './setting/components/setting-customer-token/setting-customer-token.component';
+import { AdminAuthGuard } from '../auth/services/admin-auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'home', component: HomeComponent, canActivate: [AuthGuard],
+    path: 'home', component: HomeComponent, canActivate: [AuthGuard, AdminAuthGuard],
     children: [
       { path: '', component: DashboardHomeComponent, outlet: 'admin' },
       { path: 'dashboard', component: DashboardHomeComponent, outlet: 'admin' },
