@@ -36,7 +36,6 @@ export class ActiveParkingLotTableComponent extends ModelTableComponent<ParkingL
     modalService: NgbModal) {
     super(service, modalService, ParkingLotEditComponent);
     this.subscription = this.service.getModelChannel().subscribe((result) => {
-      console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
       this.isLoading = false;

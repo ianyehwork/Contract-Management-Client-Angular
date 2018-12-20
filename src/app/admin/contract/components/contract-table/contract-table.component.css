@@ -1,3 +1,7 @@
 .noBorderRadius {
     border-radius: 0 !important;
 }
+
+.isTerminated {
+    color: red;
+}

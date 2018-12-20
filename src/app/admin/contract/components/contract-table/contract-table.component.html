@@ -33,12 +33,8 @@
 <table *ngIf="!isLoading" class="table table-hover table-sm table-striped zeroMargin mb-3">
     <thead>
         <tr>
-            <th scope="col" (click)="setOrder('_customer.pContact')">聯絡人
-                <i *ngIf="order === '_customer.pContact' && reverse == 1" class="fas fa-sort-up"></i>
-                <i *ngIf="order === '_customer.pContact' && reverse == -1" class="fas fa-sort-down"></i>
-                <i *ngIf="order !== '_customer.pContact'" class="fas fa-sort"></i>
-            </th>
-            <th scope="col">停車位 </th>
+            <th scope="col">聯絡人</th>
+            <th scope="col">停車位</th>
             <th scope="col" (click)="setOrder('sDate')">起租日期
                 <i *ngIf="order === 'sDate' && reverse == 1" class="fas fa-sort-up"></i>
                 <i *ngIf="order === 'sDate' && reverse == -1" class="fas fa-sort-down"></i>
@@ -49,7 +45,7 @@
                 <i *ngIf="order === 'pDate' && reverse == -1" class="fas fa-sort-down"></i>
                 <i *ngIf="order !== 'pDate'" class="fas fa-sort"></i>
             </th>
-            <th scope="col" (click)="setOrder('pTotal')">總收款金額
+            <th scope="col" (click)="setOrder('pTotal')">總收款
                 <i *ngIf="order === 'pTotal' && reverse == 1" class="fas fa-sort-up"></i>
                 <i *ngIf="order === 'pTotal' && reverse == -1" class="fas fa-sort-down"></i>
                 <i *ngIf="order !== 'pTotal'" class="fas fa-sort"></i>
@@ -58,13 +54,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let model of modelList" (click)="openEditModal(model)">
+        <tr *ngFor="let model of modelList" (click)="openEditModal(model)" [class.isTerminated]="!model.active">
             <td>{{model._customer.pContact}}</td>
             <td>{{model._lot.identifier}}</td>
             <td>{{model.sYear + '-' + model.sMonth + '-' + model.sDay}}</td>
-            <td>{{model.pYear + '-' + model.pMonth + '-' + model.pDay}}</td>
+            <td>{{model.active ? model.pYear + '-' + model.pMonth + '-' + model.pDay : '合同已終止'}}</td>
             <td>{{model.pTotal}}</td>
-            <td>{{(model.active ? '生效' : '終止')}}</td>
+            <td>{{(model.active ? '生效' : '終止 (' + model.dateModified + ')')}}</td>
         </tr>
     </tbody>
 </table>

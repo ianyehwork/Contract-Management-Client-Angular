@@ -23,7 +23,6 @@ export class IncomeTableComponent extends ModelTableComponent<Payment, PaymentTa
     this.order = 'dateCreated';
     this.pageSize = 15;
     this.subscription = this.service.getModelChannel().subscribe((result) => {
-      console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
       this.modelList.forEach((value, index, array) => {

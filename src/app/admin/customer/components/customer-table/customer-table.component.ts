@@ -19,7 +19,6 @@ export class CustomerTableComponent extends ModelTableComponent<Customer, Custom
     super(service, modalService, CustomerEditComponent);
     this.field = 'pContact';
     this.subscription = this.service.getModelChannel().subscribe((result) => {
-      console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
       this.modelList.forEach((value, index, array) => {

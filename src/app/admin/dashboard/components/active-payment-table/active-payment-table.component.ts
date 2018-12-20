@@ -22,7 +22,6 @@ export class ActivePaymentTableComponent extends ModelTableComponent<Contract, C
     modalService: NgbModal) {
     super(service, modalService, ContractEditComponent);
     this.subscription = this.service.getModelChannel().subscribe(result => {
-      console.log(result);
       for (let i = 0; i < result.data.length; i++) {
         const model = result.data[i];
         model['pDate'] = new Date(model.pYear, model.pMonth - 1, model.pDay);
