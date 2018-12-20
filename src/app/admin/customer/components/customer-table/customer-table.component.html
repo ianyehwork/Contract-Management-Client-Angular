@@ -3,7 +3,7 @@
     <div class="input-group-prepend">
       <span class="input-group-text">聯絡人</span>
     </div>
-    <input type="text" name="match" class="form-control" [(ngModel)]="match">
+    <input type="text" name="match" class="form-control" [(ngModel)]="match" (keydown.enter)="refresh()">
     <div class="input-group-append" (click)="refresh()">
       <span class="input-group-text"><i class="fas fa-search"></i></span>
     </div>

@@ -5,7 +5,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">聯絡人</span>
                 </div>
-                <input type="text" name="match" class="form-control" [(ngModel)]="contactName">
+                <input type="text" name="match" class="form-control" [(ngModel)]="contactName" (keydown.enter)="refresh()">
                 <div class="input-group-append" (click)="refresh()">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
@@ -16,7 +16,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">狀態</span>
                 </div>
-                <select class="custom-select noBorderRadius" name="isActive" [(ngModel)]="match">
+                <select class="custom-select noBorderRadius" name="isActive" [(ngModel)]="match" (change)="refresh()">
                     <option value="">全部</option>
                     <option value="true">生效</option>
                     <option value="false">終止</option>

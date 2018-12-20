@@ -12,7 +12,7 @@ export class Payment implements HasIdInterface {
         this._id = 0;
         this._contract = 0;
         this.type = 'R';
-        this.amount = 0;
+        this.amount = undefined;
         this.comment = '';
     }
 
