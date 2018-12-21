@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <ngb-accordion #acc="ngbAccordion">
-    <ngb-panel title="付款清單">
+    <ngb-panel title="應付款清單">
       <ng-template ngbPanelContent>
         <form #paymentForm="ngForm" (ngSubmit)="createPaymentReport()">
           <div class="form-group">
@@ -39,7 +39,7 @@
         </form>
       </ng-template>
     </ngb-panel>
-    <ngb-panel title="收款明細">
+    <ngb-panel title="已收款清單">
       <ng-template ngbPanelContent>
         <form #incomeForm="ngForm" (ngSubmit)="createIncomeReport()">
           <div class="form-group">
