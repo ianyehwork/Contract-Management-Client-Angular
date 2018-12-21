@@ -8,6 +8,7 @@ import { ToastMessagesComponent } from './components/toast-messages/toast-messag
 import { ToastService } from './services/toast.service';
 import { ConfirmPasswordValidatorDirective } from './directives/confirm-password-validator.directive';
 import { NgbdatepickerI18Chinese } from './services/ngbdatepicker-i18-chinese.service';
+import { PageLoadingComponent } from './../shared/components/page-loading/page-loading.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { NgbdatepickerI18Chinese } from './services/ngbdatepicker-i18-chinese.se
     TimePickerComponent,
     ErrorHandlerComponent,
     ToastMessagesComponent,
-    ConfirmPasswordValidatorDirective
+    ConfirmPasswordValidatorDirective,
+    PageLoadingComponent
   ],
   providers: [
     ToastService,
@@ -29,7 +31,8 @@ import { NgbdatepickerI18Chinese } from './services/ngbdatepicker-i18-chinese.se
   exports: [
     TimePickerComponent,
     ToastMessagesComponent,
-    ConfirmPasswordValidatorDirective
+    ConfirmPasswordValidatorDirective,
+    PageLoadingComponent
   ]
 })
 export class SharedModule { }

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   invalidLogin: boolean;
   extraToken: boolean;
+  isLoading = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(credentials) {
+    this.isLoading = true;
     this.authService.login(credentials).subscribe((result) => {
       if (result === 'OK') {
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
@@ -31,8 +33,10 @@ export class LoginComponent implements OnInit {
       } else if (result === '2FA') {
         this.extraToken = true;
       }
+      this.isLoading = false;
     }, (error) => {
       this.invalidLogin = true;
+      this.isLoading = false;
     });
   }
 }

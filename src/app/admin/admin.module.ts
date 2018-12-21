@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthGuard } from '../auth/services/auth-guard.service';
 import { StartsWithPipe } from '../shared/pipe/starts-with.pipe';
-import { PageLoadingComponent } from './../shared/components/page-loading/page-loading.component';
 import { SharedModule } from './../shared/shared.module';
 import { ContractCreateComponent } from './contract/components/contract-create/contract-create.component';
 import { ContractDeleteComponent } from './contract/components/contract-delete/contract-delete.component';
@@ -119,7 +118,6 @@ const routes: Routes = [
     ContractDeleteComponent,
     IncomeHomeComponent,
     IncomeTableComponent,
-    PageLoadingComponent,
     SettingTabsetComponent,
     SettingChangePasswordComponent,
     SettingCustomerTokenComponent

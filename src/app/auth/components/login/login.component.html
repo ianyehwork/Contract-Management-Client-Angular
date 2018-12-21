@@ -25,6 +25,8 @@
         <input type="checkbox" value="remember-me"> 保持登入
       </label>
     </div>
+
+    <app-page-loading [label]="'Login'" *ngIf="isLoading"></app-page-loading>
     <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="loginForm.invalid">確認</button>
     <button class="btn btn-lg btn-secondary btn-block" type="button" (click)="tabset.select('tab-register');">新建帳戶</button>
   </form>
