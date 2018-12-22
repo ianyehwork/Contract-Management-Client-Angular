@@ -31,9 +31,9 @@ export class ParkingLotSearchComponent extends ModelTableComponent<ParkingLot, P
 
     this.field = '';
     this.subscription = this.service.getModelChannel().subscribe((result) => {
-      console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
+      this.isLoading = false;
     });
   }
 

@@ -11,20 +11,29 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
     <div class="col-sm">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">種類</span>
+          <span class="input-group-text">收款種類</span>
         </div>
-        <select class="custom-select noBorderRadius" name="isActive" [(ngModel)]="match" (change)="refresh()">
-          <option value="">全部</option>
-          <option value="R">租金</option>
-          <option value="D">押金</option>
-          <option value="RF">退款</option>
-          <option value="RD">退押金</option>
-        </select>
-        <div class="input-group-append" (click)="refresh()">
-          <span class="input-group-text"><i class="fas fa-search"></i></span>
+        <div class="btn-group btn-group-toggle" ngbRadioGroup name="type" [(ngModel)]="match" (change)="refresh()">
+          <label ngbButtonLabel [class.btn-primary]="match === ''" [class.btn-dark]="match !== ''">
+            <input ngbButton type="radio" value=""> 全部
+          </label>
+          <label ngbButtonLabel [class.btn-primary]="match === 'R'" [class.btn-dark]="match !== 'R'">
+            <input ngbButton type="radio" value="R"> 租金
+          </label>
+          <label ngbButtonLabel [class.btn-primary]="match === 'D'" [class.btn-dark]="match !== 'D'">
+            <input ngbButton type="radio" value="D"> 押金
+          </label>
+          <label ngbButtonLabel [class.btn-primary]="match === 'RF'" [class.btn-dark]="match !== 'RF'">
+            <input ngbButton type="radio" value="RF"> 退款
+          </label>
+          <label ngbButtonLabel [class.btn-primary]="match === 'RD'" [class.btn-dark]="match !== 'RD'">
+            <input ngbButton type="radio" value="RD"> 退押金
+          </label>
         </div>
       </div>
     </div>
@@ -60,5 +69,5 @@
   <div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize :
     ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
     collectionSize : page * pageSize}} 共 {{collectionSize}} 付款</div>
-  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+  <ngb-pagination *ngIf="!isLoading" [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
     aria-label="Default pagination"></ngb-pagination>

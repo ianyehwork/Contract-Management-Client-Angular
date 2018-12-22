@@ -9,12 +9,13 @@
     <div class="input-group-prepend">
       <span class="input-group-text">聯絡人</span>
     </div>
-    <input type="text" class="form-control" [(ngModel)]="match">
+    <input type="text" class="form-control" [(ngModel)]="match" (keydown.enter)="refresh()">
     <div class="input-group-append" (click)="refresh()">
       <span class="input-group-text"><i class="fas fa-search"></i></span>
     </div>
   </div>
-  <table class="table table-hover table-sm table-striped">
+  <app-page-loading *ngIf="isLoading"></app-page-loading>
+  <table *ngIf="!isLoading" class="table table-hover table-sm table-striped">
     <thead>
       <tr>
         <th scope="col-3">聯絡人</th>
@@ -30,6 +31,8 @@
       </tr>
     </tbody>
   </table>
-  <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+  <div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize : ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
+      collectionSize : page * pageSize}} 共 {{collectionSize}} 客戶</div>
+  <ngb-pagination *ngIf="!isLoading" [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
     aria-label="Default pagination"></ngb-pagination>
 </div>
