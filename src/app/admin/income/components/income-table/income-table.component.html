@@ -14,13 +14,14 @@
     <div class="col-sm">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">狀態</span>
+          <span class="input-group-text">種類</span>
         </div>
         <select class="custom-select noBorderRadius" name="isActive" [(ngModel)]="match" (change)="refresh()">
           <option value="">全部</option>
           <option value="R">租金</option>
           <option value="D">押金</option>
           <option value="RF">退款</option>
+          <option value="RD">退押金</option>
         </select>
         <div class="input-group-append" (click)="refresh()">
           <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -31,7 +32,8 @@
   <div class="mb-2">
     <span class="dot D"></span>&nbsp;押金&nbsp;
     <span class="dot R"></span>&nbsp;租金&nbsp;
-    <span class="dot RF"></span>&nbsp;退款
+    <span class="dot RF"></span>&nbsp;退款&nbsp;
+    <span class="dot RD"></span>&nbsp;退押金
   </div>
   <app-page-loading *ngIf="isLoading"></app-page-loading>
   <table *ngIf="!isLoading" class="table table-hover table-sm table-striped mb-3">
@@ -46,11 +48,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let model of modelList" [class.isR]="model.type === 'R'" [class.isD]="model.type === 'D'"
-        [class.isRF]="model.type === 'RF'" (click)="openEditModal(model)">
+        [class.isRF]="model.type === 'RF'" [class.isRD]="model.type === 'RD'" (click)="openEditModal(model)">
         <td>{{model.dateCreated}}</td>
         <td>{{model._contract._customer.pContact}}</td>
         <td>{{model._contract._lot.identifier}}</td>
-        <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退款' : '租金'}}</td>
+        <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退款' : (model.type === 'R') ? '租金' : '退押金'}}</td>
         <td>{{model.amount}}</td>
       </tr>
     </tbody>

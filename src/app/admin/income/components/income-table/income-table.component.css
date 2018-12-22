@@ -10,6 +10,10 @@
     color: green;
 }
 
+.isRD {
+    color: orange;
+}
+
 .R {
     background-color: green;
     border-radius: 1rem;
@@ -22,6 +26,11 @@
 }
 .D {
     background-color: blue;
+    border-radius: 1rem;
+    color: white;
+}
+.RD {
+    background-color: orange;
     border-radius: 1rem;
     color: white;
 }

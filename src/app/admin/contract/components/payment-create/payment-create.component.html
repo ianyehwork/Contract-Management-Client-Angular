@@ -7,12 +7,22 @@
 <div class="modal-body">
   <form class="form-customer" #form="ngForm" (ngSubmit)="submitModel(form)">
     <label for="type">種類<span class="text_red">*</span>&nbsp;</label>
-    <select class="custom-select" name="type" id="type" [(ngModel)]="model.type" #type="ngModel">
-      <option selected value="R">租金</option>
-      <option value="D">押金</option>
-      <option value="RF">退款</option>
-    </select>
-
+    <div class="input-group mb-3">
+      <div class="btn-group btn-group-toggle" ngbRadioGroup name="type" [(ngModel)]="model.type">
+        <label ngbButtonLabel [class.btn-primary]="model.type === 'R'" [class.btn-dark]="model.type !== 'R'">
+          <input ngbButton type="radio" value="R"> 租金
+        </label>
+        <label ngbButtonLabel [class.btn-primary]="model.type === 'D'" [class.btn-dark]="model.type !== 'D'">
+          <input ngbButton type="radio" value="D" > 押金
+        </label>
+        <label ngbButtonLabel [class.btn-primary]="model.type === 'RF'" [class.btn-dark]="model.type !== 'RF'">
+          <input ngbButton type="radio" value="RF"> 退款
+        </label>
+        <label ngbButtonLabel [class.btn-primary]="model.type === 'RD'" [class.btn-dark]="model.type !== 'RD'">
+          <input ngbButton type="radio" value="RD"> 退押金
+        </label>
+      </div>
+    </div>
     <label for="amount">金額<span class="text_red">*</span>&nbsp;</label>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
