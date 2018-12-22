@@ -1,73 +1,73 @@
 <div class="modal-header">
-  <h4 *ngIf="model.active" class="modal-title">編輯合同</h4>
-  <h4 *ngIf="!model.active" class="modal-title">查詢合同</h4>
-  <button type="button" class="close" aria-label="Close" (click)="cancel()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <form class="form-customer" #form="ngForm" (ngSubmit)="cancel()">
-    <button *ngIf="model.active" type="button" class="btn btn-danger" (click)="deleteModel()" id="deleteButton">解約</button>
-    <div class="row">
-      <div class="col">
-        <label *ngIf="model">承租人: {{model._customer.pContact}}</label>
-      </div>
-      <div class="col">
-        <label *ngIf="model">聯繫電話: {{model._customer.pPhone}}</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label *ngIf="model">停車位: {{model._lot.identifier}}</label>
-      </div>
-      <div class="col">
-        <label *ngIf="model._customer.vehicles.length !== 0">車號: <span *ngFor="let vehicle of model._customer.vehicles">{{vehicle.vin}}
-          </span></label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label *ngIf="model._lot">月租金: {{model._lot.rent}}</label>
-      </div>
-      <div class="col">
-        <label *ngIf="model._lot">押金: {{model._lot.deposit}}</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label *ngIf="model">起租日期: {{model.sYear}}-{{model.sMonth}}-{{model.sDay}}</label>
-      </div>
-      <div class="col">
-        <label *ngIf="model">繳納週期: {{model.pFrequency}}個月</label>
-      </div>
-    </div>
-
-    <div>
-      <label class="text-danger" *ngIf="!model.active">解約日期: {{model.dateModified}}</label>
-    </div>
-
-    <label for="comment">備註</label>
-    <textarea id="comment" name="comment" class="form-control" row="3" [(ngModel)]="model.comment" #comment="ngModel"></textarea>
-
-    <div>
-      <label *ngIf="model">總收款金額: {{model.pTotal}}</label>
-    </div>
-    <div>
-      <label *ngIf="model.active">下次繳費日期: {{model.pYear}}-{{model.pMonth}}-{{model.pDay}}</label>
-    </div>
-    <div>
-      <label *ngIf="model.active">下次繳費金額: {{(model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency *
-        model._lot.rent))}}</label>
-    </div>
-    <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="addPayment()" id="addButton">
-      創建付款<i class="fas fa-plus" aria-hidden="true"></i>
+    <h4 *ngIf="model.active" class="modal-title">編輯合同</h4>
+    <h4 *ngIf="!model.active" class="modal-title">查詢合同</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
     </button>
-
-    <app-payment-table [contract]="model" [parentModal]="activeModal"></app-payment-table>
-
-    <div class="modal-footer">
-      <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
-      <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
-    </div>
-  </form>
-</div>
+  </div>
+  <div class="modal-body">
+    <form class="form-customer" #form="ngForm" (ngSubmit)="cancel()">
+      <button *ngIf="model.active" type="button" class="btn btn-danger" (click)="deleteModel()" id="deleteButton" placement="top" ngbTooltip="溫馨提示: 解約前請記得登記‘退押金’！">解約</button>
+      <div class="row">
+        <div class="col">
+          <label *ngIf="model">承租人: {{model._customer.pContact}}</label>
+        </div>
+        <div class="col">
+          <label *ngIf="model">聯繫電話: {{model._customer.pPhone}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label *ngIf="model">停車位: {{model._lot.identifier}}</label>
+        </div>
+        <div class="col">
+          <label *ngIf="model._customer.vehicles.length !== 0">車號: <span *ngFor="let vehicle of model._customer.vehicles">{{vehicle.vin}}
+            </span></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label *ngIf="model._lot">月租金: {{model._lot.rent}}</label>
+        </div>
+        <div class="col">
+          <label *ngIf="model._lot">押金: {{model._lot.deposit}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label *ngIf="model">起租日期: {{model.sYear}}-{{model.sMonth}}-{{model.sDay}}</label>
+        </div>
+        <div class="col">
+          <label *ngIf="model">繳納週期: {{model.pFrequency}}個月</label>
+        </div>
+      </div>
+  
+      <div>
+        <label class="text-danger" *ngIf="!model.active">解約日期: {{model.dateModified}}</label>
+      </div>
+  
+      <label for="comment">備註</label>
+      <textarea id="comment" name="comment" class="form-control" row="3" [(ngModel)]="model.comment" #comment="ngModel"></textarea>
+  
+      <div>
+        <label *ngIf="model">總收款金額: {{model.pTotal}}</label>
+      </div>
+      <div>
+        <label *ngIf="model.active">下次繳費日期: {{model.pYear}}-{{model.pMonth}}-{{model.pDay}}</label>
+      </div>
+      <div>
+        <label *ngIf="model.active">下次繳費金額: {{(model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency *
+          model._lot.rent))}}</label>
+      </div>
+      <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="addPayment()" id="addButton">
+        創建付款<i class="fas fa-plus" aria-hidden="true"></i>
+      </button>
+  
+      <app-payment-table [contract]="model" [parentModal]="activeModal"></app-payment-table>
+  
+      <div class="modal-footer">
+        <button *ngIf="model.active" type="button" class="btn btn-primary" (click)="updateModel()" [disabled]="form.invalid">保存</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">取消</button>
+      </div>
+    </form>
+  </div>
