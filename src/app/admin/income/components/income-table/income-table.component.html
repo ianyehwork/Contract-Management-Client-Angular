@@ -29,7 +29,7 @@
             <input ngbButton type="radio" value="D"> 押金
           </label>
           <label ngbButtonLabel [class.btn-primary]="match === 'RF'" [class.btn-dark]="match !== 'RF'">
-            <input ngbButton type="radio" value="RF"> 退款
+            <input ngbButton type="radio" value="RF"> 退租金
           </label>
           <label ngbButtonLabel [class.btn-primary]="match === 'RD'" [class.btn-dark]="match !== 'RD'">
             <input ngbButton type="radio" value="RD"> 退押金
@@ -41,7 +41,7 @@
   <div class="mb-2">
     <span class="dot D"></span>&nbsp;押金&nbsp;
     <span class="dot R"></span>&nbsp;租金&nbsp;
-    <span class="dot RF"></span>&nbsp;退款&nbsp;
+    <span class="dot RF"></span>&nbsp;退租金&nbsp;
     <span class="dot RD"></span>&nbsp;退押金
   </div>
   <app-page-loading *ngIf="isLoading"></app-page-loading>
@@ -61,7 +61,7 @@
         <td>{{model.dateCreated}}</td>
         <td>{{model._contract._customer.pContact}}</td>
         <td>{{model._contract._lot.identifier}}</td>
-        <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退款' : (model.type === 'R') ? '租金' : '退押金'}}</td>
+        <td>{{(model.type === 'D') ? '押金' : (model.type === 'RF') ? '退租金' : (model.type === 'R') ? '租金' : '退押金'}}</td>
         <td>{{model.amount}}</td>
       </tr>
     </tbody>

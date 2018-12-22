@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <div><label class="h4">生成報告</label></div>
   <ngb-accordion #acc="ngbAccordion">
     <ngb-panel title="應付款清單">
       <ng-template ngbPanelContent>
@@ -33,7 +34,8 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary" id="paymentAddButton" [disabled]="paymentForm.invalid">
+          <app-page-loading [label]="'Generate'" *ngIf="isLoading"></app-page-loading>
+          <button *ngIf="!isLoading" type="submit" class="btn btn-primary" id="paymentAddButton" [disabled]="paymentForm.invalid">
             生成
           </button>
         </form>
@@ -66,7 +68,8 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary" id="incomeAddButton" [disabled]="incomeForm.invalid">
+          <app-page-loading [label]="'Generate'" *ngIf="isLoading"></app-page-loading>
+          <button *ngIf="!isLoading" type="submit" class="btn btn-primary" id="incomeAddButton" [disabled]="incomeForm.invalid">
             生成
           </button>
         </form>
