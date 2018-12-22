@@ -15,6 +15,7 @@ import { convertUTCDateTimeToYMD } from '../../../../shared/util/date-time-conve
 export class ContractTableComponent extends ModelTableComponent<Contract, ContractTableService> implements OnInit {
 
   contactName = '';
+  parkingLot = '';
 
   constructor(service: ContractTableService,
     modalService: NgbModal) {
@@ -42,8 +43,16 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
 
   refresh() {
     this.isLoading = true;
+    let filterString = '';
     if (this.contactName !== '') {
-      this.service.setCustomFilter('&contactName=' + this.contactName);
+      filterString += '&contactName=' + this.contactName;
+    }
+    if (this.parkingLot !== '') {
+      filterString += '&parkingLot=' + this.parkingLot;
+    }
+
+    if (filterString.length > 0) {
+      this.service.setCustomFilter(filterString);
     } else {
       this.service.clearCustomFilter();
     }

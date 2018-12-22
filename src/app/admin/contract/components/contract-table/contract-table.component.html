@@ -5,7 +5,18 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">聯絡人</span>
                 </div>
-                <input type="text" name="match" class="form-control" [(ngModel)]="contactName" (keydown.enter)="refresh()">
+                <input type="text" name="contactName" class="form-control" [(ngModel)]="contactName" (keydown.enter)="refresh()">
+                <div class="input-group-append" (click)="refresh()">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">停車位</span>
+                </div>
+                <input type="text" name="parkingLot" class="form-control" [(ngModel)]="parkingLot" (keydown.enter)="refresh()">
                 <div class="input-group-append" (click)="refresh()">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
