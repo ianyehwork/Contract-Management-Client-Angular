@@ -45,10 +45,10 @@ export class ContractTableComponent extends ModelTableComponent<Contract, Contra
     this.isLoading = true;
     let filterString = '';
     if (this.contactName !== '') {
-      filterString += '&contactName=' + this.contactName;
+      filterString += '&contactName=' + this.contactName.trim();
     }
     if (this.parkingLot !== '') {
-      filterString += '&parkingLot=' + this.parkingLot;
+      filterString += '&parkingLot=' + this.parkingLot.trim();
     }
 
     if (filterString.length > 0) {

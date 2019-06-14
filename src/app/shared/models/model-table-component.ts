@@ -46,7 +46,7 @@ export class ModelTableComponent<T1 extends HasIdInterface,
         this.isLoading = true;
         this.service.refresh(
             this.field,
-            this.match,
+            this.match.trim(),
             this.order,
             this.reverse,
             this.page,

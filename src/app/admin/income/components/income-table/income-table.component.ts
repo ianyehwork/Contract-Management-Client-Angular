@@ -40,7 +40,7 @@ export class IncomeTableComponent extends ModelTableComponent<Payment, PaymentTa
   refresh() {
     this.isLoading = true;
     if (this.contactName !== '') {
-      this.service.setCustomFilter('&contactName=' + this.contactName);
+      this.service.setCustomFilter('&contactName=' + this.contactName.trim());
     } else {
       this.service.clearCustomFilter();
     }
