@@ -29,7 +29,7 @@ export class PasswordResetComponent implements OnInit {
 
   resetPassword(value) {
     this.submitted = true;
-    this.authService.resetPassword(value).subscribe((response) => {
+    this.authService.forgetPassword(value).subscribe((response) => {
       this.success = true;
     }, (err) => {
       this.success = false;

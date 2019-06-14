@@ -72,8 +72,8 @@
         <tr *ngFor="let model of modelList" (click)="openEditModal(model)" [class.isTerminated]="!model.active">
             <td>{{model._customer.pContact}}</td>
             <td>{{model._lot.identifier}}</td>
-            <td>{{model.sYear + '-' + model.sMonth + '-' + model.sDay}}</td>
-            <td>{{model.active ? model.pYear + '-' + model.pMonth + '-' + model.pDay : '合同已終止'}}</td>
+            <td>{{model.sYear}}-{{(model.sMonth < 10 ? '0' : '') + model.sMonth}}-{{(model.sDay < 10 ? '0' : '') + model.sDay}}</td>
+            <td>{{model.active ? model.pYear + '-' + (model.pMonth < 10 ? '0' : '') + model.pMonth + '-' + (model.pDay < 10 ? '0' : '') + model.pDay : '合同已終止'}}</td>
             <td>{{model.pTotal}}</td>
             <td>{{(model.active ? '生效' : '終止 (' + model.dateModified + ')')}}</td>
         </tr>

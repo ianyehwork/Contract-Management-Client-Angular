@@ -30,11 +30,32 @@ export class AuthService {
 
   /**
    * Send the reset password request to the server
+   * @param data contains 'username'
+   */
+  forgetPassword(data: any) {
+    return this.http.post(`${this.API_URL}/users/password/forget`,
+                           data,
+                           { observe: 'response'}).catch(this.handlerError);
+  }
+
+  /**
+   * Reset the user password via Temporary Token
    * @param data contains 'username', 'password', 'token'
    */
   resetPassword(data: any) {
-    const token = localStorage.getItem(this.STORAGE_TOKEN_KEY);
+    // const token = localStorage.getItem(this.STORAGE_TOKEN_KEY);
     return this.http.post(`${this.API_URL}/users/password/reset`, data, {
+                          observe: 'response'
+                         }).catch(this.handlerError);
+  }
+
+  /**
+   * Change the user password via Authentication
+   * @param data contains 'username', 'password'
+   */
+  changePassword(data: any) {
+    const token = localStorage.getItem(this.STORAGE_TOKEN_KEY);
+    return this.http.post(`${this.API_URL}/users/password/change`, data, {
                           headers: {
                             'x-auth': token
                           },

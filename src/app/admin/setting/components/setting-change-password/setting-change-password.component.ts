@@ -20,7 +20,7 @@ export class SettingChangePasswordComponent implements OnInit {
 
   changePassword(form) {
     form.value.username = this.authService.currentUser.username;
-    this.authService.resetPassword(form.value).subscribe((response) => {
+    this.authService.changePassword(form.value).subscribe((response) => {
       this.success = true;
     }, (error) => {
       if (error instanceof UnauthorizeError) {

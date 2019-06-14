@@ -35,7 +35,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <label *ngIf="model">起租日期: {{model.sYear}}-{{model.sMonth}}-{{model.sDay}}</label>
+          <label *ngIf="model">起租日期: {{model.sYear}}-{{(model.sMonth < 10 ? '0' : '') + model.sMonth}}-{{(model.sDay < 10 ? '0' : '') + model.sDay}}</label>
         </div>
         <div class="col">
           <label *ngIf="model">繳納週期: {{model.pFrequency}}個月</label>
@@ -53,7 +53,7 @@
         <label *ngIf="model">總收款金額: {{model.pTotal}}</label>
       </div>
       <div>
-        <label *ngIf="model.active">下次繳費日期: {{model.pYear}}-{{model.pMonth}}-{{model.pDay}}</label>
+        <label *ngIf="model.active">下次繳費日期: {{model.pYear + '-' + (model.pMonth < 10 ? '0' : '') + model.pMonth + '-' + (model.pDay < 10 ? '0' : '') + model.pDay}}</label>
       </div>
       <div>
         <label *ngIf="model.active">下次繳費金額: {{(model.pFrequency * model._lot.rent) - (model.pTotal % (model.pFrequency *
