@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 
 import { BadInputError } from '../models/bad-input-error';
 import { NotFoundError } from '../models/not-found-error';
+import { UnauthorizeError } from '../models/unauthorize-error';
 import { AppError } from '../models/app-error';
 
 import { HasIdInterface } from '../models/has-id.interface';
@@ -54,6 +55,8 @@ export class DataService <T extends HasIdInterface> {
       return Observable.throw(new NotFoundError());
     } else if (error.status === 400) {
       return Observable.throw(new BadInputError(error));
+    } else if (error.status === 401) {
+      return Observable.throw(new UnauthorizeError(error));
     } else {
       return Observable.throw(new AppError(error));
     }

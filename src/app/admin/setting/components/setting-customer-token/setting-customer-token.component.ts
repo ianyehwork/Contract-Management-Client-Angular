@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerSearchComponent } from '../../../customer/components/customer-search/customer-search.component';
 import { AppConstants } from '../../../../constants';
+import { UnauthorizeError } from '../../../../shared/models/unauthorize-error';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-setting-customer-token',
@@ -14,7 +16,8 @@ export class SettingCustomerTokenComponent implements OnInit {
 
   constructor(
     private ngbService: NgbModal,
-    private service: CustomerService
+    private service: CustomerService,
+    private router: Router
   ) { }
 
   _customer: Customer;
@@ -42,7 +45,10 @@ export class SettingCustomerTokenComponent implements OnInit {
   createCustomerToken() {
     this.service.createCustomerToken(this._customer).subscribe((result) => {
       this.token = result.token;
-    }, (err) => {
+    }, (error) => {
+      if (error instanceof UnauthorizeError) {
+        this.router.navigate(['/'], { replaceUrl: true });
+      }
       console.log('無法生成令牌');
     });
   }

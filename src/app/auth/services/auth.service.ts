@@ -6,6 +6,7 @@ import { User } from '../models/user';
 // Error Classes
 import { BadInputError } from '../../shared/models/bad-input-error';
 import { NotFoundError } from '../../shared/models/not-found-error';
+import { UnauthorizeError } from '../../shared/models/unauthorize-error';
 import { AppError } from '../../shared/models/app-error';
 // Error Handling
 import { Observable } from 'rxjs/Observable';
@@ -32,8 +33,13 @@ export class AuthService {
    * @param data contains 'username', 'password', 'token'
    */
   resetPassword(data: any) {
-    return this.http.post(`${this.API_URL}/users/password/reset`, data, {observe: 'response'})
-                    .catch(this.handlerError);
+    const token = localStorage.getItem(this.STORAGE_TOKEN_KEY);
+    return this.http.post(`${this.API_URL}/users/password/reset`, data, {
+                          headers: {
+                            'x-auth': token
+                          },
+                          observe: 'response'
+                         }).catch(this.handlerError);
   }
 
   /**
@@ -139,8 +145,11 @@ export class AuthService {
       return Observable.throw(new NotFoundError());
     } else if (error.status === 400) {
       return Observable.throw(new BadInputError());
+    } else if (error.status === 401) {
+      return Observable.throw(new UnauthorizeError(error));
+    } else {
+      return Observable.throw(new AppError(error));
     }
-    return Observable.throw(new AppError(error));
   }
 }
 
