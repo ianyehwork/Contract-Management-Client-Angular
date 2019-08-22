@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChartsModule } from 'ng2-charts';
 
 import { AuthGuard } from '../auth/services/auth-guard.service';
 import { StartsWithPipe } from '../shared/pipe/starts-with.pipe';
@@ -33,6 +34,7 @@ import { ActivePaymentTableComponent } from './dashboard/components/active-payme
 import { DashboardHomeComponent } from './dashboard/components/dashboard-home/dashboard-home.component';
 import { PaymentCalendarComponent } from './dashboard/components/payment-calendar/payment-calendar.component';
 import { HomeComponent } from './home/home.component';
+import { IncomeGraphComponent } from './dashboard/components/income-graph/income-graph.component';
 import { IncomeHomeComponent } from './income/components/income-home/income-home.component';
 import { IncomeTableComponent } from './income/components/income-table/income-table.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -52,6 +54,7 @@ import { ParkingLotTableService } from './parking/services/parking-lot-table.ser
 import { ParkingLotService } from './parking/services/parking-lot.service';
 import { ReportHomeComponent } from './report/components/report-home/report-home.component';
 import { ReportService } from './report/services/report.service';
+import { IncomeGraphService } from './dashboard/services/income-graph.service';
 import { SettingChangePasswordComponent } from './setting/components/setting-change-password/setting-change-password.component';
 import { SettingHomeComponent } from './setting/components/setting-home/setting-home.component';
 import { SettingTabsetComponent } from './setting/components/setting-tabset/setting-tabset.component';
@@ -80,7 +83,8 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     NgbModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ChartsModule
   ],
   declarations: [
     HomeComponent,
@@ -116,6 +120,7 @@ const routes: Routes = [
     ParkingLotDeleteComponent,
     ParkingAreaDeleteComponent,
     ContractDeleteComponent,
+    IncomeGraphComponent,
     IncomeHomeComponent,
     IncomeTableComponent,
     SettingTabsetComponent,
@@ -131,6 +136,7 @@ const routes: Routes = [
     ParkingLotTableService,
     ContractTableService,
     ReportService,
+    IncomeGraphService,
     CustomerTableService,
     ParkingAreaTableService,
     PaymentTableService,

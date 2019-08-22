@@ -3,7 +3,7 @@
   <app-payment-calendar></app-payment-calendar>
 </div>
 <div class="container-fluid mt-2 mb-2">
-  <ngb-tabset>
+  <ngb-tabset type="pills">
     <ngb-tab title="應付款清單">
       <ng-template ngbTabContent>
           <div class="border p-3">
@@ -18,5 +18,12 @@
           </div>
       </ng-template>
     </ngb-tab>
+    <ngb-tab title="近6個月租金收入">
+        <ng-template ngbTabContent>
+            <div class="border p-3">
+                <app-income-graph></app-income-graph>
+            </div>
+        </ng-template>
+      </ngb-tab>
   </ngb-tabset>
 </div>

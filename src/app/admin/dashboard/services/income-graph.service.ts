@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from '../../../auth/services/auth.service';
@@ -12,25 +12,18 @@ import { UnauthorizeError } from '../../../shared/models/unauthorize-error';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()
-export class ReportService {
+export class IncomeGraphService {
 
   url: string = environment.nodeServerURL;
   headers;
 
   constructor(public http: HttpClient,
               public authService: AuthService) {
-    this.headers = this.authService.authHeader;
-    this.headers['responseType'] = 'blob';
-    this.headers['headers']['Accept'] = 'application/pdf';
+      this.headers = this.authService.authHeader;
   }
 
-  public getPaymentReport(query: string = ''): Observable<any> {
-    return this.http.get(this.url + '/reports/payments' + query, this.headers)
-                    .catch(this.handleError);
-  }
-
-  public getIncomeReport(query: string = ''): Observable<any> {
-    return this.http.get(this.url + '/reports/incomes' + query, this.headers)
+  public getPaymentSummary(): Observable<any> {
+    return this.http.get(this.url + '/payments/summary', this.headers)
                     .catch(this.handleError);
   }
 

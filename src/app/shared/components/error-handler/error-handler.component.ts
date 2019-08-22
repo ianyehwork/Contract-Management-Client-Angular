@@ -23,7 +23,7 @@ export class ErrorHandlerComponent implements OnInit, ErrorHandler {
     * @param error the error object
     */
   handleError(error) {
-
+    console.log(error);
     // TODO: In the future, the error should be logged in the
     // database on the server.
     if (error instanceof NotFoundError) {
