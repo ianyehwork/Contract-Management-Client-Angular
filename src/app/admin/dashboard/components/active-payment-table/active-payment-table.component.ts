@@ -38,6 +38,7 @@ export class ActivePaymentTableComponent extends ModelTableComponent<Contract, C
     this.service.setCustomFilter('&active=' + true);
     this.order = 'pDate';
     this.reverse = 1;
+    this.pageSize = 10;
     this.refresh();
   }
 
