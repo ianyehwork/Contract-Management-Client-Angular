@@ -11,5 +11,9 @@ div.ml-auto {
 }
 
 button.active{
-    background-color: gray;
+    background-color: #007bff;
+}
+
+button.white {
+    background-color: white !important;
 }

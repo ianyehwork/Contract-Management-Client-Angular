@@ -18,7 +18,6 @@ export class ParkingTableComponent extends ModelTableComponent<ParkingArea, Park
     super(service, modalService, ParkingAreaEditComponent);
     this.pageSize = 5;
     this.subscription = this.service.getModelChannel().subscribe((result) => {
-      console.log(result);
       this.modelList = result.data;
       this.collectionSize = result.collectionSize;
       this.modelList.forEach((value, index, array) => {

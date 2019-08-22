@@ -27,5 +27,5 @@
 <div *ngIf="!isLoading" class="font-weight-bold">{{((page - 1) * pageSize + 1) > collectionSize ? collectionSize :
   ((page - 1) * pageSize + 1)}} - {{page * pageSize > collectionSize ?
   collectionSize : page * pageSize}} 共 {{collectionSize}} 付款項目</div>
-<ngb-pagination *ngIf="!isLoading" [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()"
+<ngb-pagination *ngIf="!isLoading" [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" (pageChange)="refresh()" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
   aria-label="Default pagination"></ngb-pagination>

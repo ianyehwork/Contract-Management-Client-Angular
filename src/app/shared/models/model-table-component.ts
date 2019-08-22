@@ -83,6 +83,5 @@ export class ModelTableComponent<T1 extends HasIdInterface,
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
-        this.service.clearCustomFilter();
     }
 }
