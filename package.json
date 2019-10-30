@@ -31,7 +31,7 @@
     "chart.js": "^2.8.0",
     "core-js": "^2.4.1",
     "express": "^4.16.4",
-    "lodash": "^4.15.0",
+    "lodash": "^4.17.13",
     "ng-recaptcha": "^3.0.5",
     "ng2-charts": "^1.6.0",
     "path": "^0.12.7",
