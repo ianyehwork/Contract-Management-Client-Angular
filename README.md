@@ -1,8 +1,10 @@
-# Introduction
+## Table of Content
+
+## Main Features
 
 
-## Project Requirement
-
+## Components & Services Interitance Structure
+<img src="docs/inheritance_diagram.png">
 
 ## Project Structure
 The project consists four main modules <b>app/admin</b>, <b>app/auth</b>, <b>app/client</b>, and <b>app/shared</b>.
