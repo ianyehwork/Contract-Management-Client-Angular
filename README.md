@@ -1,10 +1,25 @@
 ## Table of Content
+[1. Main Features](#Main)  
+[2. Components & Services Inheritance Structure](#Components)  
+[3. Project Structure](#Project)  
 
-## Main Features
+<a name="Main"/>
+
+## Project Demo
+
+<a name="Components"/>
+
+## Components & Services Inheritance Structure
+I developed the inheritance structure when I refactored the system to improve the extensibility and reusability. The base classes with generic types are used to capture common functionalities to reduce redundant code. In the figure below, I have <b>Customer</b> CRUD screen as an example. However, this also applies to other models such as <b>Contract</b>. 
+
+* <b>DataService</b> and <b>TableService</b> are base classes for the services of the model.
+* All model classes need to extend <b>HasIdInterface</b>.
+* <b>XXXHomeComponent</b> contains <b>XXXCreateComponent</b>, <b>XXXTableComponent</b>, <b>XXXEditComponent</b>, and <b>XXXCustomerDeleteComponent</b>. Each of which has the corresponding base class to extend. <b>XXX</b> refers to the model name, e.g. Customer, Contract, etc.
 
 
-## Components & Services Interitance Structure
 <img src="docs/inheritance_diagram.png">
+
+<a name="Project"/>
 
 ## Project Structure
 The project consists four main modules <b>app/admin</b>, <b>app/auth</b>, <b>app/client</b>, and <b>app/shared</b>.
