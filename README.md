@@ -1,11 +1,6 @@
-## Table of Content
-[1. Main Features](#Main)  
-[2. Components & Services Inheritance Structure](#Components)  
-[3. Project Structure](#Project)  
-
-<a name="Main"/>
-
-## Project Demo
+## Table of Content 
+[1. Components & Services Inheritance Structure](#Components)  
+[2. Project Structure](#Project)  
 
 <a name="Components"/>
 
